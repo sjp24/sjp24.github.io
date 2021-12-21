@@ -1,0 +1,608 @@
+
+<!DOCTYPE html>
+<html lang="en">
+    
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="generator" content="SJP">
+    <title>Google Colab 101: Using Both R &amp; Python - SJP</title>
+    <meta name="author" content="Song Park">
+    
+        <meta name="keywords" content="colab,data">
+    
+    
+    
+        
+            <link rel="alternate" type="application/atom+xml" title="RSS" href="/atom.xml">
+        
+    
+    <script type="application/ld+json">{"@context":"http://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Song Park","sameAs":["#about","https://www.linkedin.com/profile/"],"image":"https://lh3.googleusercontent.com/pw/AM-JKLXE0TOvzGd2C_G4f79oDYbTFd88BPZLRRX7PoOrqw4Y3txQSxo-yvOhdTBBii2e4n83qUxSVki9ZS7F0fdD541BlsX3k4m6-_La__Pr0s2i4Srb6gyYr1rjwe2raKgLes_e7PNjJrGA_40KK1EFPD9KUA=s989-no?authuser=0"},"articleBody":"Undeniably, best practice is to only use one language in a notebook, particularly when collaborating with others. However, if you’re familiar with both R &amp; Python you’re bound to come across moments when you wish you could do something in the other language whether it’s because you can do something in one language but not the other, or you can accomplish it in the given language but it’s much simpler to do in the other.\nFortunately, Colab allows you to use both R &amp; Python in the same notebook!\n\n\n(FYI — if you just want to use R you can create a Colab R notebook through this link: https://colab.research.google.com/#create=true&amp;language=r)\n\n\n\nGetting StartedTo start, run this code to load R:\n1%load_ext rpy2.ipython\n\nRunning R Code: BasicsAfterwards, all cells will be Python cells by default but you can run R code using two different methods: cell magic &amp; line magic.\nCell magic: running an entire cell as R code. To run cell magic, place the following code in the first line of the cell. All code within the cell will then be run as R code.\n1%%R\n\nLine magic: running a single line within a cell as R code. Place the following code within a cell and all following code within the same line will be run as R code.\n1%R\n\n\nTip #1: Copying Dataframes Between R &amp; PythonBy default, if a dataframe is created within the R language, Python cannot recognize the dataframe. Therefore, to work with a single dataframe across the the two languages the dataframe needs to be duplicated from one language to the other.Given a dataframe named df, use cell magic (not line magic!) and run the code below.\nPython → R1%R -i df\n\nR → Python1%R -o df\n\nCopying Multiple Dataframes12345#Python to R%R -i df -i df2#R to Python%R -o df -o df2\n\nTip #2: Copying an R Variable to PythonLine magic runs code within the same line following %R, therefore you can use line magic as below to copy an R variable to Python.\n1x = %R x\n\n\nTo close off, here is a link to a Colab notebook with some very quick, basic examples of mixing Python &amp; R: Example Colab Notebook\n","dateCreated":"2021-12-21T00:00:00+09:00","dateModified":"2021-12-22T01:52:13+09:00","datePublished":"2021-12-21T00:00:00+09:00","description":"Undeniably, best practice is to only use one language in a notebook, particularly when collaborating with others. However, if you’re familiar with both R &amp; Python you’re bound to come across moments when you wish you could do something in the other language whether it’s because you can do something in one language but not the other, or you can accomplish it in the given language but it’s much simpler to do in the other.\nFortunately, Colab allows you to use both R &amp; Python in the same notebook!","headline":"Google Colab 101: Using Both R & Python","image":["https://lh3.googleusercontent.com/pw/AM-JKLUQcFQaota_68q6YjdYQPg-A2FZ7-y_SDJDQ_PQUxmE000camVhGvIseLm7iGkv4iI8VyCxDP_CHyuwH_6Rrn-augd2Ne4NY0LoX8VoR45XfsIDJOjfL1ICzrG54sFSVCuHj-egtb9ttR_8T42fkFgHmg=w776-h343-no?authuser=0"],"mainEntityOfPage":{"@type":"WebPage","@id":"http://sjp24.github.io/2021/12/21/20211221-colab-r-and-python/"},"publisher":{"@type":"Organization","name":"Song Park","sameAs":["#about","https://www.linkedin.com/profile/"],"image":"https://lh3.googleusercontent.com/pw/AM-JKLXE0TOvzGd2C_G4f79oDYbTFd88BPZLRRX7PoOrqw4Y3txQSxo-yvOhdTBBii2e4n83qUxSVki9ZS7F0fdD541BlsX3k4m6-_La__Pr0s2i4Srb6gyYr1rjwe2raKgLes_e7PNjJrGA_40KK1EFPD9KUA=s989-no?authuser=0","logo":{"@type":"ImageObject","url":"https://lh3.googleusercontent.com/pw/AM-JKLXE0TOvzGd2C_G4f79oDYbTFd88BPZLRRX7PoOrqw4Y3txQSxo-yvOhdTBBii2e4n83qUxSVki9ZS7F0fdD541BlsX3k4m6-_La__Pr0s2i4Srb6gyYr1rjwe2raKgLes_e7PNjJrGA_40KK1EFPD9KUA=s989-no?authuser=0"}},"url":"http://sjp24.github.io/2021/12/21/20211221-colab-r-and-python/","keywords":"Colab, R, Python","thumbnailUrl":"https://lh3.googleusercontent.com/pw/AM-JKLUQcFQaota_68q6YjdYQPg-A2FZ7-y_SDJDQ_PQUxmE000camVhGvIseLm7iGkv4iI8VyCxDP_CHyuwH_6Rrn-augd2Ne4NY0LoX8VoR45XfsIDJOjfL1ICzrG54sFSVCuHj-egtb9ttR_8T42fkFgHmg=w776-h343-no?authuser=0"}</script>
+    <meta name="description" content="Undeniably, best practice is to only use one language in a notebook, particularly when collaborating with others. However, if you’re familiar with both R &amp; Python you’re bound to come across momen">
+<meta property="og:type" content="blog">
+<meta property="og:title" content="Google Colab 101: Using Both R &amp; Python">
+<meta property="og:url" content="http://sjp24.github.io/2021/12/21/20211221-colab-r-and-python/index.html">
+<meta property="og:site_name" content="SJP">
+<meta property="og:description" content="Undeniably, best practice is to only use one language in a notebook, particularly when collaborating with others. However, if you’re familiar with both R &amp; Python you’re bound to come across momen">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://lh3.googleusercontent.com/pw/AM-JKLUQcFQaota_68q6YjdYQPg-A2FZ7-y_SDJDQ_PQUxmE000camVhGvIseLm7iGkv4iI8VyCxDP_CHyuwH_6Rrn-augd2Ne4NY0LoX8VoR45XfsIDJOjfL1ICzrG54sFSVCuHj-egtb9ttR_8T42fkFgHmg=w776-h343-no?authuser=0">
+<meta property="article:published_time" content="2021-12-20T15:00:00.000Z">
+<meta property="article:modified_time" content="2021-12-21T16:52:13.330Z">
+<meta property="article:author" content="Song Park">
+<meta property="article:tag" content="Colab">
+<meta property="article:tag" content="R">
+<meta property="article:tag" content="Python">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://lh3.googleusercontent.com/pw/AM-JKLUQcFQaota_68q6YjdYQPg-A2FZ7-y_SDJDQ_PQUxmE000camVhGvIseLm7iGkv4iI8VyCxDP_CHyuwH_6Rrn-augd2Ne4NY0LoX8VoR45XfsIDJOjfL1ICzrG54sFSVCuHj-egtb9ttR_8T42fkFgHmg=w776-h343-no?authuser=0">
+    
+    
+        
+    
+    
+        <meta property="og:image" content="https://lh3.googleusercontent.com/pw/AM-JKLXE0TOvzGd2C_G4f79oDYbTFd88BPZLRRX7PoOrqw4Y3txQSxo-yvOhdTBBii2e4n83qUxSVki9ZS7F0fdD541BlsX3k4m6-_La__Pr0s2i4Srb6gyYr1rjwe2raKgLes_e7PNjJrGA_40KK1EFPD9KUA=s989-no?authuser=0"/>
+    
+    
+        <meta property="og:image" content="https://lh3.googleusercontent.com/pw/AM-JKLUQcFQaota_68q6YjdYQPg-A2FZ7-y_SDJDQ_PQUxmE000camVhGvIseLm7iGkv4iI8VyCxDP_CHyuwH_6Rrn-augd2Ne4NY0LoX8VoR45XfsIDJOjfL1ICzrG54sFSVCuHj-egtb9ttR_8T42fkFgHmg=w776-h343-no?authuser=0"/>
+        <meta class="swiftype" name="image" data-type="enum" content="https://lh3.googleusercontent.com/pw/AM-JKLUQcFQaota_68q6YjdYQPg-A2FZ7-y_SDJDQ_PQUxmE000camVhGvIseLm7iGkv4iI8VyCxDP_CHyuwH_6Rrn-augd2Ne4NY0LoX8VoR45XfsIDJOjfL1ICzrG54sFSVCuHj-egtb9ttR_8T42fkFgHmg=w776-h343-no?authuser=0"/>
+    
+    
+    
+    <!--STYLES-->
+    
+<link rel="stylesheet" href="/assets/css/style-xiipclyvmz4tufelh5v5jcfc7kybycco85tgmmgwwbllpqy9uyflcznksmj9.min.css">
+
+    <!--STYLES END-->
+    
+
+    
+
+    
+</head>
+
+    <body>
+        <div id="blog">
+            <!-- Define author's picture -->
+
+
+    
+        
+            
+        
+    
+
+<header id="header" data-behavior="4">
+    <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
+    <div class="header-title">
+        <a
+            class="header-title-link"
+            href="/"
+            aria-label=""
+        >
+            SJP
+        </a>
+    </div>
+    
+        
+            <a
+                class="header-right-picture "
+                href="#about"
+                aria-label="Open the link: /#about"
+            >
+        
+        
+            <img class="header-picture" src="https://lh3.googleusercontent.com/pw/AM-JKLXE0TOvzGd2C_G4f79oDYbTFd88BPZLRRX7PoOrqw4Y3txQSxo-yvOhdTBBii2e4n83qUxSVki9ZS7F0fdD541BlsX3k4m6-_La__Pr0s2i4Srb6gyYr1rjwe2raKgLes_e7PNjJrGA_40KK1EFPD9KUA=s989-no?authuser=0" alt="Author&#39;s picture"/>
+        
+        </a>
+    
+</header>
+
+            <!-- Define author's picture -->
+
+
+
+        
+    
+
+<nav id="sidebar" data-behavior="4">
+    <div class="sidebar-container">
+        
+            <div class="sidebar-profile">
+                <a
+                    href="/#about"
+                    aria-label="Read more about the author"
+                >
+                    <img class="sidebar-profile-picture" src="https://lh3.googleusercontent.com/pw/AM-JKLXE0TOvzGd2C_G4f79oDYbTFd88BPZLRRX7PoOrqw4Y3txQSxo-yvOhdTBBii2e4n83qUxSVki9ZS7F0fdD541BlsX3k4m6-_La__Pr0s2i4Srb6gyYr1rjwe2raKgLes_e7PNjJrGA_40KK1EFPD9KUA=s989-no?authuser=0" alt="Author&#39;s picture"/>
+                </a>
+                <h4 class="sidebar-profile-name">Song Park</h4>
+                
+                    <h5 class="sidebar-profile-bio"><p>데이를 보는 사람입니다. New Yorker turned Seoulite.</p>
+</h5>
+                
+            </div>
+        
+        
+            <ul class="sidebar-buttons">
+            
+                <li class="sidebar-button">
+                    
+                        <a
+                            class="sidebar-button-link "
+                            href="/"
+                            
+                            rel="noopener"
+                            title="Home"
+                        >
+                        <i class="sidebar-button-icon fa fa-home" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">Home</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a
+                            class="sidebar-button-link "
+                            href="/all-categories"
+                            
+                            rel="noopener"
+                            title="Categories"
+                        >
+                        <i class="sidebar-button-icon fa fa-bookmark" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">Categories</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a
+                            class="sidebar-button-link "
+                            href="/all-tags"
+                            
+                            rel="noopener"
+                            title="Tags"
+                        >
+                        <i class="sidebar-button-icon fa fa-tags" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">Tags</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a
+                            class="sidebar-button-link "
+                            href="/all-archives"
+                            
+                            rel="noopener"
+                            title="Archives"
+                        >
+                        <i class="sidebar-button-icon fa fa-archive" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">Archives</span>
+                    </a>
+            </li>
+            
+        </ul>
+        
+            <ul class="sidebar-buttons">
+            
+                <li class="sidebar-button">
+                    
+                        <a
+                            class="sidebar-button-link "
+                            href="#about"
+                            
+                            rel="noopener"
+                            title="About"
+                        >
+                        <i class="sidebar-button-icon fa fa-question" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">About</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a
+                            class="sidebar-button-link "
+                            href="https://www.linkedin.com/profile/"
+                            
+                                target="_blank"
+                            
+                            rel="noopener"
+                            title="LinkedIn"
+                        >
+                        <i class="sidebar-button-icon fab fa-linkedin" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">LinkedIn</span>
+                    </a>
+            </li>
+            
+        </ul>
+        
+    </div>
+</nav>
+
+            
+            <div id="main" data-behavior="4"
+                 class="
+                        hasCoverMetaIn
+                        ">
+                
+<article class="post">
+    
+    
+        <div class="post-header main-content-wrap text-left">
+    
+        <h1 class="post-title">
+            Google Colab 101: Using Both R &amp; Python
+        </h1>
+    
+    
+        <div class="post-meta">
+    <time datetime="2021-12-21T00:00:00+09:00">
+	
+		    Dec 21, 2021
+    	
+    </time>
+    
+        <span>in </span>
+        
+    <a class="category-link" href="/categories/Data/">Data</a>, <a class="category-link" href="/categories/Data/Guides/">Guides</a>
+
+
+    
+</div>
+
+    
+</div>
+
+    
+    <div class="post-content markdown">
+        <div class="main-content-wrap">
+            <p>Undeniably, best practice is to only use one language in a notebook, particularly when collaborating with others. However, if you’re familiar with both R &amp; Python you’re bound to come across moments when you wish you could do something in the other language whether it’s because you can do something in one language but not the other, or you can accomplish it in the given language but it’s much simpler to do in the other.</p>
+<p>Fortunately, Colab allows you to use both R &amp; Python in the same notebook!</p>
+<span id="more"></span>
+
+<p>(FYI — if you just want to use R you can create a Colab R notebook through this link: <a target="_blank" rel="noopener" href="https://colab.research.google.com/#create=true&amp;language=r">https://colab.research.google.com/#create=true&amp;language=r</a>)</p>
+<img src="https://lh3.googleusercontent.com/pw/AM-JKLUQcFQaota_68q6YjdYQPg-A2FZ7-y_SDJDQ_PQUxmE000camVhGvIseLm7iGkv4iI8VyCxDP_CHyuwH_6Rrn-augd2Ne4NY0LoX8VoR45XfsIDJOjfL1ICzrG54sFSVCuHj-egtb9ttR_8T42fkFgHmg=w776-h343-no?authuser=0" class="">
+
+<hr>
+<h2 id="Getting-Started"><a href="#Getting-Started" class="headerlink" title="Getting Started"></a>Getting Started</h2><p>To start, run this code to load R:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">%load_ext rpy2.ipython</span><br></pre></td></tr></table></figure>
+
+<h2 id="Running-R-Code-Basics"><a href="#Running-R-Code-Basics" class="headerlink" title="Running R Code: Basics"></a>Running R Code: Basics</h2><p>Afterwards, all cells will be Python cells by default but you can run R code using two different methods: <strong>cell magic</strong> &amp; <strong>line magic</strong>.</p>
+<p><strong>Cell magic</strong>: running an entire cell as R code. To run cell magic, place the following code in the first line of the cell. All code within the cell will then be run as R code.</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">%%R</span><br></pre></td></tr></table></figure>
+
+<p><strong>Line magic</strong>: running a single line within a cell as R code. Place the following code within a cell and all following code within the same line will be run as R code.</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">%R</span><br></pre></td></tr></table></figure>
+
+
+<h2 id="Tip-1-Copying-Dataframes-Between-R-amp-Python"><a href="#Tip-1-Copying-Dataframes-Between-R-amp-Python" class="headerlink" title="Tip #1: Copying Dataframes Between R &amp; Python"></a>Tip #1: Copying Dataframes Between R &amp; Python</h2><p>By default, if a dataframe is created within the R language, Python cannot recognize the dataframe. Therefore, to work with a single dataframe across the the two languages the dataframe needs to be duplicated from one language to the other.<br>Given a dataframe named <strong>df</strong>, use cell magic (not line magic!) and run the code below.</p>
+<h5 id="Python-→-R"><a href="#Python-→-R" class="headerlink" title="Python → R"></a>Python → R</h5><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">%R -i df</span><br></pre></td></tr></table></figure>
+
+<h5 id="R-→-Python"><a href="#R-→-Python" class="headerlink" title="R → Python"></a>R → Python</h5><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">%R -o df</span><br></pre></td></tr></table></figure>
+
+<h5 id="Copying-Multiple-Dataframes"><a href="#Copying-Multiple-Dataframes" class="headerlink" title="Copying Multiple Dataframes"></a>Copying Multiple Dataframes</h5><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">#Python to R</span><br><span class="line">%R -i df -i df2</span><br><span class="line"></span><br><span class="line">#R to Python</span><br><span class="line">%R -o df -o df2</span><br></pre></td></tr></table></figure>
+
+<h2 id="Tip-2-Copying-an-R-Variable-to-Python"><a href="#Tip-2-Copying-an-R-Variable-to-Python" class="headerlink" title="Tip #2: Copying an R Variable to Python"></a>Tip #2: Copying an R Variable to Python</h2><p>Line magic runs code within the same line following %R, therefore you can use line magic as below to copy an R variable to Python.</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">x = %R x</span><br></pre></td></tr></table></figure>
+
+<hr>
+<p>To close off, here is a link to a Colab notebook with some very quick, basic examples of mixing Python &amp; R: <a target="_blank" rel="noopener" href="https://colab.research.google.com/drive/1MKFJ6LyWAMQ6JBewbeuk8sI6ne-jbMN2?usp=sharing" title="Title">Example Colab Notebook</a></p>
+
+            
+
+
+        </div>
+    </div>
+    <div id="post-footer" class="post-footer main-content-wrap">
+        
+            <div class="post-footer-tags">
+                <span class="text-color-light text-small">TAGGED IN</span><br/>
+                
+    <a class="tag tag--primary tag--small t-none-link" href="/tags/Colab/" rel="tag">Colab</a> <a class="tag tag--primary tag--small t-none-link" href="/tags/Python/" rel="tag">Python</a> <a class="tag tag--primary tag--small t-none-link" href="/tags/R/" rel="tag">R</a>
+
+            </div>
+        
+        
+            <div class="post-actions-wrap">
+    <nav>
+        <ul class="post-actions post-action-nav">
+            <li class="post-action">
+                
+                    <a
+                        class="post-action-btn btn btn--disabled"
+                        aria-hidden="true"
+                    >
+                        
+                        <i class="fa fa-angle-left" aria-hidden="true"></i>
+                        <span class="hide-xs hide-sm text-small icon-ml">PREVIOUS</span>
+                    </a>
+            </li>
+            <li class="post-action">
+                
+                    
+                <a
+                    class="post-action-btn btn btn--default tooltip--top"
+                    href="/2021/06/17/20211221-basic-pipeline/"
+                    data-tooltip="데이터의 흐름: 기본적인 데이터 파이프라인 개념 설명"
+                    aria-label="NEXT: 데이터의 흐름: 기본적인 데이터 파이프라인 개념 설명"
+                >
+                    
+                        <span class="hide-xs hide-sm text-small icon-mr">NEXT</span>
+                        <i class="fa fa-angle-right" aria-hidden="true"></i>
+                    </a>
+            </li>
+        </ul>
+    </nav>
+    <ul class="post-actions post-action-share">
+        <li class="post-action hide-lg hide-md hide-sm">
+            <a
+                class="post-action-btn btn btn--default btn-open-shareoptions"
+                href="#btn-open-shareoptions"
+                aria-label="Share this post"
+            >
+                <i class="fa fa-share-alt" aria-hidden="true"></i>
+            </a>
+        </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a
+                    class="post-action-btn btn btn--default"
+                    target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://sjp24.github.io/2021/12/21/20211221-colab-r-and-python/"
+                    title="Share on Facebook"
+                    aria-label="Share on Facebook"
+                >
+                    <i class="fab fa-facebook" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a
+                    class="post-action-btn btn btn--default"
+                    target="new" href="https://twitter.com/intent/tweet?text=http://sjp24.github.io/2021/12/21/20211221-colab-r-and-python/"
+                    title="Share on Twitter"
+                    aria-label="Share on Twitter"
+                >
+                    <i class="fab fa-twitter" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a
+                    class="post-action-btn btn btn--default"
+                    target="new" href="https://www.linkedin.com/shareArticle?mini=true&amp;url=http://sjp24.github.io/2021/12/21/20211221-colab-r-and-python/"
+                    title="global.share_on_linkedin"
+                    aria-label="global.share_on_linkedin"
+                >
+                    <i class="fab fa-linkedin" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+        
+        <li class="post-action">
+            
+                <a class="post-action-btn btn btn--default" href="#" aria-label="Back to top">
+            
+                <i class="fa fa-list" aria-hidden="true"></i>
+            </a>
+        </li>
+    </ul>
+</div>
+
+
+        
+        
+    </div>
+</article>
+
+
+
+                <footer id="footer" class="main-content-wrap">
+    <span class="copyrights">
+        Copyrights &copy; 2021 Song Park. All Rights Reserved.
+    </span>
+</footer>
+
+            </div>
+            
+                <div id="bottom-bar" class="post-bottom-bar" data-behavior="4">
+                    <div class="post-actions-wrap">
+    <nav>
+        <ul class="post-actions post-action-nav">
+            <li class="post-action">
+                
+                    <a
+                        class="post-action-btn btn btn--disabled"
+                        aria-hidden="true"
+                    >
+                        
+                        <i class="fa fa-angle-left" aria-hidden="true"></i>
+                        <span class="hide-xs hide-sm text-small icon-ml">PREVIOUS</span>
+                    </a>
+            </li>
+            <li class="post-action">
+                
+                    
+                <a
+                    class="post-action-btn btn btn--default tooltip--top"
+                    href="/2021/06/17/20211221-basic-pipeline/"
+                    data-tooltip="데이터의 흐름: 기본적인 데이터 파이프라인 개념 설명"
+                    aria-label="NEXT: 데이터의 흐름: 기본적인 데이터 파이프라인 개념 설명"
+                >
+                    
+                        <span class="hide-xs hide-sm text-small icon-mr">NEXT</span>
+                        <i class="fa fa-angle-right" aria-hidden="true"></i>
+                    </a>
+            </li>
+        </ul>
+    </nav>
+    <ul class="post-actions post-action-share">
+        <li class="post-action hide-lg hide-md hide-sm">
+            <a
+                class="post-action-btn btn btn--default btn-open-shareoptions"
+                href="#btn-open-shareoptions"
+                aria-label="Share this post"
+            >
+                <i class="fa fa-share-alt" aria-hidden="true"></i>
+            </a>
+        </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a
+                    class="post-action-btn btn btn--default"
+                    target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://sjp24.github.io/2021/12/21/20211221-colab-r-and-python/"
+                    title="Share on Facebook"
+                    aria-label="Share on Facebook"
+                >
+                    <i class="fab fa-facebook" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a
+                    class="post-action-btn btn btn--default"
+                    target="new" href="https://twitter.com/intent/tweet?text=http://sjp24.github.io/2021/12/21/20211221-colab-r-and-python/"
+                    title="Share on Twitter"
+                    aria-label="Share on Twitter"
+                >
+                    <i class="fab fa-twitter" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a
+                    class="post-action-btn btn btn--default"
+                    target="new" href="https://www.linkedin.com/shareArticle?mini=true&amp;url=http://sjp24.github.io/2021/12/21/20211221-colab-r-and-python/"
+                    title="global.share_on_linkedin"
+                    aria-label="global.share_on_linkedin"
+                >
+                    <i class="fab fa-linkedin" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+        
+        <li class="post-action">
+            
+                <a class="post-action-btn btn btn--default" href="#" aria-label="Back to top">
+            
+                <i class="fa fa-list" aria-hidden="true"></i>
+            </a>
+        </li>
+    </ul>
+</div>
+
+
+                </div>
+                
+    <div id="share-options-bar" class="share-options-bar" data-behavior="4">
+        <i id="btn-close-shareoptions" class="fa fa-times"></i>
+        <ul class="share-options">
+            
+                
+                
+                <li class="share-option">
+                    <a
+                        class="share-option-btn"
+                        target="new"
+                        href="https://www.facebook.com/sharer/sharer.php?u=http://sjp24.github.io/2021/12/21/20211221-colab-r-and-python/"
+                        aria-label="Share on Facebook"
+                    >
+                        <i class="fab fa-facebook" aria-hidden="true"></i><span>Share on Facebook</span>
+                    </a>
+                </li>
+            
+                
+                
+                <li class="share-option">
+                    <a
+                        class="share-option-btn"
+                        target="new"
+                        href="https://twitter.com/intent/tweet?text=http://sjp24.github.io/2021/12/21/20211221-colab-r-and-python/"
+                        aria-label="Share on Twitter"
+                    >
+                        <i class="fab fa-twitter" aria-hidden="true"></i><span>Share on Twitter</span>
+                    </a>
+                </li>
+            
+                
+                
+                <li class="share-option">
+                    <a
+                        class="share-option-btn"
+                        target="new"
+                        href="https://www.linkedin.com/shareArticle?mini=true&amp;url=http://sjp24.github.io/2021/12/21/20211221-colab-r-and-python/"
+                        aria-label="global.share_on_linkedin"
+                    >
+                        <i class="fab fa-linkedin" aria-hidden="true"></i><span>global.share_on_linkedin</span>
+                    </a>
+                </li>
+            
+        </ul>
+    </div>
+
+
+            
+        </div>
+        
+
+
+    
+        
+    
+
+<div id="about">
+    <div id="about-card">
+        <div id="about-btn-close">
+            <i class="fa fa-times"></i>
+        </div>
+        
+            <img id="about-card-picture" src="https://lh3.googleusercontent.com/pw/AM-JKLXE0TOvzGd2C_G4f79oDYbTFd88BPZLRRX7PoOrqw4Y3txQSxo-yvOhdTBBii2e4n83qUxSVki9ZS7F0fdD541BlsX3k4m6-_La__Pr0s2i4Srb6gyYr1rjwe2raKgLes_e7PNjJrGA_40KK1EFPD9KUA=s989-no?authuser=0" alt="Author&#39;s picture"/>
+        
+            <h4 id="about-card-name">Song Park</h4>
+        
+            <div id="about-card-bio"><p>데이를 보는 사람입니다. New Yorker turned Seoulite.</p>
+</div>
+        
+        
+            <div id="about-card-job">
+                <i class="fa fa-briefcase"></i>
+                <br/>
+                <p>Product Data Analyst</p>
+
+            </div>
+        
+        
+            <div id="about-card-location">
+                <i class="fa fa-map-marker-alt"></i>
+                <br/>
+                Seoul, Korea
+            </div>
+        
+    </div>
+</div>
+
+        
+        
+<div id="cover" style="background-image:url('https://lh3.googleusercontent.com/pw/AM-JKLUokKCH8YTuE2jQlSJ0Iy9wfhTBfv83xZFCcKvBx_z0JH8aL21ibW1-A90z_ZewKBkXWNPgo_l_MDNNuadNm1NoWMIElpDKo1w_Jh6llMQW-rzeqtfOUUKKXlhIQaOQcsfePIorTk1bMoFkHmga8jB5Ig=w852-h989-no?authuser=0');"></div>
+        <!--SCRIPTS-->
+
+<script src="/assets/js/script-6yshdmgpxs4tm4urytonvkhsk7g80gwtgolm9bcpgwlr1xxwnmsxbelktzqf.min.js"></script>
+
+<!--SCRIPTS END-->
+
+
+
+
+
+    </body>
+</html>
