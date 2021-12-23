@@ -6,10 +6,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="generator" content="SJP">
-    <title>데이터의 흐름: 기본적인 데이터 파이프라인 개념 설명 - SJP</title>
+    <title>BigQuery Basics: 날짜 데이터 만들기 - SJP</title>
     <meta name="author" content="Song Joyce Park">
     
-        <meta name="keywords" content="song park,data,song joyce park,data analyst,데이터 분석,데이터,스타트업,박송,data pipeline,data warehouse,database,data lake,etl,data">
+        <meta name="keywords" content="song park,data,song joyce park,data analyst,데이터 분석,데이터,스타트업,박송,BigQuery,SQL,date list,list of dates,빅쿼리">
     
     
     
@@ -17,22 +17,25 @@
             <link rel="alternate" type="application/atom+xml" title="RSS" href="/atom.xml">
         
     
-    <script type="application/ld+json">{"@context":"http://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Song Joyce Park","sameAs":[],"image":"https://lh3.googleusercontent.com/pw/AM-JKLXE0TOvzGd2C_G4f79oDYbTFd88BPZLRRX7PoOrqw4Y3txQSxo-yvOhdTBBii2e4n83qUxSVki9ZS7F0fdD541BlsX3k4m6-_La__Pr0s2i4Srb6gyYr1rjwe2raKgLes_e7PNjJrGA_40KK1EFPD9KUA=s989-no?authuser=0"},"articleBody":"스타트업계로 오게 된 후로는 데이터 파이프라인이 얼마나 중요한지 뼈저리게 느끼고 있습니다. 데이터베이스 지식, 데이터 파이프라인 지식을 가지고 있는 게 중요하다고 생각해서 전부터 배우려고 노력은 했지만 역시 산전수전 다 직접 겪어봐야 빠르게 성장 할 수 있습니다 😅\n저도 아직 많이 부족하지만, 데이터 외 직군 혹은 데이터를 다루지만 데이터 파이프라인에 대한 지식이 부족한 분들을 위해 아주 기본적인 개념들을 설명하려 합니다.\n\n\n\n\n\n기본 용어비슷하지만 조금씩 다른 파이프라인 관련 용어.\nETL (Extract, Transform, Load): 데이터를 추출하고(extract) → 변환하여 (transform) → 적재하는 (load) 데이터 웨어하우스 구축 프로세스\nELT (Extract, Load, Transform): 데이터를 추출하고 (extract) → 적재하고 (load) → 변환하는 (transform) 프로세스\nData Warehouse (DW): 다양한 소스에서 발생한 데이터를 하나의 통합된 형태로 저장하는 공간. 데이터는 설계된 스키마에 맞게 처리되어 저장된다\nData Lake: 다양한 소스에서 발생한 데이터를 그대로 가져와 저장하는 공간. 데이터 웨어하우스와 달리 정형/반정형/비정형 데이터 등 다양한 형태의 소스 raw 데이터를 통합하지 않고 한 곳에 모은다\nData Mart: 특정 목적 (대체로 팀/부서와 같은 조직 단위)을 위해 만들어진 데이터 웨어하우스. 보통 하나의 데이터 웨어하우스에서 조직 단위별로 여러 데이터 마트가 만들어진다\nData Pipeline: 데이터가 흐르는 모든 과정의 총칭 (생성, 변환, 저장, 등)\nRDB (Relational Database): 2차원 (속성, 값) 형식 테이블들로 구성된 관계형 데이터베이스. “관계형”이란 각 테이블 안에서 속성과 값 사이 관계가 있고 테이블과 테이블 사이에도 관계를 가지고 있다. 가장 일반적인 데이터베이스 타입이고 일반적으로 SQL (Structured Query Language) 언어를 통해 데이터를 조회한다\nRDBMS (Relational Database Management System): 관계형 데이터베이스 관리 (생성, 수정, 등)를 위한 프로그램. 예: MySQL, Oracle, SQL Server, 등등\n\n\n\n기본 ETL 과정조직마다 설계가 다르고 구체적인 프로세스는 보기보다 훨씬 복잡하지만, 대부분 아래와 같은 ETL 프로세스를 통해 데이터 웨어하우스를 구축합니다.\n\n\nExtract. 다양한 곳에서 생성된 데이터를 추출하는 단계. 조직마다 소스들은 다르지만 커머스에서는 가장 기본적으로 아래와 같은 데이터 소스들이 있습니다:\n\n운영 데이터베이스 → 주문, 상품 데이터와 같은 데이터가 담긴 데이터베이스\n웹/앱 이벤트 데이터\n마케팅 데이터 → 페이스북, 구글, 카카오, 등\n사용하는 다른 서드파티 앱 데이터\n\nTransform. 소스 데이터가 어떤 형태인지에 따라 이 과정은 많이 달라집니다. 간단한 변환은 각 소스의 날짜 컬럼 형식들을 하나의 기준으로 맞추기, 빈값 처리하는 방식 통일하기와 같은 작업이 있고 보통 테이블들을 조인하고 계산된 필드 만드는 변환이 들어갑니다 → 예: members 테이블에 각 멤버의 구매 이력 관련 컬럼 생성 (첫 구매일, 지난 3개월 총 구매액, 등등). 자주 보는 지표들은 summary 테이블로 만들 수 있습니다 → 예: 일별 거래액, 일별 모든 매체의 총 마케팅 비용 합계.\nLoad. 변환된 데이터를 데이터 웨어하우스에 적재합니다.\nETL vs ELTELT은 여러 소스의 데이터를 추출하여 바로 raw 형태로 적재 후 변환합니다. 즉, 데이터 레이크에 일단 모든 소스의 데이터를 담고 변환은 스테이징 필요 없이 데이터 레이크/웨어하우스 안에서 이루어집니다. 최신 클라우드 기반 기술로 인해 ETL에 비해 비교적 새로운 기술이고 뜨고 있는 데이터 처리 방식입니다. 이 과정은 적재가 빠르게 이루어진다는 게 장점이지만 유연한 만큼 데이터 신뢰/정합성은 떨어질 수 있습니다.\nData Mart큰 규모의 조직에서는 조직 단위로 특화된 데이터 마트를 설계하고 각 조직에서 봐야 하는 데이터만 볼 수 있게 권한을 관리합니다. 스타트업이나 더 작은 규모의 조직에서는 비교적 팀/부서와 같은 조직 단위 사이 경계가 덜 명확하기 때문에 조직 단위별 마트 없이 하나의 데이터 웨어하우스를 사용하는 방식이 크게 문제 되지 않을 수 있습니다.하지만 전사 조직용 데이터에 비해 데이터 마트에 있는 테이블들은 유연하게 수정/변환 할 수 있기 때문에 빠르게 변하는 스타트업 조직에도 데이터 마트를 잘 활용한다면 효율적으로 분석하고 인사이트 얻을 수 있습니다.\n\n","dateCreated":"2021-06-17T00:00:00+09:00","dateModified":"2021-12-23T23:02:33+09:00","datePublished":"2021-06-17T00:00:00+09:00","description":"스타트업계로 오게 된 후로는 데이터 파이프라인이 얼마나 중요한지 뼈저리게 느끼고 있습니다. 데이터베이스 지식, 데이터 파이프라인 지식을 가지고 있는 게 중요하다고 생각해서 전부터 배우려고 노력은 했지만 역시 산전수전 다 직접 겪어봐야 빠르게 성장 할 수 있습니다 😅\n저도 아직 많이 부족하지만, 데이터 외 직군 혹은 데이터를 다루지만 데이터 파이프라인에 대한 지식이 부족한 분들을 위해 아주 기본적인 개념들을 설명하려 합니다.","headline":"데이터의 흐름: 기본적인 데이터 파이프라인 개념 설명","image":["https://lh3.googleusercontent.com/pw/AM-JKLVqEoT9LETZzeAriZQM4cxYp9Kp7t_MEqPIfkBuk69NmxYsyT8p5if6fn64J6k9cy7oneLOBsfFapXrS9upM0nJTxtkiWcXJYWWzpUzAll0FFWNyoDJSvZc2conN164QAaRnKjToZF4jOUofN4SOMDrhw=w2133-h779-no?authuser=0"],"mainEntityOfPage":{"@type":"WebPage","@id":"http://sjp24.github.io/2021/06/17/basic-pipeline/"},"publisher":{"@type":"Organization","name":"Song Joyce Park","sameAs":[],"image":"https://lh3.googleusercontent.com/pw/AM-JKLXE0TOvzGd2C_G4f79oDYbTFd88BPZLRRX7PoOrqw4Y3txQSxo-yvOhdTBBii2e4n83qUxSVki9ZS7F0fdD541BlsX3k4m6-_La__Pr0s2i4Srb6gyYr1rjwe2raKgLes_e7PNjJrGA_40KK1EFPD9KUA=s989-no?authuser=0","logo":{"@type":"ImageObject","url":"https://lh3.googleusercontent.com/pw/AM-JKLXE0TOvzGd2C_G4f79oDYbTFd88BPZLRRX7PoOrqw4Y3txQSxo-yvOhdTBBii2e4n83qUxSVki9ZS7F0fdD541BlsX3k4m6-_La__Pr0s2i4Srb6gyYr1rjwe2raKgLes_e7PNjJrGA_40KK1EFPD9KUA=s989-no?authuser=0"}},"url":"http://sjp24.github.io/2021/06/17/basic-pipeline/","keywords":"Data Pipeline","thumbnailUrl":"https://lh3.googleusercontent.com/pw/AM-JKLVqEoT9LETZzeAriZQM4cxYp9Kp7t_MEqPIfkBuk69NmxYsyT8p5if6fn64J6k9cy7oneLOBsfFapXrS9upM0nJTxtkiWcXJYWWzpUzAll0FFWNyoDJSvZc2conN164QAaRnKjToZF4jOUofN4SOMDrhw=w2133-h779-no?authuser=0"}</script>
-    <meta name="description" content="스타트업계로 오게 된 후로는 데이터 파이프라인이 얼마나 중요한지 뼈저리게 느끼고 있습니다. 데이터베이스 지식, 데이터 파이프라인 지식을 가지고 있는 게 중요하다고 생각해서 전부터 배우려고 노력은 했지만 역시 산전수전 다 직접 겪어봐야 빠르게 성장 할 수 있습니다 😅 저도 아직 많이 부족하지만, 데이터 외 직군 혹은 데이터를 다루지만 데이터 파이프라인에 대">
+    <script type="application/ld+json">{"@context":"http://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Song Joyce Park","sameAs":[],"image":"https://lh3.googleusercontent.com/pw/AM-JKLXE0TOvzGd2C_G4f79oDYbTFd88BPZLRRX7PoOrqw4Y3txQSxo-yvOhdTBBii2e4n83qUxSVki9ZS7F0fdD541BlsX3k4m6-_La__Pr0s2i4Srb6gyYr1rjwe2raKgLes_e7PNjJrGA_40KK1EFPD9KUA=s989-no?authuser=0"},"articleBody":"특정 기간 동안의 날짜 데이터를 생성할 수 있는 쉬운 방법이 있었다면 정말 많은 도움이 되었을것 같은 순간들이 몇번 있었습니다. 데이터 일을 해오면서 이런 니즈가 자주 있진 않았지만 그 몇번이 저에게는 고통스러운 기억으로 남아있어 빅쿼리의 GENERATE_DATE_ARRAY를 처음 경험해보고 감탄할 수 밖에 없었어요.\nBigQuery의 GENERATE_DATE_ARRAY와 GENERATE_TIMESTAMP_ARRAY를 사용하여 날짜 리스트 만드는 방법입니다.\n\n\n\n\n\n\n기본 문법DATE1GENERATE_DATE_ARRAY(start_date, end_date, [INTERVAL INT64_expr date_part])\n\nInterval 부분 없이 start_date, end_date 만 사용하면 디폴트 interval인 하루 적용된다\nInterval 부분 은 설정한 시작일 기준으로 계산된다 (예: 2021-01-01 부터 week 단위 설정 시, 1월1일, 1월 8일, 1월 15일…)\n사용 가능한 date_part은: DAY, WEEK, MONTH, QUARTER, YEAR\n아웃풋은 array 형태 → 풀어서 사용하려면 UNNEST로 풀어야한다\n\nTIMESTAMP1GENERATE_TIMESTAMP_ARRAY(start_timestamp, end_timestamp, [INTERVAL INT64_expr time_part])\n\n시간 없이 날짜만 start_timestamp, end_timestamp으로 사용 시 디폴트 00:00:00\nInterval 부분 은 설정한 start_timestamp 기준으로 계산된다\n사용 가능한 date_part은: MICROSECOND, MILLISECOND, SECOND, MINUTE, HOUR, DAY\n아웃풋은 array 형태 → 풀어서 사용하려면 UNNEST로 풀어야한다\n\nDATE 예시\n디폴트 (일별)\n1SELECT * FROM UNNEST(GENERATE_DATE_ARRAY(&#x27;2021-01-01&#x27;, &#x27;2021-01-31&#x27;))\n\n\nInterval = 2 days\n1SELECT * FROM UNNEST(GENERATE_DATE_ARRAY(&#x27;2021-01-01&#x27;, &#x27;2021-01-31&#x27;, INTERVAL 2 DAY))\n\n\nInterval = -2 days\n1SELECT * FROM UNNEST(GENERATE_DATE_ARRAY(‘2021–01–31’, ‘2021–01–01’, INTERVAL -2 DAY))\n\n\n\n\nTIMESTAMP 예시\nInterval = 2 hours, 낮 12시부터1SELECT * FROM UNNEST(GENERATE_TIMESTAMP_ARRAY(&#x27;2021-01-01 12:00:00&#x27;, &#x27;2021-01-03 00:00:00&#x27;, INTERVAL 2 HOUR))\n\n\n\n","dateCreated":"2021-08-27T00:00:00+09:00","dateModified":"2021-12-23T23:18:54+09:00","datePublished":"2021-08-27T00:00:00+09:00","description":"특정 기간 동안의 날짜 데이터를 생성할 수 있는 쉬운 방법이 있었다면 정말 많은 도움이 되었을것 같은 순간들이 몇번 있었습니다. 데이터 일을 해오면서 이런 니즈가 자주 있진 않았지만 그 몇번이 저에게는 고통스러운 기억으로 남아있어 빅쿼리의 GENERATE_DATE_ARRAY를 처음 경험해보고 감탄할 수 밖에 없었어요.\nBigQuery의 GENERATE_DATE_ARRAY와 GENERATE_TIMESTAMP_ARRAY를 사용하여 날짜 리스트 만드는 방법입니다.","headline":"BigQuery Basics: 날짜 데이터 만들기","image":["https://lh3.googleusercontent.com/pw/AM-JKLWMdOgAyJclLiJo6_HnkLI0lGJA6ZbuPr9QuNnw1rolGxqVcpp29sKMEAHQg03vBGfnGfmQqXv5nJV75sgU8aRxxNnsZrOwp4DhV7-SlkkXKan1Gz7vJn8W7kcvfnMruoKe4UH5rwVIeBj23Yd4Td_TjQ=s225-no?authuser=0"],"mainEntityOfPage":{"@type":"WebPage","@id":"http://sjp24.github.io/2021/08/27/bigquery-date-list-table/"},"publisher":{"@type":"Organization","name":"Song Joyce Park","sameAs":[],"image":"https://lh3.googleusercontent.com/pw/AM-JKLXE0TOvzGd2C_G4f79oDYbTFd88BPZLRRX7PoOrqw4Y3txQSxo-yvOhdTBBii2e4n83qUxSVki9ZS7F0fdD541BlsX3k4m6-_La__Pr0s2i4Srb6gyYr1rjwe2raKgLes_e7PNjJrGA_40KK1EFPD9KUA=s989-no?authuser=0","logo":{"@type":"ImageObject","url":"https://lh3.googleusercontent.com/pw/AM-JKLXE0TOvzGd2C_G4f79oDYbTFd88BPZLRRX7PoOrqw4Y3txQSxo-yvOhdTBBii2e4n83qUxSVki9ZS7F0fdD541BlsX3k4m6-_La__Pr0s2i4Srb6gyYr1rjwe2raKgLes_e7PNjJrGA_40KK1EFPD9KUA=s989-no?authuser=0"}},"url":"http://sjp24.github.io/2021/08/27/bigquery-date-list-table/","keywords":"SQL, BigQuery","thumbnailUrl":"https://lh3.googleusercontent.com/pw/AM-JKLWMdOgAyJclLiJo6_HnkLI0lGJA6ZbuPr9QuNnw1rolGxqVcpp29sKMEAHQg03vBGfnGfmQqXv5nJV75sgU8aRxxNnsZrOwp4DhV7-SlkkXKan1Gz7vJn8W7kcvfnMruoKe4UH5rwVIeBj23Yd4Td_TjQ=s225-no?authuser=0"}</script>
+    <meta name="description" content="특정 기간 동안의 날짜 데이터를 생성할 수 있는 쉬운 방법이 있었다면 정말 많은 도움이 되었을것 같은 순간들이 몇번 있었습니다. 데이터 일을 해오면서 이런 니즈가 자주 있진 않았지만 그 몇번이 저에게는 고통스러운 기억으로 남아있어 빅쿼리의 GENERATE_DATE_ARRAY를 처음 경험해보고 감탄할 수 밖에 없었어요. BigQuery의 GENERATE_DA">
 <meta property="og:type" content="blog">
-<meta property="og:title" content="데이터의 흐름: 기본적인 데이터 파이프라인 개념 설명">
-<meta property="og:url" content="http://sjp24.github.io/2021/06/17/basic-pipeline/index.html">
+<meta property="og:title" content="BigQuery Basics: 날짜 데이터 만들기">
+<meta property="og:url" content="http://sjp24.github.io/2021/08/27/bigquery-date-list-table/index.html">
 <meta property="og:site_name" content="SJP">
-<meta property="og:description" content="스타트업계로 오게 된 후로는 데이터 파이프라인이 얼마나 중요한지 뼈저리게 느끼고 있습니다. 데이터베이스 지식, 데이터 파이프라인 지식을 가지고 있는 게 중요하다고 생각해서 전부터 배우려고 노력은 했지만 역시 산전수전 다 직접 겪어봐야 빠르게 성장 할 수 있습니다 😅 저도 아직 많이 부족하지만, 데이터 외 직군 혹은 데이터를 다루지만 데이터 파이프라인에 대">
+<meta property="og:description" content="특정 기간 동안의 날짜 데이터를 생성할 수 있는 쉬운 방법이 있었다면 정말 많은 도움이 되었을것 같은 순간들이 몇번 있었습니다. 데이터 일을 해오면서 이런 니즈가 자주 있진 않았지만 그 몇번이 저에게는 고통스러운 기억으로 남아있어 빅쿼리의 GENERATE_DATE_ARRAY를 처음 경험해보고 감탄할 수 밖에 없었어요. BigQuery의 GENERATE_DA">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="https://lh3.googleusercontent.com/pw/AM-JKLVqEoT9LETZzeAriZQM4cxYp9Kp7t_MEqPIfkBuk69NmxYsyT8p5if6fn64J6k9cy7oneLOBsfFapXrS9upM0nJTxtkiWcXJYWWzpUzAll0FFWNyoDJSvZc2conN164QAaRnKjToZF4jOUofN4SOMDrhw=w2133-h779-no?authuser=0">
-<meta property="og:image" content="https://lh3.googleusercontent.com/pw/AM-JKLWZQJGvtMmoyOtAKl8GJ-UcAjMMDR1OE4I5cBSEOSH4CELDL52kAr6TxDZ6LdNI_0qOWQ57MxPmn5laeXtrZL7Qlw5JcTUXRaehO9wIp53D9RDAX_uX954Fs-Eg-4wvt4N6YMxq6yf7NUcKHgRZgarPsw=w2133-h915-no?authuser=0">
-<meta property="article:published_time" content="2021-06-16T15:00:00.000Z">
-<meta property="article:modified_time" content="2021-12-23T14:02:33.973Z">
+<meta property="og:image" content="https://lh3.googleusercontent.com/pw/AM-JKLWEm7L8zJYdAxTrZNP4wC2HCjbnvlALelF0F3s8S7ogvTX5qRgr_1TOuysvdr9BcA_VtsshnrokjjW1aGm1t2UEkG6tCCUZ58cf627IO5EdvAYfOeB-Fem237bQMVXSat2UZGAmc0ePYrNN-jqXZYcLgw=w104-h225-no?authuser=0">
+<meta property="og:image" content="https://lh3.googleusercontent.com/pw/AM-JKLVI6IjM_W2QQZDMQHCvcIsgn003-B1LdQeXMn-vBoL1vR5HzW1UYXxR7sTDKsQyzPmlXtog7KgIrh_D1opaVdaVypdjRVA2-G39oIknSo5Woxfz_4vODQ8tLCzaYW4Tt3pJNL8CfKkvqdwKCyVP3Tb0Xg=w76-h219-no?authuser=0">
+<meta property="og:image" content="https://lh3.googleusercontent.com/pw/AM-JKLW4P_ST4Cn1_enfD3INWinwcp2fbsAOfSKWrYiC6MO3NUragw-fccdnw6piJwGdo2pq8wrJuZis-D_n-4rGgEExYJ5tHxhIR8enzd8ZZTfvl6aO9n62ALaRpJPWndK-TBHbl-Hbm5dH_u_iuwAK0uUx9w=w77-h195-no?authuser=0">
+<meta property="og:image" content="https://lh3.googleusercontent.com/pw/AM-JKLXfLoornuFXPrUeuaZdIie3RA9p-n5BAJ52dWsigwIxSb5CbYSLkAYQQRK7_8_5mlR68E-dGMhH1xPZbFnlTKEwmR8x45gB9Lw8jfe0ikRdrrYjaFksd1-NpHpI5WRcOOdRvcxTHSbEPGyF5x3GjhDNwQ=w144-h222-no?authuser=0">
+<meta property="article:published_time" content="2021-08-26T15:00:00.000Z">
+<meta property="article:modified_time" content="2021-12-23T14:18:54.026Z">
 <meta property="article:author" content="Song Joyce Park">
-<meta property="article:tag" content="Data Pipeline">
+<meta property="article:tag" content="SQL">
+<meta property="article:tag" content="BigQuery">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://lh3.googleusercontent.com/pw/AM-JKLVqEoT9LETZzeAriZQM4cxYp9Kp7t_MEqPIfkBuk69NmxYsyT8p5if6fn64J6k9cy7oneLOBsfFapXrS9upM0nJTxtkiWcXJYWWzpUzAll0FFWNyoDJSvZc2conN164QAaRnKjToZF4jOUofN4SOMDrhw=w2133-h779-no?authuser=0">
+<meta name="twitter:image" content="https://lh3.googleusercontent.com/pw/AM-JKLWEm7L8zJYdAxTrZNP4wC2HCjbnvlALelF0F3s8S7ogvTX5qRgr_1TOuysvdr9BcA_VtsshnrokjjW1aGm1t2UEkG6tCCUZ58cf627IO5EdvAYfOeB-Fem237bQMVXSat2UZGAmc0ePYrNN-jqXZYcLgw=w104-h225-no?authuser=0">
     
     
         
@@ -41,8 +44,8 @@
         <meta property="og:image" content="https://lh3.googleusercontent.com/pw/AM-JKLXE0TOvzGd2C_G4f79oDYbTFd88BPZLRRX7PoOrqw4Y3txQSxo-yvOhdTBBii2e4n83qUxSVki9ZS7F0fdD541BlsX3k4m6-_La__Pr0s2i4Srb6gyYr1rjwe2raKgLes_e7PNjJrGA_40KK1EFPD9KUA=s989-no?authuser=0"/>
     
     
-        <meta property="og:image" content="https://lh3.googleusercontent.com/pw/AM-JKLVqEoT9LETZzeAriZQM4cxYp9Kp7t_MEqPIfkBuk69NmxYsyT8p5if6fn64J6k9cy7oneLOBsfFapXrS9upM0nJTxtkiWcXJYWWzpUzAll0FFWNyoDJSvZc2conN164QAaRnKjToZF4jOUofN4SOMDrhw=w2133-h779-no?authuser=0"/>
-        <meta class="swiftype" name="image" data-type="enum" content="https://lh3.googleusercontent.com/pw/AM-JKLVqEoT9LETZzeAriZQM4cxYp9Kp7t_MEqPIfkBuk69NmxYsyT8p5if6fn64J6k9cy7oneLOBsfFapXrS9upM0nJTxtkiWcXJYWWzpUzAll0FFWNyoDJSvZc2conN164QAaRnKjToZF4jOUofN4SOMDrhw=w2133-h779-no?authuser=0"/>
+        <meta property="og:image" content="https://lh3.googleusercontent.com/pw/AM-JKLWMdOgAyJclLiJo6_HnkLI0lGJA6ZbuPr9QuNnw1rolGxqVcpp29sKMEAHQg03vBGfnGfmQqXv5nJV75sgU8aRxxNnsZrOwp4DhV7-SlkkXKan1Gz7vJn8W7kcvfnMruoKe4UH5rwVIeBj23Yd4Td_TjQ=s225-no?authuser=0"/>
+        <meta class="swiftype" name="image" data-type="enum" content="https://lh3.googleusercontent.com/pw/AM-JKLWMdOgAyJclLiJo6_HnkLI0lGJA6ZbuPr9QuNnw1rolGxqVcpp29sKMEAHQg03vBGfnGfmQqXv5nJV75sgU8aRxxNnsZrOwp4DhV7-SlkkXKan1Gz7vJn8W7kcvfnMruoKe4UH5rwVIeBj23Yd4Td_TjQ=s225-no?authuser=0"/>
     
     
     
@@ -257,14 +260,14 @@
         <div class="post-header main-content-wrap text-left">
     
         <h1 class="post-title">
-            데이터의 흐름: 기본적인 데이터 파이프라인 개념 설명
+            BigQuery Basics: 날짜 데이터 만들기
         </h1>
     
     
         <div class="post-meta">
-    <time datetime="2021-06-17T00:00:00+09:00">
+    <time datetime="2021-08-27T00:00:00+09:00">
 	
-		    Jun 17, 2021
+		    Aug 27, 2021
     	
     </time>
     
@@ -282,41 +285,49 @@
     
     <div class="post-content markdown">
         <div class="main-content-wrap">
-            <p>스타트업계로 오게 된 후로는 데이터 파이프라인이 얼마나 중요한지 뼈저리게 느끼고 있습니다. 데이터베이스 지식, 데이터 파이프라인 지식을 가지고 있는 게 중요하다고 생각해서 전부터 배우려고 노력은 했지만 역시 산전수전 다 직접 겪어봐야 빠르게 성장 할 수 있습니다 😅</p>
-<p>저도 아직 많이 부족하지만, 데이터 외 직군 혹은 데이터를 다루지만 데이터 파이프라인에 대한 지식이 부족한 분들을 위해 아주 기본적인 개념들을 설명하려 합니다.<br/><br/></p>
+            <p>특정 기간 동안의 날짜 데이터를 생성할 수 있는 쉬운 방법이 있었다면 정말 많은 도움이 되었을것 같은 순간들이 몇번 있었습니다. 데이터 일을 해오면서 이런 니즈가 자주 있진 않았지만 그 몇번이 저에게는 고통스러운 기억으로 남아있어 빅쿼리의 GENERATE_DATE_ARRAY를 처음 경험해보고 감탄할 수 밖에 없었어요.</p>
+<p>BigQuery의 GENERATE_DATE_ARRAY와 GENERATE_TIMESTAMP_ARRAY를 사용하여 날짜 리스트 만드는 방법입니다.</p>
 <span id="more"></span>
+<br/>
 
 <hr>
 <br/>
 
-<h1 id="기본-용어"><a href="#기본-용어" class="headerlink" title="기본 용어"></a>기본 용어</h1><p>비슷하지만 조금씩 다른 파이프라인 관련 용어.</p>
-<p><strong><span class="highlight-text primary">ETL (Extract, Transform, Load)</span></strong>: 데이터를 추출하고(extract) → 변환하여 (transform) → 적재하는 (load) 데이터 웨어하우스 구축 프로세스</p>
-<p><strong><span class="highlight-text primary">ELT (Extract, Load, Transform)</span></strong>: 데이터를 추출하고 (extract) → 적재하고 (load) → 변환하는 (transform) 프로세스</p>
-<p><strong><span class="highlight-text primary">Data Warehouse (DW)</span></strong>: 다양한 소스에서 발생한 데이터를 하나의 통합된 형태로 저장하는 공간. 데이터는 설계된 스키마에 맞게 처리되어 저장된다</p>
-<p><strong><span class="highlight-text primary">Data Lake</span></strong>: 다양한 소스에서 발생한 데이터를 그대로 가져와 저장하는 공간. 데이터 웨어하우스와 달리 정형/반정형/비정형 데이터 등 다양한 형태의 소스 raw 데이터를 통합하지 않고 한 곳에 모은다</p>
-<p><strong><span class="highlight-text primary">Data Mart</span></strong>: 특정 목적 (대체로 팀/부서와 같은 조직 단위)을 위해 만들어진 데이터 웨어하우스. 보통 하나의 데이터 웨어하우스에서 조직 단위별로 여러 데이터 마트가 만들어진다</p>
-<p><strong><span class="highlight-text primary">Data Pipeline</span></strong>: 데이터가 흐르는 모든 과정의 총칭 (생성, 변환, 저장, 등)</p>
-<p><strong><span class="highlight-text primary">RDB (Relational Database)</span></strong>: 2차원 (속성, 값) 형식 테이블들로 구성된 관계형 데이터베이스. “관계형”이란 각 테이블 안에서 속성과 값 사이 관계가 있고 테이블과 테이블 사이에도 관계를 가지고 있다. 가장 일반적인 데이터베이스 타입이고 일반적으로 SQL (Structured Query Language) 언어를 통해 데이터를 조회한다</p>
-<p><strong><span class="highlight-text primary">RDBMS (Relational Database Management System)</span></strong>: 관계형 데이터베이스 관리 (생성, 수정, 등)를 위한 프로그램. 예: MySQL, Oracle, SQL Server, 등등<br><br/></p>
-<hr>
-<br/>
-
-<h1 id="기본-ETL-과정"><a href="#기본-ETL-과정" class="headerlink" title="기본 ETL 과정"></a>기본 ETL 과정</h1><p>조직마다 설계가 다르고 구체적인 프로세스는 보기보다 훨씬 복잡하지만, 대부분 아래와 같은 ETL 프로세스를 통해 데이터 웨어하우스를 구축합니다.<br/><br/></p>
-<img src="https://lh3.googleusercontent.com/pw/AM-JKLVqEoT9LETZzeAriZQM4cxYp9Kp7t_MEqPIfkBuk69NmxYsyT8p5if6fn64J6k9cy7oneLOBsfFapXrS9upM0nJTxtkiWcXJYWWzpUzAll0FFWNyoDJSvZc2conN164QAaRnKjToZF4jOUofN4SOMDrhw=w2133-h779-no?authuser=0" class="fig-100">
-
-<p><strong><span class="highlight-text primary">Extract.</span></strong> 다양한 곳에서 생성된 데이터를 추출하는 단계. 조직마다 소스들은 다르지만 커머스에서는 가장 기본적으로 아래와 같은 데이터 소스들이 있습니다:</p>
+<h1 id="기본-문법"><a href="#기본-문법" class="headerlink" title="기본 문법"></a>기본 문법</h1><h5 id="DATE"><a href="#DATE" class="headerlink" title="DATE"></a>DATE</h5><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">GENERATE_DATE_ARRAY(start_date, end_date, [<span class="type">INTERVAL</span> INT64_expr date_part])</span><br></pre></td></tr></table></figure>
 <ul>
-<li>운영 데이터베이스 → 주문, 상품 데이터와 같은 데이터가 담긴 데이터베이스</li>
-<li>웹/앱 이벤트 데이터</li>
-<li>마케팅 데이터 → 페이스북, 구글, 카카오, 등</li>
-<li>사용하는 다른 서드파티 앱 데이터</li>
+<li>Interval 부분 없이 start_date, end_date 만 사용하면 디폴트 interval인 하루 적용된다</li>
+<li>Interval 부분 은 설정한 시작일 기준으로 계산된다 (예: 2021-01-01 부터 week 단위 설정 시, 1월1일, 1월 8일, 1월 15일…)</li>
+<li>사용 가능한 date_part은: <code>DAY</code>, <code>WEEK</code>, <code>MONTH</code>, <code>QUARTER</code>, <code>YEAR</code></li>
+<li>아웃풋은 array 형태 → 풀어서 사용하려면 UNNEST로 풀어야한다</li>
 </ul>
-<p><strong><span class="highlight-text primary">Transform.</span></strong> 소스 데이터가 어떤 형태인지에 따라 이 과정은 많이 달라집니다. 간단한 변환은 각 소스의 날짜 컬럼 형식들을 하나의 기준으로 맞추기, 빈값 처리하는 방식 통일하기와 같은 작업이 있고 보통 테이블들을 조인하고 계산된 필드 만드는 변환이 들어갑니다 → 예: members 테이블에 각 멤버의 구매 이력 관련 컬럼 생성 (첫 구매일, 지난 3개월 총 구매액, 등등). 자주 보는 지표들은 summary 테이블로 만들 수 있습니다 → 예: 일별 거래액, 일별 모든 매체의 총 마케팅 비용 합계.</p>
-<p><strong><span class="highlight-text primary">Load.</span></strong> 변환된 데이터를 데이터 웨어하우스에 적재합니다.<br/><br/></p>
-<h1 id="ETL-vs-ELT"><a href="#ETL-vs-ELT" class="headerlink" title="ETL vs ELT"></a>ETL vs ELT</h1><p>ELT은 여러 소스의 데이터를 추출하여 바로 raw 형태로 적재 후 변환합니다. 즉, 데이터 레이크에 일단 모든 소스의 데이터를 담고 변환은 스테이징 필요 없이 데이터 레이크/웨어하우스 안에서 이루어집니다. 최신 클라우드 기반 기술로 인해 ETL에 비해 비교적 새로운 기술이고 뜨고 있는 데이터 처리 방식입니다. 이 과정은 적재가 빠르게 이루어진다는 게 장점이지만 유연한 만큼 데이터 신뢰/정합성은 떨어질 수 있습니다.<br/><br/></p>
-<h1 id="Data-Mart"><a href="#Data-Mart" class="headerlink" title="Data Mart"></a>Data Mart</h1><p>큰 규모의 조직에서는 조직 단위로 특화된 데이터 마트를 설계하고 각 조직에서 봐야 하는 데이터만 볼 수 있게 권한을 관리합니다. 스타트업이나 더 작은 규모의 조직에서는 비교적 팀/부서와 같은 조직 단위 사이 경계가 덜 명확하기 때문에 조직 단위별 마트 없이 하나의 데이터 웨어하우스를 사용하는 방식이 크게 문제 되지 않을 수 있습니다.<br>하지만 전사 조직용 데이터에 비해 데이터 마트에 있는 테이블들은 유연하게 수정/변환 할 수 있기 때문에 빠르게 변하는 스타트업 조직에도 데이터 마트를 잘 활용한다면 효율적으로 분석하고 인사이트 얻을 수 있습니다.<br/><br/></p>
-<img src="https://lh3.googleusercontent.com/pw/AM-JKLWZQJGvtMmoyOtAKl8GJ-UcAjMMDR1OE4I5cBSEOSH4CELDL52kAr6TxDZ6LdNI_0qOWQ57MxPmn5laeXtrZL7Qlw5JcTUXRaehO9wIp53D9RDAX_uX954Fs-Eg-4wvt4N6YMxq6yf7NUcKHgRZgarPsw=w2133-h915-no?authuser=0" class="">
-<br/>
+<h5 id="TIMESTAMP"><a href="#TIMESTAMP" class="headerlink" title="TIMESTAMP"></a>TIMESTAMP</h5><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">GENERATE_TIMESTAMP_ARRAY(start_timestamp, end_timestamp, [<span class="type">INTERVAL</span> INT64_expr time_part])</span><br></pre></td></tr></table></figure>
+<ul>
+<li>시간 없이 날짜만 start_timestamp, end_timestamp으로 사용 시 디폴트 00:00:00</li>
+<li>Interval 부분 은 설정한 start_timestamp 기준으로 계산된다</li>
+<li>사용 가능한 date_part은: <code>MICROSECOND</code>, <code>MILLISECOND</code>, <code>SECOND</code>, <code>MINUTE</code>, <code>HOUR</code>, <code>DAY</code></li>
+<li>아웃풋은 array 형태 → 풀어서 사용하려면 UNNEST로 풀어야한다<br><br/><br/></li>
+</ul>
+<h1 id="DATE-예시"><a href="#DATE-예시" class="headerlink" title="DATE 예시"></a>DATE 예시</h1><ol>
+<li><p>디폴트 (일별)</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> <span class="operator">*</span> <span class="keyword">FROM</span> <span class="built_in">UNNEST</span>(GENERATE_DATE_ARRAY(<span class="string">&#x27;2021-01-01&#x27;</span>, <span class="string">&#x27;2021-01-31&#x27;</span>))</span><br></pre></td></tr></table></figure>
+<img src="https://lh3.googleusercontent.com/pw/AM-JKLWEm7L8zJYdAxTrZNP4wC2HCjbnvlALelF0F3s8S7ogvTX5qRgr_1TOuysvdr9BcA_VtsshnrokjjW1aGm1t2UEkG6tCCUZ58cf627IO5EdvAYfOeB-Fem237bQMVXSat2UZGAmc0ePYrNN-jqXZYcLgw=w104-h225-no?authuser=0" class="">
+<br/></li>
+<li><p>Interval = 2 days</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> <span class="operator">*</span> <span class="keyword">FROM</span> <span class="built_in">UNNEST</span>(GENERATE_DATE_ARRAY(<span class="string">&#x27;2021-01-01&#x27;</span>, <span class="string">&#x27;2021-01-31&#x27;</span>, <span class="type">INTERVAL</span> <span class="number">2</span> <span class="keyword">DAY</span>))</span><br></pre></td></tr></table></figure>
+<img src="https://lh3.googleusercontent.com/pw/AM-JKLVI6IjM_W2QQZDMQHCvcIsgn003-B1LdQeXMn-vBoL1vR5HzW1UYXxR7sTDKsQyzPmlXtog7KgIrh_D1opaVdaVypdjRVA2-G39oIknSo5Woxfz_4vODQ8tLCzaYW4Tt3pJNL8CfKkvqdwKCyVP3Tb0Xg=w76-h219-no?authuser=0" class="">
+<br/></li>
+<li><p>Interval = -2 days</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> <span class="operator">*</span> <span class="keyword">FROM</span> <span class="built_in">UNNEST</span>(GENERATE_DATE_ARRAY(‘<span class="number">2021</span>–<span class="number">01</span>–<span class="number">31</span>’, ‘<span class="number">2021</span>–<span class="number">01</span>–<span class="number">01</span>’, <span class="type">INTERVAL</span> <span class="number">-2</span> <span class="keyword">DAY</span>))</span><br></pre></td></tr></table></figure>
+<img src="https://lh3.googleusercontent.com/pw/AM-JKLW4P_ST4Cn1_enfD3INWinwcp2fbsAOfSKWrYiC6MO3NUragw-fccdnw6piJwGdo2pq8wrJuZis-D_n-4rGgEExYJ5tHxhIR8enzd8ZZTfvl6aO9n62ALaRpJPWndK-TBHbl-Hbm5dH_u_iuwAK0uUx9w=w77-h195-no?authuser=0" class="">
+<p><br/><br/></p>
+</li>
+</ol>
+<h1 id="TIMESTAMP-예시"><a href="#TIMESTAMP-예시" class="headerlink" title="TIMESTAMP 예시"></a>TIMESTAMP 예시</h1><ol>
+<li>Interval = 2 hours, 낮 12시부터<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> <span class="operator">*</span> <span class="keyword">FROM</span> <span class="built_in">UNNEST</span>(GENERATE_TIMESTAMP_ARRAY(<span class="string">&#x27;2021-01-01 12:00:00&#x27;</span>, <span class="string">&#x27;2021-01-03 00:00:00&#x27;</span>, <span class="type">INTERVAL</span> <span class="number">2</span> <span class="keyword">HOUR</span>))</span><br></pre></td></tr></table></figure>
+<img src="https://lh3.googleusercontent.com/pw/AM-JKLXfLoornuFXPrUeuaZdIie3RA9p-n5BAJ52dWsigwIxSb5CbYSLkAYQQRK7_8_5mlR68E-dGMhH1xPZbFnlTKEwmR8x45gB9Lw8jfe0ikRdrrYjaFksd1-NpHpI5WRcOOdRvcxTHSbEPGyF5x3GjhDNwQ=w144-h222-no?authuser=0" class="">
+<br/></li>
+</ol>
+
             
 
 
@@ -327,7 +338,7 @@
             <div class="post-footer-tags">
                 <span class="text-color-light text-small">TAGGED IN</span><br/>
                 
-    <a class="tag tag--primary tag--small t-none-link" href="/tags/Data-Pipeline/" rel="tag">Data Pipeline</a>
+    <a class="tag tag--primary tag--small t-none-link" href="/tags/BigQuery/" rel="tag">BigQuery</a> <a class="tag tag--primary tag--small t-none-link" href="/tags/SQL/" rel="tag">SQL</a>
 
             </div>
         
@@ -337,25 +348,25 @@
         <ul class="post-actions post-action-nav">
             <li class="post-action">
                 
-                    
-                <a
-                    class="post-action-btn btn btn--default tooltip--top"
-                    href="/2021/08/26/colab-r-and-python/"
-                    data-tooltip="Google Colab 101: Python-R 같이 사용하기"
-                    aria-label="PREVIOUS: Google Colab 101: Python-R 같이 사용하기"
-                >
-                    
+                    <a
+                        class="post-action-btn btn btn--disabled"
+                        aria-hidden="true"
+                    >
+                        
                         <i class="fa fa-angle-left" aria-hidden="true"></i>
                         <span class="hide-xs hide-sm text-small icon-ml">PREVIOUS</span>
                     </a>
             </li>
             <li class="post-action">
                 
-                    <a
-                        class="post-action-btn btn btn--disabled"
-                        aria-hidden="true"
-                    >
-                        
+                    
+                <a
+                    class="post-action-btn btn btn--default tooltip--top"
+                    href="/2021/08/26/colab-r-and-python/"
+                    data-tooltip="Google Colab 101: Python-R 같이 사용하기"
+                    aria-label="NEXT: Google Colab 101: Python-R 같이 사용하기"
+                >
+                    
                         <span class="hide-xs hide-sm text-small icon-mr">NEXT</span>
                         <i class="fa fa-angle-right" aria-hidden="true"></i>
                     </a>
@@ -378,7 +389,7 @@
             <li class="post-action hide-xs">
                 <a
                     class="post-action-btn btn btn--default"
-                    target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://sjp24.github.io/2021/06/17/basic-pipeline/"
+                    target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://sjp24.github.io/2021/08/27/bigquery-date-list-table/"
                     title="Share on Facebook"
                     aria-label="Share on Facebook"
                 >
@@ -391,7 +402,7 @@
             <li class="post-action hide-xs">
                 <a
                     class="post-action-btn btn btn--default"
-                    target="new" href="https://twitter.com/intent/tweet?text=http://sjp24.github.io/2021/06/17/basic-pipeline/"
+                    target="new" href="https://twitter.com/intent/tweet?text=http://sjp24.github.io/2021/08/27/bigquery-date-list-table/"
                     title="Share on Twitter"
                     aria-label="Share on Twitter"
                 >
@@ -404,7 +415,7 @@
             <li class="post-action hide-xs">
                 <a
                     class="post-action-btn btn btn--default"
-                    target="new" href="https://www.linkedin.com/shareArticle?mini=true&amp;url=http://sjp24.github.io/2021/06/17/basic-pipeline/"
+                    target="new" href="https://www.linkedin.com/shareArticle?mini=true&amp;url=http://sjp24.github.io/2021/08/27/bigquery-date-list-table/"
                     title="global.share_on_linkedin"
                     aria-label="global.share_on_linkedin"
                 >
@@ -463,25 +474,25 @@
         <ul class="post-actions post-action-nav">
             <li class="post-action">
                 
-                    
-                <a
-                    class="post-action-btn btn btn--default tooltip--top"
-                    href="/2021/08/26/colab-r-and-python/"
-                    data-tooltip="Google Colab 101: Python-R 같이 사용하기"
-                    aria-label="PREVIOUS: Google Colab 101: Python-R 같이 사용하기"
-                >
-                    
+                    <a
+                        class="post-action-btn btn btn--disabled"
+                        aria-hidden="true"
+                    >
+                        
                         <i class="fa fa-angle-left" aria-hidden="true"></i>
                         <span class="hide-xs hide-sm text-small icon-ml">PREVIOUS</span>
                     </a>
             </li>
             <li class="post-action">
                 
-                    <a
-                        class="post-action-btn btn btn--disabled"
-                        aria-hidden="true"
-                    >
-                        
+                    
+                <a
+                    class="post-action-btn btn btn--default tooltip--top"
+                    href="/2021/08/26/colab-r-and-python/"
+                    data-tooltip="Google Colab 101: Python-R 같이 사용하기"
+                    aria-label="NEXT: Google Colab 101: Python-R 같이 사용하기"
+                >
+                    
                         <span class="hide-xs hide-sm text-small icon-mr">NEXT</span>
                         <i class="fa fa-angle-right" aria-hidden="true"></i>
                     </a>
@@ -504,7 +515,7 @@
             <li class="post-action hide-xs">
                 <a
                     class="post-action-btn btn btn--default"
-                    target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://sjp24.github.io/2021/06/17/basic-pipeline/"
+                    target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://sjp24.github.io/2021/08/27/bigquery-date-list-table/"
                     title="Share on Facebook"
                     aria-label="Share on Facebook"
                 >
@@ -517,7 +528,7 @@
             <li class="post-action hide-xs">
                 <a
                     class="post-action-btn btn btn--default"
-                    target="new" href="https://twitter.com/intent/tweet?text=http://sjp24.github.io/2021/06/17/basic-pipeline/"
+                    target="new" href="https://twitter.com/intent/tweet?text=http://sjp24.github.io/2021/08/27/bigquery-date-list-table/"
                     title="Share on Twitter"
                     aria-label="Share on Twitter"
                 >
@@ -530,7 +541,7 @@
             <li class="post-action hide-xs">
                 <a
                     class="post-action-btn btn btn--default"
-                    target="new" href="https://www.linkedin.com/shareArticle?mini=true&amp;url=http://sjp24.github.io/2021/06/17/basic-pipeline/"
+                    target="new" href="https://www.linkedin.com/shareArticle?mini=true&amp;url=http://sjp24.github.io/2021/08/27/bigquery-date-list-table/"
                     title="global.share_on_linkedin"
                     aria-label="global.share_on_linkedin"
                 >
@@ -574,7 +585,7 @@
                     <a
                         class="share-option-btn"
                         target="new"
-                        href="https://www.facebook.com/sharer/sharer.php?u=http://sjp24.github.io/2021/06/17/basic-pipeline/"
+                        href="https://www.facebook.com/sharer/sharer.php?u=http://sjp24.github.io/2021/08/27/bigquery-date-list-table/"
                         aria-label="Share on Facebook"
                     >
                         <i class="fab fa-facebook" aria-hidden="true"></i><span>Share on Facebook</span>
@@ -587,7 +598,7 @@
                     <a
                         class="share-option-btn"
                         target="new"
-                        href="https://twitter.com/intent/tweet?text=http://sjp24.github.io/2021/06/17/basic-pipeline/"
+                        href="https://twitter.com/intent/tweet?text=http://sjp24.github.io/2021/08/27/bigquery-date-list-table/"
                         aria-label="Share on Twitter"
                     >
                         <i class="fab fa-twitter" aria-hidden="true"></i><span>Share on Twitter</span>
@@ -600,7 +611,7 @@
                     <a
                         class="share-option-btn"
                         target="new"
-                        href="https://www.linkedin.com/shareArticle?mini=true&amp;url=http://sjp24.github.io/2021/06/17/basic-pipeline/"
+                        href="https://www.linkedin.com/shareArticle?mini=true&amp;url=http://sjp24.github.io/2021/08/27/bigquery-date-list-table/"
                         aria-label="global.share_on_linkedin"
                     >
                         <i class="fab fa-linkedin" aria-hidden="true"></i><span>global.share_on_linkedin</span>
@@ -807,9 +818,9 @@
     
         <script>
           var disqus_config = function() {
-            this.page.url = 'http://sjp24.github.io/2021/06/17/basic-pipeline/';
+            this.page.url = 'http://sjp24.github.io/2021/08/27/bigquery-date-list-table/';
               
-            this.page.identifier = '2021/06/17/basic-pipeline/';
+            this.page.identifier = '2021/08/27/bigquery-date-list-table/';
               
           };
           (function() {

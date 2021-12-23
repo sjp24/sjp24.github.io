@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="generator" content="SJP">
     <title>Google Colab 101: Python-R 같이 사용하기 - SJP</title>
-    <meta name="author" content="Song Park">
+    <meta name="author" content="Song Joyce Park">
     
         <meta name="keywords" content="song park,data,song joyce park,data analyst,데이터 분석,데이터,스타트업,박송,colab,data">
     
@@ -17,17 +17,17 @@
             <link rel="alternate" type="application/atom+xml" title="RSS" href="/atom.xml">
         
     
-    <script type="application/ld+json">{"@context":"http://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Song Park","sameAs":[],"image":"https://lh3.googleusercontent.com/pw/AM-JKLXE0TOvzGd2C_G4f79oDYbTFd88BPZLRRX7PoOrqw4Y3txQSxo-yvOhdTBBii2e4n83qUxSVki9ZS7F0fdD541BlsX3k4m6-_La__Pr0s2i4Srb6gyYr1rjwe2raKgLes_e7PNjJrGA_40KK1EFPD9KUA=s989-no?authuser=0"},"articleBody":"한 노트북 안에서 여러 언어를 사용하는걸 지양해야 하지만, R와 파이썬을 둘 다 쓰는 사람이라면 두 언어를 동시에 사용할 수 있었으면 하는 순간들이 오기 마련입니다. 기본적으로 Colab 노트북은 Python 언어 기반이지만 (R 노트북도 쓸 수 있긴 하다) 한 노트북 안에서 Python과 R을 같이 쓸 수 있습니다!\n\n\n(TIP: 그냥 Colab R 노트북 사용하고 싶은 경우 이 링크로 Colab 접속하면 R 노트북이 생성됩니다: https://colab.research.google.com/#create=true&amp;language=r)\n\n\n\nColab에서 Python-R 같이 사용하기첫번째로, Colab 노트북에서 아래 코드를 실행:\n1%load_ext rpy2.ipython\n\n디폴트로는 모든 셀이 Python 셀이지만 R 코드 사용하고 싶은 경우, cell magic과 line magic 두가지 방법이 있습니다.\n\nCell magic: 셀 전체를 R 코드로 실행 → 셀 첫번째 행에 아래 코드 입력하면 셀의 모든 코드가 R 코드로 실행됩니다1%%R\nLine magic: 코드 행을 R 코드로 실행 → R 코드 실행할 행에 아래 코드 입력1%R\n\n\nTip #1: Python-R 언어 사이 Dataframe 복사R 코드 부분에서 dataframe이 생성되면, 파이썬 코드 부분에서는 해당 dataframe을 사용할 수 없습니다. 그래서 따로 두 언어 다 활용해서 dataframe을 다룰 경우에는 한쪽에서 생성된 dataframe을 다른 쪽에 만들어주는 방법을 사용해야합니다.\ndf 라는 dataframe이 있으면, 꼭 cell magic 이 아닌 line magic 으로 아래 코드를 실행 해주세요.\nPython → R1%R -i df\n\nR → Python1%R -o df\n\n여러 dataframe을 한번에12345#Python to R%R -i df -i df2#R to Python%R -o df -o df2\n\n\nTip #2: R Variable을 Python으로 복사Line magic은 헤당 행에 있는 쿠드에 적용이 되다보니 아래 코드와 같은 방법으로 R variable도 Python variable로 복사할 수 있습니다.\n1x = %R x\n\n\n위에 설명한 내용을 간단한 예시로 볼 수 있는 Colab 노트북입니다! → Example Colab Notebook\n","dateCreated":"2021-08-26T00:00:00+09:00","dateModified":"2021-12-23T21:17:53+09:00","datePublished":"2021-08-26T00:00:00+09:00","description":"한 노트북 안에서 여러 언어를 사용하는걸 지양해야 하지만, R와 파이썬을 둘 다 쓰는 사람이라면 두 언어를 동시에 사용할 수 있었으면 하는 순간들이 오기 마련입니다. 기본적으로 Colab 노트북은 Python 언어 기반이지만 (R 노트북도 쓸 수 있긴 하다) 한 노트북 안에서 Python과 R을 같이 쓸 수 있습니다!","headline":"Google Colab 101: Python-R 같이 사용하기","image":["https://lh3.googleusercontent.com/pw/AM-JKLWNrbDmpUZPK5c76vmkQEwDcDrgeufFCoBZ_Phdt0yy0EDfWXUxxZgljMNgnpCt2TOuksg-lyESZVWXv7Q1Io5zsOaPNkLgaDxaG_JjKIpnhs56NP3OMTbRbpNokhRQBQ-TN8yviyq1w3gXb5ahDEM30g=s260-no?authuser=0"],"mainEntityOfPage":{"@type":"WebPage","@id":"http://sjp24.github.io/2021/08/26/colab-r-and-python/"},"publisher":{"@type":"Organization","name":"Song Park","sameAs":[],"image":"https://lh3.googleusercontent.com/pw/AM-JKLXE0TOvzGd2C_G4f79oDYbTFd88BPZLRRX7PoOrqw4Y3txQSxo-yvOhdTBBii2e4n83qUxSVki9ZS7F0fdD541BlsX3k4m6-_La__Pr0s2i4Srb6gyYr1rjwe2raKgLes_e7PNjJrGA_40KK1EFPD9KUA=s989-no?authuser=0","logo":{"@type":"ImageObject","url":"https://lh3.googleusercontent.com/pw/AM-JKLXE0TOvzGd2C_G4f79oDYbTFd88BPZLRRX7PoOrqw4Y3txQSxo-yvOhdTBBii2e4n83qUxSVki9ZS7F0fdD541BlsX3k4m6-_La__Pr0s2i4Srb6gyYr1rjwe2raKgLes_e7PNjJrGA_40KK1EFPD9KUA=s989-no?authuser=0"}},"url":"http://sjp24.github.io/2021/08/26/colab-r-and-python/","keywords":"Colab, R, Python","thumbnailUrl":"https://lh3.googleusercontent.com/pw/AM-JKLWNrbDmpUZPK5c76vmkQEwDcDrgeufFCoBZ_Phdt0yy0EDfWXUxxZgljMNgnpCt2TOuksg-lyESZVWXv7Q1Io5zsOaPNkLgaDxaG_JjKIpnhs56NP3OMTbRbpNokhRQBQ-TN8yviyq1w3gXb5ahDEM30g=s260-no?authuser=0"}</script>
-    <meta name="description" content="한 노트북 안에서 여러 언어를 사용하는걸 지양해야 하지만, R와 파이썬을 둘 다 쓰는 사람이라면 두 언어를 동시에 사용할 수 있었으면 하는 순간들이 오기 마련입니다. 기본적으로 Colab 노트북은 Python 언어 기반이지만 (R 노트북도 쓸 수 있긴 하다) 한 노트북 안에서 Python과 R을 같이 쓸 수 있습니다!">
+    <script type="application/ld+json">{"@context":"http://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Song Joyce Park","sameAs":[],"image":"https://lh3.googleusercontent.com/pw/AM-JKLXE0TOvzGd2C_G4f79oDYbTFd88BPZLRRX7PoOrqw4Y3txQSxo-yvOhdTBBii2e4n83qUxSVki9ZS7F0fdD541BlsX3k4m6-_La__Pr0s2i4Srb6gyYr1rjwe2raKgLes_e7PNjJrGA_40KK1EFPD9KUA=s989-no?authuser=0"},"articleBody":"한 노트북 안에서 여러 언어를 사용하는걸 지양해야 하지만, R와 파이썬을 둘 다 쓰는 사람이라면 두 언어를 같이 사용할 수 있었으면 하는 순간들이 오기 마련입니다. 기본적으로 Colab 노트북은 Python 언어 기반이지만 (R 노트북도 쓸 수 있긴 하다) 한 노트북 안에서 Python과 R을 같이 쓸 수 있습니다!\n\n\n(TIP: 그냥 Colab R 노트북 사용하고 싶은 경우 이 링크로 Colab 접속하면 R 노트북이 생성됩니다: https://colab.research.google.com/#create=true&amp;language=r)\n\n\n\nColab에서 Python-R 같이 사용하기첫번째로, Colab 노트북에서 아래 코드를 실행:\n1%load_ext rpy2.ipython\n\n디폴트로는 모든 셀이 Python 셀이지만 R 코드 사용하고 싶은 경우, cell magic과 line magic 두가지 방법이 있습니다.\n\nCell magic: 셀 전체를 R 코드로 실행 → 셀 첫번째 행에 아래 코드 입력하면 셀의 모든 코드가 R 코드로 실행됩니다1%%R\nLine magic: 코드 행을 R 코드로 실행 → R 코드 실행할 행에 아래 코드 입력1%R\n\n\nTip #1: Python-R 언어 사이 Dataframe 복사R 코드 부분에서 dataframe이 생성되면, 파이썬 코드 부분에서는 해당 dataframe을 사용할 수 없습니다. 그래서 따로 두 언어 다 활용해서 dataframe을 다룰 경우에는 한쪽에서 생성된 dataframe을 다른 쪽에 만들어주는 방법을 사용해야합니다.\ndf 라는 dataframe이 있으면, 꼭 cell magic 이 아닌 line magic 으로 아래 코드를 실행 해주세요.\nPython → R1%R -i df\n\nR → Python1%R -o df\n\n여러 dataframe을 한번에12345#Python to R%R -i df -i df2#R to Python%R -o df -o df2\n\n\nTip #2: R Variable을 Python으로 복사Line magic은 헤당 행에 있는 쿠드에 적용이 되다보니 아래 코드와 같은 방법으로 R variable도 Python variable로 복사할 수 있습니다.\n1x = %R x\n\n\n위에 설명한 내용을 간단한 예시로 볼 수 있는 Colab 노트북입니다! → Example Colab Notebook\n","dateCreated":"2021-08-26T00:00:00+09:00","dateModified":"2021-12-23T22:54:00+09:00","datePublished":"2021-08-26T00:00:00+09:00","description":"한 노트북 안에서 여러 언어를 사용하는걸 지양해야 하지만, R와 파이썬을 둘 다 쓰는 사람이라면 두 언어를 같이 사용할 수 있었으면 하는 순간들이 오기 마련입니다. 기본적으로 Colab 노트북은 Python 언어 기반이지만 (R 노트북도 쓸 수 있긴 하다) 한 노트북 안에서 Python과 R을 같이 쓸 수 있습니다!","headline":"Google Colab 101: Python-R 같이 사용하기","image":["https://lh3.googleusercontent.com/pw/AM-JKLWNrbDmpUZPK5c76vmkQEwDcDrgeufFCoBZ_Phdt0yy0EDfWXUxxZgljMNgnpCt2TOuksg-lyESZVWXv7Q1Io5zsOaPNkLgaDxaG_JjKIpnhs56NP3OMTbRbpNokhRQBQ-TN8yviyq1w3gXb5ahDEM30g=s260-no?authuser=0"],"mainEntityOfPage":{"@type":"WebPage","@id":"http://sjp24.github.io/2021/08/26/colab-r-and-python/"},"publisher":{"@type":"Organization","name":"Song Joyce Park","sameAs":[],"image":"https://lh3.googleusercontent.com/pw/AM-JKLXE0TOvzGd2C_G4f79oDYbTFd88BPZLRRX7PoOrqw4Y3txQSxo-yvOhdTBBii2e4n83qUxSVki9ZS7F0fdD541BlsX3k4m6-_La__Pr0s2i4Srb6gyYr1rjwe2raKgLes_e7PNjJrGA_40KK1EFPD9KUA=s989-no?authuser=0","logo":{"@type":"ImageObject","url":"https://lh3.googleusercontent.com/pw/AM-JKLXE0TOvzGd2C_G4f79oDYbTFd88BPZLRRX7PoOrqw4Y3txQSxo-yvOhdTBBii2e4n83qUxSVki9ZS7F0fdD541BlsX3k4m6-_La__Pr0s2i4Srb6gyYr1rjwe2raKgLes_e7PNjJrGA_40KK1EFPD9KUA=s989-no?authuser=0"}},"url":"http://sjp24.github.io/2021/08/26/colab-r-and-python/","keywords":"Colab, R, Python","thumbnailUrl":"https://lh3.googleusercontent.com/pw/AM-JKLWNrbDmpUZPK5c76vmkQEwDcDrgeufFCoBZ_Phdt0yy0EDfWXUxxZgljMNgnpCt2TOuksg-lyESZVWXv7Q1Io5zsOaPNkLgaDxaG_JjKIpnhs56NP3OMTbRbpNokhRQBQ-TN8yviyq1w3gXb5ahDEM30g=s260-no?authuser=0"}</script>
+    <meta name="description" content="한 노트북 안에서 여러 언어를 사용하는걸 지양해야 하지만, R와 파이썬을 둘 다 쓰는 사람이라면 두 언어를 같이 사용할 수 있었으면 하는 순간들이 오기 마련입니다. 기본적으로 Colab 노트북은 Python 언어 기반이지만 (R 노트북도 쓸 수 있긴 하다) 한 노트북 안에서 Python과 R을 같이 쓸 수 있습니다!">
 <meta property="og:type" content="blog">
 <meta property="og:title" content="Google Colab 101: Python-R 같이 사용하기">
 <meta property="og:url" content="http://sjp24.github.io/2021/08/26/colab-r-and-python/index.html">
 <meta property="og:site_name" content="SJP">
-<meta property="og:description" content="한 노트북 안에서 여러 언어를 사용하는걸 지양해야 하지만, R와 파이썬을 둘 다 쓰는 사람이라면 두 언어를 동시에 사용할 수 있었으면 하는 순간들이 오기 마련입니다. 기본적으로 Colab 노트북은 Python 언어 기반이지만 (R 노트북도 쓸 수 있긴 하다) 한 노트북 안에서 Python과 R을 같이 쓸 수 있습니다!">
+<meta property="og:description" content="한 노트북 안에서 여러 언어를 사용하는걸 지양해야 하지만, R와 파이썬을 둘 다 쓰는 사람이라면 두 언어를 같이 사용할 수 있었으면 하는 순간들이 오기 마련입니다. 기본적으로 Colab 노트북은 Python 언어 기반이지만 (R 노트북도 쓸 수 있긴 하다) 한 노트북 안에서 Python과 R을 같이 쓸 수 있습니다!">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2021-08-25T15:00:00.000Z">
-<meta property="article:modified_time" content="2021-12-23T12:17:53.044Z">
-<meta property="article:author" content="Song Park">
+<meta property="article:modified_time" content="2021-12-23T13:54:00.333Z">
+<meta property="article:author" content="Song Joyce Park">
 <meta property="article:tag" content="Colab">
 <meta property="article:tag" content="R">
 <meta property="article:tag" content="Python">
@@ -125,7 +125,7 @@
                 >
                     <img class="sidebar-profile-picture" src="https://lh3.googleusercontent.com/pw/AM-JKLXE0TOvzGd2C_G4f79oDYbTFd88BPZLRRX7PoOrqw4Y3txQSxo-yvOhdTBBii2e4n83qUxSVki9ZS7F0fdD541BlsX3k4m6-_La__Pr0s2i4Srb6gyYr1rjwe2raKgLes_e7PNjJrGA_40KK1EFPD9KUA=s989-no?authuser=0" alt="Author&#39;s picture"/>
                 </a>
-                <h4 class="sidebar-profile-name">Song Park</h4>
+                <h4 class="sidebar-profile-name">Song Joyce Park</h4>
                 
                     <h5 class="sidebar-profile-bio"><p>데이터를 보는 사람입니다. New Yorker turned Seoulite.</p>
 </h5>
@@ -281,7 +281,7 @@
     
     <div class="post-content markdown">
         <div class="main-content-wrap">
-            <p>한 노트북 안에서 여러 언어를 사용하는걸 지양해야 하지만, R와 파이썬을 둘 다 쓰는 사람이라면 두 언어를 동시에 사용할 수 있었으면 하는 순간들이 오기 마련입니다. 기본적으로 Colab 노트북은 Python 언어 기반이지만 (R 노트북도 쓸 수 있긴 하다) 한 노트북 안에서 Python과 R을 같이 쓸 수 있습니다!</p>
+            <p>한 노트북 안에서 여러 언어를 사용하는걸 지양해야 하지만, R와 파이썬을 둘 다 쓰는 사람이라면 두 언어를 같이 사용할 수 있었으면 하는 순간들이 오기 마련입니다. 기본적으로 Colab 노트북은 Python 언어 기반이지만 (R 노트북도 쓸 수 있긴 하다) 한 노트북 안에서 Python과 R을 같이 쓸 수 있습니다!</p>
 <span id="more"></span>
 
 <p>(TIP: 그냥 Colab R 노트북 사용하고 싶은 경우 이 링크로 Colab 접속하면 R 노트북이 생성됩니다: <a target="_blank" rel="noopener" href="https://colab.research.google.com/#create=true&amp;language=r">https://colab.research.google.com/#create=true&amp;language=r</a>)<br><br/></p>
@@ -332,11 +332,14 @@
         <ul class="post-actions post-action-nav">
             <li class="post-action">
                 
-                    <a
-                        class="post-action-btn btn btn--disabled"
-                        aria-hidden="true"
-                    >
-                        
+                    
+                <a
+                    class="post-action-btn btn btn--default tooltip--top"
+                    href="/2021/08/27/bigquery-date-list-table/"
+                    data-tooltip="BigQuery Basics: 날짜 데이터 만들기"
+                    aria-label="PREVIOUS: BigQuery Basics: 날짜 데이터 만들기"
+                >
+                    
                         <i class="fa fa-angle-left" aria-hidden="true"></i>
                         <span class="hide-xs hide-sm text-small icon-ml">PREVIOUS</span>
                     </a>
@@ -446,7 +449,7 @@
 
                 <footer id="footer" class="main-content-wrap">
     <span class="copyrights">
-        Copyrights &copy; 2021 Song Park. All Rights Reserved.
+        Copyrights &copy; 2021 Song Joyce Park. All Rights Reserved.
     </span>
 </footer>
 
@@ -458,11 +461,14 @@
         <ul class="post-actions post-action-nav">
             <li class="post-action">
                 
-                    <a
-                        class="post-action-btn btn btn--disabled"
-                        aria-hidden="true"
-                    >
-                        
+                    
+                <a
+                    class="post-action-btn btn btn--default tooltip--top"
+                    href="/2021/08/27/bigquery-date-list-table/"
+                    data-tooltip="BigQuery Basics: 날짜 데이터 만들기"
+                    aria-label="PREVIOUS: BigQuery Basics: 날짜 데이터 만들기"
+                >
+                    
                         <i class="fa fa-angle-left" aria-hidden="true"></i>
                         <span class="hide-xs hide-sm text-small icon-ml">PREVIOUS</span>
                     </a>
@@ -623,7 +629,7 @@
         
             <img id="about-card-picture" src="https://lh3.googleusercontent.com/pw/AM-JKLXE0TOvzGd2C_G4f79oDYbTFd88BPZLRRX7PoOrqw4Y3txQSxo-yvOhdTBBii2e4n83qUxSVki9ZS7F0fdD541BlsX3k4m6-_La__Pr0s2i4Srb6gyYr1rjwe2raKgLes_e7PNjJrGA_40KK1EFPD9KUA=s989-no?authuser=0" alt="Author&#39;s picture"/>
         
-            <h4 id="about-card-name">Song Park</h4>
+            <h4 id="about-card-name">Song Joyce Park</h4>
         
             <div id="about-card-bio"><p>데이터를 보는 사람입니다. New Yorker turned Seoulite.</p>
 </div>
@@ -727,7 +733,41 @@
                                 
                             </span>
                         </span>
-                        <div class="media-content hide-xs font-merryweather"><p>한 노트북 안에서 여러 언어를 사용하는걸 지양해야 하지만, R와 파이썬을 둘 다 쓰는 사람이라면 두 언어를 동시에 사용할 수 있었으면 하는 순간들이 오기 마련입니다. 기본적으로 Colab 노트북은 Python 언어 기반이지만 (R 노트북도 쓸 수 있긴 하다) 한 노트북 안에서 Python과 R을 같이 쓸 수 있습니다!</p></div>
+                        <div class="media-content hide-xs font-merryweather"><p>한 노트북 안에서 여러 언어를 사용하는걸 지양해야 하지만, R와 파이썬을 둘 다 쓰는 사람이라면 두 언어를 같이 사용할 수 있었으면 하는 순간들이 오기 마련입니다. 기본적으로 Colab 노트북은 Python 언어 기반이지만 (R 노트북도 쓸 수 있긴 하다) 한 노트북 안에서 Python과 R을 같이 쓸 수 있습니다!</p></div>
+                    </div>
+                    <div style="clear:both;"></div>
+                    <hr>
+                </div>
+                
+                <div class="media">
+                    
+                    <div class="media-left">
+                        <a
+                            class="link-unstyled"
+                            href="http://sjp24.github.io/2021/08/27/bigquery-date-list-table/"
+                            aria-label=": BigQuery Basics: 날짜 데이터 만들기"
+                        >
+                            <img class="media-image" src="https://lh3.googleusercontent.com/pw/AM-JKLWMdOgAyJclLiJo6_HnkLI0lGJA6ZbuPr9QuNnw1rolGxqVcpp29sKMEAHQg03vBGfnGfmQqXv5nJV75sgU8aRxxNnsZrOwp4DhV7-SlkkXKan1Gz7vJn8W7kcvfnMruoKe4UH5rwVIeBj23Yd4Td_TjQ=s225-no?authuser=0" width="90" height="90"/>
+                        </a>
+                    </div>
+                    
+                    <div class="media-body">
+                        <a
+                            class="link-unstyled"
+                            href="http://sjp24.github.io/2021/08/27/bigquery-date-list-table/"
+                            aria-label=": BigQuery Basics: 날짜 데이터 만들기"
+                        >
+                            <h3 class="media-heading">BigQuery Basics: 날짜 데이터 만들기</h3>
+                        </a>
+                        <span class="media-meta">
+                            <span class="media-date text-small">
+                                
+                                    Aug 27, 2021
+                                
+                            </span>
+                        </span>
+                        <div class="media-content hide-xs font-merryweather"><p>특정 기간 동안의 날짜 데이터를 생성할 수 있는 쉬운 방법이 있었다면 정말 많은 도움이 되었을것 같은 순간들이 몇번 있었습니다. 데이터 일을 해오면서 이런 니즈가 자주 있진 않았지만 그 몇번이 저에게는 고통스러운 기억으로 남아있어 빅쿼리의 GENERATE_DATE_ARRAY를 처음 경험해보고 감탄할 수 밖에 없었어요.</p>
+<p>BigQuery의 GENERATE_DATE_ARRAY와 GENERATE_TIMESTAMP_ARRAY를 사용하여 날짜 리스트 만드는 방법입니다.</p></div>
                     </div>
                     <div style="clear:both;"></div>
                     <hr>
@@ -740,7 +780,7 @@
                 data-message-zero="no post found"
                 data-message-one="1 post found"
                 data-message-other="{n} posts found">
-                2 posts found
+                3 posts found
             </p>
         </div>
     </div>
