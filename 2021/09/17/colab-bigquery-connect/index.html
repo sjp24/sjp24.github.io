@@ -6,10 +6,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="generator" content="SJP">
-    <title>BigQuery Basics: 날짜 데이터 만들기 - SJP</title>
+    <title>Google Colab 101: BigQuery 연동하고 쿼리하기 - SJP</title>
     <meta name="author" content="Song Joyce Park">
     
-        <meta name="keywords" content="song park,data,song joyce park,data analyst,데이터 분석,데이터,스타트업,박송,BigQuery,SQL,date list,list of dates,빅쿼리">
+        <meta name="keywords" content="song park,data,song joyce park,data analyst,데이터 분석,데이터,스타트업,박송,BigQuery,SQL,코랩,Colab,Google Colab,빅쿼리">
     
     
     
@@ -17,25 +17,23 @@
             <link rel="alternate" type="application/atom+xml" title="RSS" href="/atom.xml">
         
     
-    <script type="application/ld+json">{"@context":"http://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Song Joyce Park","sameAs":[],"image":"https://lh3.googleusercontent.com/pw/AM-JKLXE0TOvzGd2C_G4f79oDYbTFd88BPZLRRX7PoOrqw4Y3txQSxo-yvOhdTBBii2e4n83qUxSVki9ZS7F0fdD541BlsX3k4m6-_La__Pr0s2i4Srb6gyYr1rjwe2raKgLes_e7PNjJrGA_40KK1EFPD9KUA=s989-no?authuser=0"},"articleBody":"특정 기간 동안의 날짜 데이터를 생성할 수 있는 쉬운 방법이 있었다면 정말 많은 도움이 되었을것 같은 순간들이 몇번 있었습니다. 데이터 일을 해오면서 이런 니즈가 자주 있진 않았지만 그 몇번이 저에게는 고통스러운 기억으로 남아있어 빅쿼리의 GENERATE_DATE_ARRAY를 처음 경험해보고 감탄할 수 밖에 없었어요.\nBigQuery의 GENERATE_DATE_ARRAY와 GENERATE_TIMESTAMP_ARRAY를 사용하여 날짜 리스트 만드는 방법입니다.\n\n\n\n\n\n\n기본 문법DATE1GENERATE_DATE_ARRAY(start_date, end_date, [INTERVAL INT64_expr date_part])\n\nInterval 부분 없이 start_date, end_date 만 사용하면 디폴트 interval인 하루 적용된다\nInterval 부분 은 설정한 시작일 기준으로 계산된다 (예: 2021-01-01 부터 week 단위 설정 시, 1월1일, 1월 8일, 1월 15일…)\n사용 가능한 date_part은: DAY, WEEK, MONTH, QUARTER, YEAR\n아웃풋은 array 형태 → 풀어서 사용하려면 UNNEST로 풀어야한다\n\nTIMESTAMP1GENERATE_TIMESTAMP_ARRAY(start_timestamp, end_timestamp, [INTERVAL INT64_expr time_part])\n\n시간 없이 날짜만 start_timestamp, end_timestamp으로 사용 시 디폴트 00:00:00\nInterval 부분 은 설정한 start_timestamp 기준으로 계산된다\n사용 가능한 date_part은: MICROSECOND, MILLISECOND, SECOND, MINUTE, HOUR, DAY\n아웃풋은 array 형태 → 풀어서 사용하려면 UNNEST로 풀어야한다\n\nDATE 예시\n디폴트 (일별)\n1SELECT * FROM UNNEST(GENERATE_DATE_ARRAY(&#x27;2021-01-01&#x27;, &#x27;2021-01-31&#x27;))\n\n\nInterval = 2 days\n1SELECT * FROM UNNEST(GENERATE_DATE_ARRAY(&#x27;2021-01-01&#x27;, &#x27;2021-01-31&#x27;, INTERVAL 2 DAY))\n\n\nInterval = -2 days\n1SELECT * FROM UNNEST(GENERATE_DATE_ARRAY(‘2021–01–31’, ‘2021–01–01’, INTERVAL -2 DAY))\n\n\n\n\nTIMESTAMP 예시\nInterval = 2 hours, 낮 12시부터1SELECT * FROM UNNEST(GENERATE_TIMESTAMP_ARRAY(&#x27;2021-01-01 12:00:00&#x27;, &#x27;2021-01-03 00:00:00&#x27;, INTERVAL 2 HOUR))\n\n\n\n","dateCreated":"2021-08-27T00:00:00+09:00","dateModified":"2021-12-23T23:34:34+09:00","datePublished":"2021-08-27T00:00:00+09:00","description":"특정 기간 동안의 날짜 데이터를 생성할 수 있는 쉬운 방법이 있었다면 정말 많은 도움이 되었을것 같은 순간들이 몇번 있었습니다. 데이터 일을 해오면서 이런 니즈가 자주 있진 않았지만 그 몇번이 저에게는 고통스러운 기억으로 남아있어 빅쿼리의 GENERATE_DATE_ARRAY를 처음 경험해보고 감탄할 수 밖에 없었어요.\nBigQuery의 GENERATE_DATE_ARRAY와 GENERATE_TIMESTAMP_ARRAY를 사용하여 날짜 리스트 만드는 방법입니다.","headline":"BigQuery Basics: 날짜 데이터 만들기","image":["https://lh3.googleusercontent.com/pw/AM-JKLWMdOgAyJclLiJo6_HnkLI0lGJA6ZbuPr9QuNnw1rolGxqVcpp29sKMEAHQg03vBGfnGfmQqXv5nJV75sgU8aRxxNnsZrOwp4DhV7-SlkkXKan1Gz7vJn8W7kcvfnMruoKe4UH5rwVIeBj23Yd4Td_TjQ=s225-no?authuser=0"],"mainEntityOfPage":{"@type":"WebPage","@id":"http://sjp24.github.io/2021/08/27/bigquery-date-list-table/"},"publisher":{"@type":"Organization","name":"Song Joyce Park","sameAs":[],"image":"https://lh3.googleusercontent.com/pw/AM-JKLXE0TOvzGd2C_G4f79oDYbTFd88BPZLRRX7PoOrqw4Y3txQSxo-yvOhdTBBii2e4n83qUxSVki9ZS7F0fdD541BlsX3k4m6-_La__Pr0s2i4Srb6gyYr1rjwe2raKgLes_e7PNjJrGA_40KK1EFPD9KUA=s989-no?authuser=0","logo":{"@type":"ImageObject","url":"https://lh3.googleusercontent.com/pw/AM-JKLXE0TOvzGd2C_G4f79oDYbTFd88BPZLRRX7PoOrqw4Y3txQSxo-yvOhdTBBii2e4n83qUxSVki9ZS7F0fdD541BlsX3k4m6-_La__Pr0s2i4Srb6gyYr1rjwe2raKgLes_e7PNjJrGA_40KK1EFPD9KUA=s989-no?authuser=0"}},"url":"http://sjp24.github.io/2021/08/27/bigquery-date-list-table/","keywords":"SQL, BigQuery","thumbnailUrl":"https://lh3.googleusercontent.com/pw/AM-JKLWMdOgAyJclLiJo6_HnkLI0lGJA6ZbuPr9QuNnw1rolGxqVcpp29sKMEAHQg03vBGfnGfmQqXv5nJV75sgU8aRxxNnsZrOwp4DhV7-SlkkXKan1Gz7vJn8W7kcvfnMruoKe4UH5rwVIeBj23Yd4Td_TjQ=s225-no?authuser=0"}</script>
-    <meta name="description" content="특정 기간 동안의 날짜 데이터를 생성할 수 있는 쉬운 방법이 있었다면 정말 많은 도움이 되었을것 같은 순간들이 몇번 있었습니다. 데이터 일을 해오면서 이런 니즈가 자주 있진 않았지만 그 몇번이 저에게는 고통스러운 기억으로 남아있어 빅쿼리의 GENERATE_DATE_ARRAY를 처음 경험해보고 감탄할 수 밖에 없었어요. BigQuery의 GENERATE_DA">
+    <script type="application/ld+json">{"@context":"http://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Song Joyce Park","sameAs":[],"image":"https://lh3.googleusercontent.com/pw/AM-JKLXE0TOvzGd2C_G4f79oDYbTFd88BPZLRRX7PoOrqw4Y3txQSxo-yvOhdTBBii2e4n83qUxSVki9ZS7F0fdD541BlsX3k4m6-_La__Pr0s2i4Srb6gyYr1rjwe2raKgLes_e7PNjJrGA_40KK1EFPD9KUA=s989-no?authuser=0"},"articleBody":"Colab은 BigQuery랑 같이 쓸때 가장 빛을 발합니다. Colab과 BigQuery 둘 다 구글 서비스임으로, 빅쿼리에 있는 데이터를 코랩으로 접근하기 아주 쉽고 편하다!\n\n(아래 방법 외 service account key JSON 파일을 사용하여 연동하는 방법도 있습니다.)\n\n\n\n계정 인증\n아래 코드 실행:\n12from google.colab import authauth.authenticate_user()\n\n실행하면 아래와 같이 링크와 인증코드 입력하는 곳이 보이고 링크를 클릭해줍니다.\n\n\nBigQuery 권한이 있는 계정으로 인증 완료하면 인증코드를 받습니다. 이 코드를 복사하고 다시 Colab 노트북으로 돌아와 인증코드 입력창에 입력해주세요.\n\n\nBigQuery 프로젝트 연결\nBigQuery 프로젝트랑 연결하려면 아래 코드에 연결 원하는 프로젝트의 아이디를 입력해서 실행해주세요\n123# &#x27;project_id&#x27;를 실제 연결할 빅쿼리 프로젝트 아이디로 대체from google.cloud import bigqueryclient = bigquery.Client(project=&#x27;project_id&#x27;)\n\n성공적으로 연결이 되었다면 SQL로 BigQuery에 있는 데이터를 추출해 dataframe으로 저장할 수 있습니다예시:\n12345# &#x27;dataset_name&#x27;, &#x27;table_name&#x27; 을 실제 사용할 빅쿼리 dataset, table 명으로 대체sql_query = (&#x27;&#x27;&#x27;SELECT *                FROM dataset_name.table_name                LIMIT 10&#x27;&#x27;&#x27;)df = client.query(sql_query).to_dataframe()\n\n\n","dateCreated":"2021-09-17T00:00:00+09:00","dateModified":"2021-12-24T00:00:14+09:00","datePublished":"2021-09-17T00:00:00+09:00","description":"Colab은 BigQuery랑 같이 쓸때 가장 빛을 발합니다. Colab과 BigQuery 둘 다 구글 서비스임으로, 빅쿼리에 있는 데이터를 코랩으로 접근하기 아주 쉽고 편하다!","headline":"Google Colab 101: BigQuery 연동하고 쿼리하기","image":["https://lh3.googleusercontent.com/pw/AM-JKLWNrbDmpUZPK5c76vmkQEwDcDrgeufFCoBZ_Phdt0yy0EDfWXUxxZgljMNgnpCt2TOuksg-lyESZVWXv7Q1Io5zsOaPNkLgaDxaG_JjKIpnhs56NP3OMTbRbpNokhRQBQ-TN8yviyq1w3gXb5ahDEM30g=s260-no?authuser=0"],"mainEntityOfPage":{"@type":"WebPage","@id":"http://sjp24.github.io/2021/09/17/colab-bigquery-connect/"},"publisher":{"@type":"Organization","name":"Song Joyce Park","sameAs":[],"image":"https://lh3.googleusercontent.com/pw/AM-JKLXE0TOvzGd2C_G4f79oDYbTFd88BPZLRRX7PoOrqw4Y3txQSxo-yvOhdTBBii2e4n83qUxSVki9ZS7F0fdD541BlsX3k4m6-_La__Pr0s2i4Srb6gyYr1rjwe2raKgLes_e7PNjJrGA_40KK1EFPD9KUA=s989-no?authuser=0","logo":{"@type":"ImageObject","url":"https://lh3.googleusercontent.com/pw/AM-JKLXE0TOvzGd2C_G4f79oDYbTFd88BPZLRRX7PoOrqw4Y3txQSxo-yvOhdTBBii2e4n83qUxSVki9ZS7F0fdD541BlsX3k4m6-_La__Pr0s2i4Srb6gyYr1rjwe2raKgLes_e7PNjJrGA_40KK1EFPD9KUA=s989-no?authuser=0"}},"url":"http://sjp24.github.io/2021/09/17/colab-bigquery-connect/","keywords":"Colab, Python, SQL","thumbnailUrl":"https://lh3.googleusercontent.com/pw/AM-JKLWNrbDmpUZPK5c76vmkQEwDcDrgeufFCoBZ_Phdt0yy0EDfWXUxxZgljMNgnpCt2TOuksg-lyESZVWXv7Q1Io5zsOaPNkLgaDxaG_JjKIpnhs56NP3OMTbRbpNokhRQBQ-TN8yviyq1w3gXb5ahDEM30g=s260-no?authuser=0"}</script>
+    <meta name="description" content="Colab은 BigQuery랑 같이 쓸때 가장 빛을 발합니다. Colab과 BigQuery 둘 다 구글 서비스임으로, 빅쿼리에 있는 데이터를 코랩으로 접근하기 아주 쉽고 편하다!">
 <meta property="og:type" content="blog">
-<meta property="og:title" content="BigQuery Basics: 날짜 데이터 만들기">
-<meta property="og:url" content="http://sjp24.github.io/2021/08/27/bigquery-date-list-table/index.html">
+<meta property="og:title" content="Google Colab 101: BigQuery 연동하고 쿼리하기">
+<meta property="og:url" content="http://sjp24.github.io/2021/09/17/colab-bigquery-connect/index.html">
 <meta property="og:site_name" content="SJP">
-<meta property="og:description" content="특정 기간 동안의 날짜 데이터를 생성할 수 있는 쉬운 방법이 있었다면 정말 많은 도움이 되었을것 같은 순간들이 몇번 있었습니다. 데이터 일을 해오면서 이런 니즈가 자주 있진 않았지만 그 몇번이 저에게는 고통스러운 기억으로 남아있어 빅쿼리의 GENERATE_DATE_ARRAY를 처음 경험해보고 감탄할 수 밖에 없었어요. BigQuery의 GENERATE_DA">
+<meta property="og:description" content="Colab은 BigQuery랑 같이 쓸때 가장 빛을 발합니다. Colab과 BigQuery 둘 다 구글 서비스임으로, 빅쿼리에 있는 데이터를 코랩으로 접근하기 아주 쉽고 편하다!">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="https://lh3.googleusercontent.com/pw/AM-JKLWEm7L8zJYdAxTrZNP4wC2HCjbnvlALelF0F3s8S7ogvTX5qRgr_1TOuysvdr9BcA_VtsshnrokjjW1aGm1t2UEkG6tCCUZ58cf627IO5EdvAYfOeB-Fem237bQMVXSat2UZGAmc0ePYrNN-jqXZYcLgw=w104-h225-no?authuser=0">
-<meta property="og:image" content="https://lh3.googleusercontent.com/pw/AM-JKLVI6IjM_W2QQZDMQHCvcIsgn003-B1LdQeXMn-vBoL1vR5HzW1UYXxR7sTDKsQyzPmlXtog7KgIrh_D1opaVdaVypdjRVA2-G39oIknSo5Woxfz_4vODQ8tLCzaYW4Tt3pJNL8CfKkvqdwKCyVP3Tb0Xg=w76-h219-no?authuser=0">
-<meta property="og:image" content="https://lh3.googleusercontent.com/pw/AM-JKLW4P_ST4Cn1_enfD3INWinwcp2fbsAOfSKWrYiC6MO3NUragw-fccdnw6piJwGdo2pq8wrJuZis-D_n-4rGgEExYJ5tHxhIR8enzd8ZZTfvl6aO9n62ALaRpJPWndK-TBHbl-Hbm5dH_u_iuwAK0uUx9w=w77-h195-no?authuser=0">
-<meta property="og:image" content="https://lh3.googleusercontent.com/pw/AM-JKLXfLoornuFXPrUeuaZdIie3RA9p-n5BAJ52dWsigwIxSb5CbYSLkAYQQRK7_8_5mlR68E-dGMhH1xPZbFnlTKEwmR8x45gB9Lw8jfe0ikRdrrYjaFksd1-NpHpI5WRcOOdRvcxTHSbEPGyF5x3GjhDNwQ=w144-h222-no?authuser=0">
-<meta property="article:published_time" content="2021-08-26T15:00:00.000Z">
-<meta property="article:modified_time" content="2021-12-23T14:34:34.428Z">
+<meta property="og:image" content="https://lh3.googleusercontent.com/pw/AM-JKLX5dVUt3__kmw212aMf4erQ6ItKD7DKdaRcl5bugRuc7NR9H2VSWLmvP4CF4D4yVC6pE86LBnmAgYG_1LddVk7br6AxDXwjeBVk-ojuiaR0RgIVVAAuHNaHUvDAmeS5_TQaSlAvFEjzbfKI_J2KCD1Org=w613-h149-no?authuser=0">
+<meta property="article:published_time" content="2021-09-16T15:00:00.000Z">
+<meta property="article:modified_time" content="2021-12-23T15:00:14.973Z">
 <meta property="article:author" content="Song Joyce Park">
+<meta property="article:tag" content="Colab">
+<meta property="article:tag" content="Python">
 <meta property="article:tag" content="SQL">
-<meta property="article:tag" content="BigQuery">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://lh3.googleusercontent.com/pw/AM-JKLWEm7L8zJYdAxTrZNP4wC2HCjbnvlALelF0F3s8S7ogvTX5qRgr_1TOuysvdr9BcA_VtsshnrokjjW1aGm1t2UEkG6tCCUZ58cf627IO5EdvAYfOeB-Fem237bQMVXSat2UZGAmc0ePYrNN-jqXZYcLgw=w104-h225-no?authuser=0">
+<meta name="twitter:image" content="https://lh3.googleusercontent.com/pw/AM-JKLX5dVUt3__kmw212aMf4erQ6ItKD7DKdaRcl5bugRuc7NR9H2VSWLmvP4CF4D4yVC6pE86LBnmAgYG_1LddVk7br6AxDXwjeBVk-ojuiaR0RgIVVAAuHNaHUvDAmeS5_TQaSlAvFEjzbfKI_J2KCD1Org=w613-h149-no?authuser=0">
     
     
         
@@ -44,8 +42,8 @@
         <meta property="og:image" content="https://lh3.googleusercontent.com/pw/AM-JKLXE0TOvzGd2C_G4f79oDYbTFd88BPZLRRX7PoOrqw4Y3txQSxo-yvOhdTBBii2e4n83qUxSVki9ZS7F0fdD541BlsX3k4m6-_La__Pr0s2i4Srb6gyYr1rjwe2raKgLes_e7PNjJrGA_40KK1EFPD9KUA=s989-no?authuser=0"/>
     
     
-        <meta property="og:image" content="https://lh3.googleusercontent.com/pw/AM-JKLWMdOgAyJclLiJo6_HnkLI0lGJA6ZbuPr9QuNnw1rolGxqVcpp29sKMEAHQg03vBGfnGfmQqXv5nJV75sgU8aRxxNnsZrOwp4DhV7-SlkkXKan1Gz7vJn8W7kcvfnMruoKe4UH5rwVIeBj23Yd4Td_TjQ=s225-no?authuser=0"/>
-        <meta class="swiftype" name="image" data-type="enum" content="https://lh3.googleusercontent.com/pw/AM-JKLWMdOgAyJclLiJo6_HnkLI0lGJA6ZbuPr9QuNnw1rolGxqVcpp29sKMEAHQg03vBGfnGfmQqXv5nJV75sgU8aRxxNnsZrOwp4DhV7-SlkkXKan1Gz7vJn8W7kcvfnMruoKe4UH5rwVIeBj23Yd4Td_TjQ=s225-no?authuser=0"/>
+        <meta property="og:image" content="https://lh3.googleusercontent.com/pw/AM-JKLWNrbDmpUZPK5c76vmkQEwDcDrgeufFCoBZ_Phdt0yy0EDfWXUxxZgljMNgnpCt2TOuksg-lyESZVWXv7Q1Io5zsOaPNkLgaDxaG_JjKIpnhs56NP3OMTbRbpNokhRQBQ-TN8yviyq1w3gXb5ahDEM30g=s260-no?authuser=0"/>
+        <meta class="swiftype" name="image" data-type="enum" content="https://lh3.googleusercontent.com/pw/AM-JKLWNrbDmpUZPK5c76vmkQEwDcDrgeufFCoBZ_Phdt0yy0EDfWXUxxZgljMNgnpCt2TOuksg-lyESZVWXv7Q1Io5zsOaPNkLgaDxaG_JjKIpnhs56NP3OMTbRbpNokhRQBQ-TN8yviyq1w3gXb5ahDEM30g=s260-no?authuser=0"/>
     
     
     
@@ -260,14 +258,14 @@
         <div class="post-header main-content-wrap text-left">
     
         <h1 class="post-title">
-            BigQuery Basics: 날짜 데이터 만들기
+            Google Colab 101: BigQuery 연동하고 쿼리하기
         </h1>
     
     
         <div class="post-meta">
-    <time datetime="2021-08-27T00:00:00+09:00">
+    <time datetime="2021-09-17T00:00:00+09:00">
 	
-		    Aug 27, 2021
+		    Sep 17, 2021
     	
     </time>
     
@@ -285,46 +283,28 @@
     
     <div class="post-content markdown">
         <div class="main-content-wrap">
-            <p>특정 기간 동안의 날짜 데이터를 생성할 수 있는 쉬운 방법이 있었다면 정말 많은 도움이 되었을것 같은 순간들이 몇번 있었습니다. 데이터 일을 해오면서 이런 니즈가 자주 있진 않았지만 그 몇번이 저에게는 고통스러운 기억으로 남아있어 빅쿼리의 GENERATE_DATE_ARRAY를 처음 경험해보고 감탄할 수 밖에 없었어요.</p>
-<p>BigQuery의 GENERATE_DATE_ARRAY와 GENERATE_TIMESTAMP_ARRAY를 사용하여 날짜 리스트 만드는 방법입니다.</p>
+            <p>Colab은 BigQuery랑 같이 쓸때 가장 빛을 발합니다. Colab과 BigQuery 둘 다 구글 서비스임으로, 빅쿼리에 있는 데이터를 코랩으로 접근하기 아주 쉽고 편하다!</p>
 <span id="more"></span>
-<br/>
-
+<p>(아래 방법 외 service account key JSON 파일을 사용하여 연동하는 방법도 있습니다.)<br><br/></p>
 <hr>
 <br/>
 
-<h1 id="기본-문법"><a href="#기본-문법" class="headerlink" title="기본 문법"></a>기본 문법</h1><h5 id="DATE"><a href="#DATE" class="headerlink" title="DATE"></a>DATE</h5><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">GENERATE_DATE_ARRAY(start_date, end_date, [<span class="type">INTERVAL</span> INT64_expr date_part])</span><br></pre></td></tr></table></figure>
-<ul>
-<li>Interval 부분 없이 start_date, end_date 만 사용하면 디폴트 interval인 하루 적용된다</li>
-<li>Interval 부분 은 설정한 시작일 기준으로 계산된다 (예: 2021-01-01 부터 week 단위 설정 시, 1월1일, 1월 8일, 1월 15일…)</li>
-<li>사용 가능한 date_part은: <code>DAY</code>, <code>WEEK</code>, <code>MONTH</code>, <code>QUARTER</code>, <code>YEAR</code></li>
-<li>아웃풋은 array 형태 → 풀어서 사용하려면 UNNEST로 풀어야한다</li>
-</ul>
-<h5 id="TIMESTAMP"><a href="#TIMESTAMP" class="headerlink" title="TIMESTAMP"></a>TIMESTAMP</h5><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">GENERATE_TIMESTAMP_ARRAY(start_timestamp, end_timestamp, [<span class="type">INTERVAL</span> INT64_expr time_part])</span><br></pre></td></tr></table></figure>
-<ul>
-<li>시간 없이 날짜만 start_timestamp, end_timestamp으로 사용 시 디폴트 00:00:00</li>
-<li>Interval 부분 은 설정한 start_timestamp 기준으로 계산된다</li>
-<li>사용 가능한 date_part은: <code>MICROSECOND</code>, <code>MILLISECOND</code>, <code>SECOND</code>, <code>MINUTE</code>, <code>HOUR</code>, <code>DAY</code></li>
-<li>아웃풋은 array 형태 → 풀어서 사용하려면 UNNEST로 풀어야한다<br><br/><br/></li>
-</ul>
-<h1 id="DATE-예시"><a href="#DATE-예시" class="headerlink" title="DATE 예시"></a>DATE 예시</h1><ol>
-<li><p>디폴트 (일별)</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> <span class="operator">*</span> <span class="keyword">FROM</span> <span class="built_in">UNNEST</span>(GENERATE_DATE_ARRAY(<span class="string">&#x27;2021-01-01&#x27;</span>, <span class="string">&#x27;2021-01-31&#x27;</span>))</span><br></pre></td></tr></table></figure>
-<img src="https://lh3.googleusercontent.com/pw/AM-JKLWEm7L8zJYdAxTrZNP4wC2HCjbnvlALelF0F3s8S7ogvTX5qRgr_1TOuysvdr9BcA_VtsshnrokjjW1aGm1t2UEkG6tCCUZ58cf627IO5EdvAYfOeB-Fem237bQMVXSat2UZGAmc0ePYrNN-jqXZYcLgw=w104-h225-no?authuser=0" class="">
+<h1 id="계정-인증"><a href="#계정-인증" class="headerlink" title="계정 인증"></a>계정 인증</h1><ol>
+<li><p>아래 코드 실행:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> google.colab <span class="keyword">import</span> auth</span><br><span class="line">auth.authenticate_user()</span><br></pre></td></tr></table></figure>
 <br/></li>
-<li><p>Interval = 2 days</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> <span class="operator">*</span> <span class="keyword">FROM</span> <span class="built_in">UNNEST</span>(GENERATE_DATE_ARRAY(<span class="string">&#x27;2021-01-01&#x27;</span>, <span class="string">&#x27;2021-01-31&#x27;</span>, <span class="type">INTERVAL</span> <span class="number">2</span> <span class="keyword">DAY</span>))</span><br></pre></td></tr></table></figure>
-<img src="https://lh3.googleusercontent.com/pw/AM-JKLVI6IjM_W2QQZDMQHCvcIsgn003-B1LdQeXMn-vBoL1vR5HzW1UYXxR7sTDKsQyzPmlXtog7KgIrh_D1opaVdaVypdjRVA2-G39oIknSo5Woxfz_4vODQ8tLCzaYW4Tt3pJNL8CfKkvqdwKCyVP3Tb0Xg=w76-h219-no?authuser=0" class="">
+<li><p>실행하면 아래와 같이 링크와 인증코드 입력하는 곳이 보이고 링크를 클릭해줍니다.</p>
+<img src="https://lh3.googleusercontent.com/pw/AM-JKLX5dVUt3__kmw212aMf4erQ6ItKD7DKdaRcl5bugRuc7NR9H2VSWLmvP4CF4D4yVC6pE86LBnmAgYG_1LddVk7br6AxDXwjeBVk-ojuiaR0RgIVVAAuHNaHUvDAmeS5_TQaSlAvFEjzbfKI_J2KCD1Org=w613-h149-no?authuser=0" class="">
 <br/></li>
-<li><p>Interval = -2 days</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> <span class="operator">*</span> <span class="keyword">FROM</span> <span class="built_in">UNNEST</span>(GENERATE_DATE_ARRAY(‘<span class="number">2021</span>–<span class="number">01</span>–<span class="number">31</span>’, ‘<span class="number">2021</span>–<span class="number">01</span>–<span class="number">01</span>’, <span class="type">INTERVAL</span> <span class="number">-2</span> <span class="keyword">DAY</span>))</span><br></pre></td></tr></table></figure>
-<img src="https://lh3.googleusercontent.com/pw/AM-JKLW4P_ST4Cn1_enfD3INWinwcp2fbsAOfSKWrYiC6MO3NUragw-fccdnw6piJwGdo2pq8wrJuZis-D_n-4rGgEExYJ5tHxhIR8enzd8ZZTfvl6aO9n62ALaRpJPWndK-TBHbl-Hbm5dH_u_iuwAK0uUx9w=w77-h195-no?authuser=0" class="">
-<p><br/><br/></p>
+<li><p>BigQuery 권한이 있는 계정으로 인증 완료하면 인증코드를 받습니다. 이 코드를 복사하고 다시 Colab 노트북으로 돌아와 인증코드 입력창에 입력해주세요.<br><br/><br/></p>
 </li>
 </ol>
-<h1 id="TIMESTAMP-예시"><a href="#TIMESTAMP-예시" class="headerlink" title="TIMESTAMP 예시"></a>TIMESTAMP 예시</h1><ol>
-<li>Interval = 2 hours, 낮 12시부터<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> <span class="operator">*</span> <span class="keyword">FROM</span> <span class="built_in">UNNEST</span>(GENERATE_TIMESTAMP_ARRAY(<span class="string">&#x27;2021-01-01 12:00:00&#x27;</span>, <span class="string">&#x27;2021-01-03 00:00:00&#x27;</span>, <span class="type">INTERVAL</span> <span class="number">2</span> <span class="keyword">HOUR</span>))</span><br></pre></td></tr></table></figure>
-<img src="https://lh3.googleusercontent.com/pw/AM-JKLXfLoornuFXPrUeuaZdIie3RA9p-n5BAJ52dWsigwIxSb5CbYSLkAYQQRK7_8_5mlR68E-dGMhH1xPZbFnlTKEwmR8x45gB9Lw8jfe0ikRdrrYjaFksd1-NpHpI5WRcOOdRvcxTHSbEPGyF5x3GjhDNwQ=w144-h222-no?authuser=0" class="">
+<h1 id="BigQuery-프로젝트-연결"><a href="#BigQuery-프로젝트-연결" class="headerlink" title="BigQuery 프로젝트 연결"></a>BigQuery 프로젝트 연결</h1><ol>
+<li><p>BigQuery 프로젝트랑 연결하려면 아래 코드에 연결 원하는 프로젝트의 아이디를 입력해서 실행해주세요</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># &#x27;project_id&#x27;를 실제 연결할 빅쿼리 프로젝트 아이디로 대체</span></span><br><span class="line"><span class="keyword">from</span> google.cloud <span class="keyword">import</span> bigquery</span><br><span class="line">client = bigquery.Client(project=<span class="string">&#x27;project_id&#x27;</span>)</span><br></pre></td></tr></table></figure>
+<br/></li>
+<li><p>성공적으로 연결이 되었다면 SQL로 BigQuery에 있는 데이터를 추출해 dataframe으로 저장할 수 있습니다<br>예시:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># &#x27;dataset_name&#x27;, &#x27;table_name&#x27; 을 실제 사용할 빅쿼리 dataset, table 명으로 대체</span></span><br><span class="line">sql_query = (<span class="string">&#x27;&#x27;&#x27;SELECT *</span></span><br><span class="line"><span class="string">                FROM dataset_name.table_name</span></span><br><span class="line"><span class="string">                LIMIT 10&#x27;&#x27;&#x27;</span>)</span><br><span class="line">df = client.query(sql_query).to_dataframe()</span><br></pre></td></tr></table></figure>
 <br/></li>
 </ol>
 
@@ -338,7 +318,7 @@
             <div class="post-footer-tags">
                 <span class="text-color-light text-small">TAGGED IN</span><br/>
                 
-    <a class="tag tag--primary tag--small t-none-link" href="/tags/BigQuery/" rel="tag">BigQuery</a> <a class="tag tag--primary tag--small t-none-link" href="/tags/SQL/" rel="tag">SQL</a>
+    <a class="tag tag--primary tag--small t-none-link" href="/tags/Colab/" rel="tag">Colab</a> <a class="tag tag--primary tag--small t-none-link" href="/tags/Python/" rel="tag">Python</a> <a class="tag tag--primary tag--small t-none-link" href="/tags/SQL/" rel="tag">SQL</a>
 
             </div>
         
@@ -348,14 +328,11 @@
         <ul class="post-actions post-action-nav">
             <li class="post-action">
                 
-                    
-                <a
-                    class="post-action-btn btn btn--default tooltip--top"
-                    href="/2021/09/17/colab-bigquery-connect/"
-                    data-tooltip="Google Colab 101: BigQuery 연동하고 쿼리하기"
-                    aria-label="PREVIOUS: Google Colab 101: BigQuery 연동하고 쿼리하기"
-                >
-                    
+                    <a
+                        class="post-action-btn btn btn--disabled"
+                        aria-hidden="true"
+                    >
+                        
                         <i class="fa fa-angle-left" aria-hidden="true"></i>
                         <span class="hide-xs hide-sm text-small icon-ml">PREVIOUS</span>
                     </a>
@@ -365,9 +342,9 @@
                     
                 <a
                     class="post-action-btn btn btn--default tooltip--top"
-                    href="/2021/08/26/colab-r-and-python/"
-                    data-tooltip="Google Colab 101: Python-R 같이 사용하기"
-                    aria-label="NEXT: Google Colab 101: Python-R 같이 사용하기"
+                    href="/2021/08/27/bigquery-date-list-table/"
+                    data-tooltip="BigQuery Basics: 날짜 데이터 만들기"
+                    aria-label="NEXT: BigQuery Basics: 날짜 데이터 만들기"
                 >
                     
                         <span class="hide-xs hide-sm text-small icon-mr">NEXT</span>
@@ -392,7 +369,7 @@
             <li class="post-action hide-xs">
                 <a
                     class="post-action-btn btn btn--default"
-                    target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://sjp24.github.io/2021/08/27/bigquery-date-list-table/"
+                    target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://sjp24.github.io/2021/09/17/colab-bigquery-connect/"
                     title="Share on Facebook"
                     aria-label="Share on Facebook"
                 >
@@ -405,7 +382,7 @@
             <li class="post-action hide-xs">
                 <a
                     class="post-action-btn btn btn--default"
-                    target="new" href="https://twitter.com/intent/tweet?text=http://sjp24.github.io/2021/08/27/bigquery-date-list-table/"
+                    target="new" href="https://twitter.com/intent/tweet?text=http://sjp24.github.io/2021/09/17/colab-bigquery-connect/"
                     title="Share on Twitter"
                     aria-label="Share on Twitter"
                 >
@@ -418,7 +395,7 @@
             <li class="post-action hide-xs">
                 <a
                     class="post-action-btn btn btn--default"
-                    target="new" href="https://www.linkedin.com/shareArticle?mini=true&amp;url=http://sjp24.github.io/2021/08/27/bigquery-date-list-table/"
+                    target="new" href="https://www.linkedin.com/shareArticle?mini=true&amp;url=http://sjp24.github.io/2021/09/17/colab-bigquery-connect/"
                     title="global.share_on_linkedin"
                     aria-label="global.share_on_linkedin"
                 >
@@ -477,14 +454,11 @@
         <ul class="post-actions post-action-nav">
             <li class="post-action">
                 
-                    
-                <a
-                    class="post-action-btn btn btn--default tooltip--top"
-                    href="/2021/09/17/colab-bigquery-connect/"
-                    data-tooltip="Google Colab 101: BigQuery 연동하고 쿼리하기"
-                    aria-label="PREVIOUS: Google Colab 101: BigQuery 연동하고 쿼리하기"
-                >
-                    
+                    <a
+                        class="post-action-btn btn btn--disabled"
+                        aria-hidden="true"
+                    >
+                        
                         <i class="fa fa-angle-left" aria-hidden="true"></i>
                         <span class="hide-xs hide-sm text-small icon-ml">PREVIOUS</span>
                     </a>
@@ -494,9 +468,9 @@
                     
                 <a
                     class="post-action-btn btn btn--default tooltip--top"
-                    href="/2021/08/26/colab-r-and-python/"
-                    data-tooltip="Google Colab 101: Python-R 같이 사용하기"
-                    aria-label="NEXT: Google Colab 101: Python-R 같이 사용하기"
+                    href="/2021/08/27/bigquery-date-list-table/"
+                    data-tooltip="BigQuery Basics: 날짜 데이터 만들기"
+                    aria-label="NEXT: BigQuery Basics: 날짜 데이터 만들기"
                 >
                     
                         <span class="hide-xs hide-sm text-small icon-mr">NEXT</span>
@@ -521,7 +495,7 @@
             <li class="post-action hide-xs">
                 <a
                     class="post-action-btn btn btn--default"
-                    target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://sjp24.github.io/2021/08/27/bigquery-date-list-table/"
+                    target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://sjp24.github.io/2021/09/17/colab-bigquery-connect/"
                     title="Share on Facebook"
                     aria-label="Share on Facebook"
                 >
@@ -534,7 +508,7 @@
             <li class="post-action hide-xs">
                 <a
                     class="post-action-btn btn btn--default"
-                    target="new" href="https://twitter.com/intent/tweet?text=http://sjp24.github.io/2021/08/27/bigquery-date-list-table/"
+                    target="new" href="https://twitter.com/intent/tweet?text=http://sjp24.github.io/2021/09/17/colab-bigquery-connect/"
                     title="Share on Twitter"
                     aria-label="Share on Twitter"
                 >
@@ -547,7 +521,7 @@
             <li class="post-action hide-xs">
                 <a
                     class="post-action-btn btn btn--default"
-                    target="new" href="https://www.linkedin.com/shareArticle?mini=true&amp;url=http://sjp24.github.io/2021/08/27/bigquery-date-list-table/"
+                    target="new" href="https://www.linkedin.com/shareArticle?mini=true&amp;url=http://sjp24.github.io/2021/09/17/colab-bigquery-connect/"
                     title="global.share_on_linkedin"
                     aria-label="global.share_on_linkedin"
                 >
@@ -591,7 +565,7 @@
                     <a
                         class="share-option-btn"
                         target="new"
-                        href="https://www.facebook.com/sharer/sharer.php?u=http://sjp24.github.io/2021/08/27/bigquery-date-list-table/"
+                        href="https://www.facebook.com/sharer/sharer.php?u=http://sjp24.github.io/2021/09/17/colab-bigquery-connect/"
                         aria-label="Share on Facebook"
                     >
                         <i class="fab fa-facebook" aria-hidden="true"></i><span>Share on Facebook</span>
@@ -604,7 +578,7 @@
                     <a
                         class="share-option-btn"
                         target="new"
-                        href="https://twitter.com/intent/tweet?text=http://sjp24.github.io/2021/08/27/bigquery-date-list-table/"
+                        href="https://twitter.com/intent/tweet?text=http://sjp24.github.io/2021/09/17/colab-bigquery-connect/"
                         aria-label="Share on Twitter"
                     >
                         <i class="fab fa-twitter" aria-hidden="true"></i><span>Share on Twitter</span>
@@ -617,7 +591,7 @@
                     <a
                         class="share-option-btn"
                         target="new"
-                        href="https://www.linkedin.com/shareArticle?mini=true&amp;url=http://sjp24.github.io/2021/08/27/bigquery-date-list-table/"
+                        href="https://www.linkedin.com/shareArticle?mini=true&amp;url=http://sjp24.github.io/2021/09/17/colab-bigquery-connect/"
                         aria-label="global.share_on_linkedin"
                     >
                         <i class="fab fa-linkedin" aria-hidden="true"></i><span>global.share_on_linkedin</span>
@@ -857,9 +831,9 @@
     
         <script>
           var disqus_config = function() {
-            this.page.url = 'http://sjp24.github.io/2021/08/27/bigquery-date-list-table/';
+            this.page.url = 'http://sjp24.github.io/2021/09/17/colab-bigquery-connect/';
               
-            this.page.identifier = '2021/08/27/bigquery-date-list-table/';
+            this.page.identifier = '2021/09/17/colab-bigquery-connect/';
               
           };
           (function() {

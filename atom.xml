@@ -6,7 +6,7 @@
   <link href="http://sjp24.github.io/atom.xml" rel="self"/>
   
   <link href="http://sjp24.github.io/"/>
-  <updated>2021-12-23T14:34:34.428Z</updated>
+  <updated>2021-12-23T15:00:14.973Z</updated>
   <id>http://sjp24.github.io/</id>
   
   <author>
@@ -15,6 +15,31 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Google Colab 101: BigQuery 연동하고 쿼리하기</title>
+    <link href="http://sjp24.github.io/2021/09/17/colab-bigquery-connect/"/>
+    <id>http://sjp24.github.io/2021/09/17/colab-bigquery-connect/</id>
+    <published>2021-09-16T15:00:00.000Z</published>
+    <updated>2021-12-23T15:00:14.973Z</updated>
+    
+    <content type="html"><![CDATA[<p>Colab은 BigQuery랑 같이 쓸때 가장 빛을 발합니다. Colab과 BigQuery 둘 다 구글 서비스임으로, 빅쿼리에 있는 데이터를 코랩으로 접근하기 아주 쉽고 편하다!</p><span id="more"></span><p>(아래 방법 외 service account key JSON 파일을 사용하여 연동하는 방법도 있습니다.)<br><br/></p><hr><br/><h1 id="계정-인증"><a href="#계정-인증" class="headerlink" title="계정 인증"></a>계정 인증</h1><ol><li><p>아래 코드 실행:</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> google.colab <span class="keyword">import</span> auth</span><br><span class="line">auth.authenticate_user()</span><br></pre></td></tr></table></figure><br/></li><li><p>실행하면 아래와 같이 링크와 인증코드 입력하는 곳이 보이고 링크를 클릭해줍니다.</p><img src="https://lh3.googleusercontent.com/pw/AM-JKLX5dVUt3__kmw212aMf4erQ6ItKD7DKdaRcl5bugRuc7NR9H2VSWLmvP4CF4D4yVC6pE86LBnmAgYG_1LddVk7br6AxDXwjeBVk-ojuiaR0RgIVVAAuHNaHUvDAmeS5_TQaSlAvFEjzbfKI_J2KCD1Org=w613-h149-no?authuser=0" class=""><br/></li><li><p>BigQuery 권한이 있는 계정으로 인증 완료하면 인증코드를 받습니다. 이 코드를 복사하고 다시 Colab 노트북으로 돌아와 인증코드 입력창에 입력해주세요.<br><br/><br/></p></li></ol><h1 id="BigQuery-프로젝트-연결"><a href="#BigQuery-프로젝트-연결" class="headerlink" title="BigQuery 프로젝트 연결"></a>BigQuery 프로젝트 연결</h1><ol><li><p>BigQuery 프로젝트랑 연결하려면 아래 코드에 연결 원하는 프로젝트의 아이디를 입력해서 실행해주세요</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># &#x27;project_id&#x27;를 실제 연결할 빅쿼리 프로젝트 아이디로 대체</span></span><br><span class="line"><span class="keyword">from</span> google.cloud <span class="keyword">import</span> bigquery</span><br><span class="line">client = bigquery.Client(project=<span class="string">&#x27;project_id&#x27;</span>)</span><br></pre></td></tr></table></figure><br/></li><li><p>성공적으로 연결이 되었다면 SQL로 BigQuery에 있는 데이터를 추출해 dataframe으로 저장할 수 있습니다<br>예시:</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># &#x27;dataset_name&#x27;, &#x27;table_name&#x27; 을 실제 사용할 빅쿼리 dataset, table 명으로 대체</span></span><br><span class="line">sql_query = (<span class="string">&#x27;&#x27;&#x27;SELECT *</span></span><br><span class="line"><span class="string">                FROM dataset_name.table_name</span></span><br><span class="line"><span class="string">                LIMIT 10&#x27;&#x27;&#x27;</span>)</span><br><span class="line">df = client.query(sql_query).to_dataframe()</span><br></pre></td></tr></table></figure><br/></li></ol>]]></content>
+    
+    
+    <summary type="html">&lt;p&gt;Colab은 BigQuery랑 같이 쓸때 가장 빛을 발합니다. Colab과 BigQuery 둘 다 구글 서비스임으로, 빅쿼리에 있는 데이터를 코랩으로 접근하기 아주 쉽고 편하다!&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="Guides" scheme="http://sjp24.github.io/categories/Guides/"/>
+    
+    
+    <category term="Colab" scheme="http://sjp24.github.io/tags/Colab/"/>
+    
+    <category term="Python" scheme="http://sjp24.github.io/tags/Python/"/>
+    
+    <category term="SQL" scheme="http://sjp24.github.io/tags/SQL/"/>
+    
+  </entry>
   
   <entry>
     <title>BigQuery Basics: 날짜 데이터 만들기</title>
