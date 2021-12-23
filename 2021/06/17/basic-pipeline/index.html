@@ -9,7 +9,7 @@
     <title>데이터의 흐름: 기본적인 데이터 파이프라인 개념 설명 - SJP</title>
     <meta name="author" content="Song Park">
     
-        <meta name="keywords" content="data pipeline,data warehouse,database,data lake,etl,data">
+        <meta name="keywords" content="song park,data,song joyce park,data analyst,데이터 분석,데이터,스타트업,박송,data pipeline,data warehouse,database,data lake,etl,data">
     
     
     
@@ -17,18 +17,18 @@
             <link rel="alternate" type="application/atom+xml" title="RSS" href="/atom.xml">
         
     
-    <script type="application/ld+json">{"@context":"http://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Song Park","sameAs":[],"image":"https://lh3.googleusercontent.com/pw/AM-JKLXE0TOvzGd2C_G4f79oDYbTFd88BPZLRRX7PoOrqw4Y3txQSxo-yvOhdTBBii2e4n83qUxSVki9ZS7F0fdD541BlsX3k4m6-_La__Pr0s2i4Srb6gyYr1rjwe2raKgLes_e7PNjJrGA_40KK1EFPD9KUA=s989-no?authuser=0"},"articleBody":"스타트업계로 오게 된 후로는 데이터 파이프라인이 얼마나 중요한지 뼈저리게 느끼고 있습니다. 데이터베이스 지식, 데이터 파이프라인 지식을 가지고 있는 게 중요하다고 생각해서 전부터 배우려고 노력은 했지만 역시 산전수전 다 직접 겪어봐야 빠르게 성장 할 수 있습니다 😅\n저도 아직 많이 부족하지만, 데이터 외 직군 혹은 데이터를 다루지만 데이터 파이프라인에 대한 지식이 부족한 분들을 위해 아주 기본적인 개념들을 설명하려 합니다.\n\n\n\n\n\n기본 용어비슷하지만 조금씩 다른 파이프라인 관련 용어.\nETL (Extract, Transform, Load): 데이터를 추출하고(extract) → 변환하여 (transform) → 적재하는 (load) 데이터 웨어하우스 구축 프로세스\nELT (Extract, Load, Transform): 데이터를 추출하고 (extract) → 적재하고 (load) → 변환하는 (transform) 프로세스\nData Warehouse (DW): 다양한 소스에서 발생한 데이터를 하나의 통합된 형태로 저장하는 공간. 데이터는 설계된 스키마에 맞게 처리되어 저장된다\nData Lake: 다양한 소스에서 발생한 데이터를 그대로 가져와 저장하는 공간. 데이터 웨어하우스와 달리 정형/반정형/비정형 데이터 등 다양한 형태의 소스 raw 데이터를 통합하지 않고 한 곳에 모은다\nData Mart: 특정 목적 (대체로 팀/부서와 같은 조직 단위)을 위해 만들어진 데이터 웨어하우스. 보통 하나의 데이터 웨어하우스에서 조직 단위별로 여러 데이터 마트가 만들어진다\nData Pipeline: 데이터가 흐르는 모든 과정의 총칭 (생성, 변환, 저장, 등)\nRDB (Relational Database): 2차원 (속성, 값) 형식 테이블들로 구성된 관계형 데이터베이스. “관계형”이란 각 테이블 안에서 속성과 값 사이 관계가 있고 테이블과 테이블 사이에도 관계를 가지고 있다. 가장 일반적인 데이터베이스 타입이고 일반적으로 SQL (Structured Query Language) 언어를 통해 데이터를 조회한다\nRDBMS (Relational Database Management System): 관계형 데이터베이스 관리 (생성, 수정, 등)를 위한 프로그램. 예: MySQL, Oracle, SQL Server, 등등\n\n\n\n기본 ETL 과정조직마다 설계가 다르고 구체적인 프로세스는 보기보다 훨씬 복잡하지만, 대부분 아래와 같은 ETL 프로세스를 통해 데이터 웨어하우스를 구축합니다.\n\n\nExtract. 다양한 곳에서 생성된 데이터를 추출하는 단계. 조직마다 소스들은 다르지만 커머스에서는 가장 기본적으로 아래와 같은 데이터 소스들이 있습니다:\n\n운영 데이터베이스 → 주문, 상품 데이터와 같은 데이터가 담긴 데이터베이스\n웹/앱 이벤트 데이터\n마케팅 데이터 → 페이스북, 구글, 카카오, 등\n사용하는 다른 서드파티 앱 데이터\n\nTransform. 소스 데이터가 어떤 형태인지에 따라 이 과정은 많이 달라집니다. 간단한 변환은 각 소스의 날짜 컬럼 형식들을 하나의 기준으로 맞추기, 빈값 처리하는 방식 통일하기와 같은 작업이 있고 보통 테이블들을 조인하고 계산된 필드 만드는 변환이 들어갑니다 → 예: members 테이블에 각 멤버의 구매 이력 관련 컬럼 생성 (첫 구매일, 지난 3개월 총 구매액, 등등). 자주 보는 지표들은 summary 테이블로 만들 수 있습니다 → 예: 일별 거래액, 일별 모든 매체의 총 마케팅 비용 합계.\nLoad. 변환된 데이터를 데이터 웨어하우스에 적재합니다.\nETL vs ELTELT은 여러 소스의 데이터를 추출하여 바로 raw 형태로 적재 후 변환합니다. 즉, 데이터 레이크에 일단 모든 소스의 데이터를 담고 변환은 스테이징 필요 없이 데이터 레이크/웨어하우스 안에서 이루어집니다. 최신 클라우드 기반 기술로 인해 ETL에 비해 비교적 새로운 기술이고 뜨고 있는 데이터 처리 방식입니다. 이 과정은 적재가 빠르게 이루어진다는 게 장점이지만 유연한 만큼 데이터 신뢰/정합성은 떨어질 수 있습니다.\nData Mart큰 규모의 조직에서는 조직 단위로 특화된 데이터 마트를 설계하고 각 조직에서 봐야 하는 데이터만 볼 수 있게 권한을 관리합니다. 스타트업이나 더 작은 규모의 조직에서는 비교적 팀/부서와 같은 조직 단위 사이 경계가 덜 명확하기 때문에 조직 단위별 마트 없이 하나의 데이터 웨어하우스를 사용하는 방식이 크게 문제 되지 않을 수 있습니다.하지만 전사 조직용 데이터에 비해 데이터 마트에 있는 테이블들은 유연하게 수정/변환 할 수 있기 때문에 빠르게 변하는 스타트업 조직에도 데이터 마트를 잘 활용한다면 효율적으로 분석하고 인사이트 얻을 수 있습니다.\n","dateCreated":"2021-06-17T00:00:00+09:00","dateModified":"2021-12-23T02:32:11+09:00","datePublished":"2021-06-17T00:00:00+09:00","description":"스타트업계로 오게 된 후로는 데이터 파이프라인이 얼마나 중요한지 뼈저리게 느끼고 있습니다. 데이터베이스 지식, 데이터 파이프라인 지식을 가지고 있는 게 중요하다고 생각해서 전부터 배우려고 노력은 했지만 역시 산전수전 다 직접 겪어봐야 빠르게 성장 할 수 있습니다 😅\n저도 아직 많이 부족하지만, 데이터 외 직군 혹은 데이터를 다루지만 데이터 파이프라인에 대한 지식이 부족한 분들을 위해 아주 기본적인 개념들을 설명하려 합니다.","headline":"데이터의 흐름: 기본적인 데이터 파이프라인 개념 설명","image":["https://lh3.googleusercontent.com/pw/AM-JKLVqEoT9LETZzeAriZQM4cxYp9Kp7t_MEqPIfkBuk69NmxYsyT8p5if6fn64J6k9cy7oneLOBsfFapXrS9upM0nJTxtkiWcXJYWWzpUzAll0FFWNyoDJSvZc2conN164QAaRnKjToZF4jOUofN4SOMDrhw=w2133-h779-no?authuser=0"],"mainEntityOfPage":{"@type":"WebPage","@id":"http://sjp24.github.io/2021/06/17/20210617-basic-pipeline/"},"publisher":{"@type":"Organization","name":"Song Park","sameAs":[],"image":"https://lh3.googleusercontent.com/pw/AM-JKLXE0TOvzGd2C_G4f79oDYbTFd88BPZLRRX7PoOrqw4Y3txQSxo-yvOhdTBBii2e4n83qUxSVki9ZS7F0fdD541BlsX3k4m6-_La__Pr0s2i4Srb6gyYr1rjwe2raKgLes_e7PNjJrGA_40KK1EFPD9KUA=s989-no?authuser=0","logo":{"@type":"ImageObject","url":"https://lh3.googleusercontent.com/pw/AM-JKLXE0TOvzGd2C_G4f79oDYbTFd88BPZLRRX7PoOrqw4Y3txQSxo-yvOhdTBBii2e4n83qUxSVki9ZS7F0fdD541BlsX3k4m6-_La__Pr0s2i4Srb6gyYr1rjwe2raKgLes_e7PNjJrGA_40KK1EFPD9KUA=s989-no?authuser=0"}},"url":"http://sjp24.github.io/2021/06/17/20210617-basic-pipeline/","keywords":"Data Pipeline","thumbnailUrl":"https://lh3.googleusercontent.com/pw/AM-JKLVqEoT9LETZzeAriZQM4cxYp9Kp7t_MEqPIfkBuk69NmxYsyT8p5if6fn64J6k9cy7oneLOBsfFapXrS9upM0nJTxtkiWcXJYWWzpUzAll0FFWNyoDJSvZc2conN164QAaRnKjToZF4jOUofN4SOMDrhw=w2133-h779-no?authuser=0"}</script>
+    <script type="application/ld+json">{"@context":"http://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Song Park","sameAs":[],"image":"https://lh3.googleusercontent.com/pw/AM-JKLXE0TOvzGd2C_G4f79oDYbTFd88BPZLRRX7PoOrqw4Y3txQSxo-yvOhdTBBii2e4n83qUxSVki9ZS7F0fdD541BlsX3k4m6-_La__Pr0s2i4Srb6gyYr1rjwe2raKgLes_e7PNjJrGA_40KK1EFPD9KUA=s989-no?authuser=0"},"articleBody":"스타트업계로 오게 된 후로는 데이터 파이프라인이 얼마나 중요한지 뼈저리게 느끼고 있습니다. 데이터베이스 지식, 데이터 파이프라인 지식을 가지고 있는 게 중요하다고 생각해서 전부터 배우려고 노력은 했지만 역시 산전수전 다 직접 겪어봐야 빠르게 성장 할 수 있습니다 😅\n저도 아직 많이 부족하지만, 데이터 외 직군 혹은 데이터를 다루지만 데이터 파이프라인에 대한 지식이 부족한 분들을 위해 아주 기본적인 개념들을 설명하려 합니다.\n\n\n\n\n\n기본 용어비슷하지만 조금씩 다른 파이프라인 관련 용어.\nETL (Extract, Transform, Load): 데이터를 추출하고(extract) → 변환하여 (transform) → 적재하는 (load) 데이터 웨어하우스 구축 프로세스\nELT (Extract, Load, Transform): 데이터를 추출하고 (extract) → 적재하고 (load) → 변환하는 (transform) 프로세스\nData Warehouse (DW): 다양한 소스에서 발생한 데이터를 하나의 통합된 형태로 저장하는 공간. 데이터는 설계된 스키마에 맞게 처리되어 저장된다\nData Lake: 다양한 소스에서 발생한 데이터를 그대로 가져와 저장하는 공간. 데이터 웨어하우스와 달리 정형/반정형/비정형 데이터 등 다양한 형태의 소스 raw 데이터를 통합하지 않고 한 곳에 모은다\nData Mart: 특정 목적 (대체로 팀/부서와 같은 조직 단위)을 위해 만들어진 데이터 웨어하우스. 보통 하나의 데이터 웨어하우스에서 조직 단위별로 여러 데이터 마트가 만들어진다\nData Pipeline: 데이터가 흐르는 모든 과정의 총칭 (생성, 변환, 저장, 등)\nRDB (Relational Database): 2차원 (속성, 값) 형식 테이블들로 구성된 관계형 데이터베이스. “관계형”이란 각 테이블 안에서 속성과 값 사이 관계가 있고 테이블과 테이블 사이에도 관계를 가지고 있다. 가장 일반적인 데이터베이스 타입이고 일반적으로 SQL (Structured Query Language) 언어를 통해 데이터를 조회한다\nRDBMS (Relational Database Management System): 관계형 데이터베이스 관리 (생성, 수정, 등)를 위한 프로그램. 예: MySQL, Oracle, SQL Server, 등등\n\n\n\n기본 ETL 과정조직마다 설계가 다르고 구체적인 프로세스는 보기보다 훨씬 복잡하지만, 대부분 아래와 같은 ETL 프로세스를 통해 데이터 웨어하우스를 구축합니다.\n\n\nExtract. 다양한 곳에서 생성된 데이터를 추출하는 단계. 조직마다 소스들은 다르지만 커머스에서는 가장 기본적으로 아래와 같은 데이터 소스들이 있습니다:\n\n운영 데이터베이스 → 주문, 상품 데이터와 같은 데이터가 담긴 데이터베이스\n웹/앱 이벤트 데이터\n마케팅 데이터 → 페이스북, 구글, 카카오, 등\n사용하는 다른 서드파티 앱 데이터\n\nTransform. 소스 데이터가 어떤 형태인지에 따라 이 과정은 많이 달라집니다. 간단한 변환은 각 소스의 날짜 컬럼 형식들을 하나의 기준으로 맞추기, 빈값 처리하는 방식 통일하기와 같은 작업이 있고 보통 테이블들을 조인하고 계산된 필드 만드는 변환이 들어갑니다 → 예: members 테이블에 각 멤버의 구매 이력 관련 컬럼 생성 (첫 구매일, 지난 3개월 총 구매액, 등등). 자주 보는 지표들은 summary 테이블로 만들 수 있습니다 → 예: 일별 거래액, 일별 모든 매체의 총 마케팅 비용 합계.\nLoad. 변환된 데이터를 데이터 웨어하우스에 적재합니다.\nETL vs ELTELT은 여러 소스의 데이터를 추출하여 바로 raw 형태로 적재 후 변환합니다. 즉, 데이터 레이크에 일단 모든 소스의 데이터를 담고 변환은 스테이징 필요 없이 데이터 레이크/웨어하우스 안에서 이루어집니다. 최신 클라우드 기반 기술로 인해 ETL에 비해 비교적 새로운 기술이고 뜨고 있는 데이터 처리 방식입니다. 이 과정은 적재가 빠르게 이루어진다는 게 장점이지만 유연한 만큼 데이터 신뢰/정합성은 떨어질 수 있습니다.\nData Mart큰 규모의 조직에서는 조직 단위로 특화된 데이터 마트를 설계하고 각 조직에서 봐야 하는 데이터만 볼 수 있게 권한을 관리합니다. 스타트업이나 더 작은 규모의 조직에서는 비교적 팀/부서와 같은 조직 단위 사이 경계가 덜 명확하기 때문에 조직 단위별 마트 없이 하나의 데이터 웨어하우스를 사용하는 방식이 크게 문제 되지 않을 수 있습니다.하지만 전사 조직용 데이터에 비해 데이터 마트에 있는 테이블들은 유연하게 수정/변환 할 수 있기 때문에 빠르게 변하는 스타트업 조직에도 데이터 마트를 잘 활용한다면 효율적으로 분석하고 인사이트 얻을 수 있습니다.\n","dateCreated":"2021-06-17T00:00:00+09:00","dateModified":"2021-12-23T21:26:46+09:00","datePublished":"2021-06-17T00:00:00+09:00","description":"스타트업계로 오게 된 후로는 데이터 파이프라인이 얼마나 중요한지 뼈저리게 느끼고 있습니다. 데이터베이스 지식, 데이터 파이프라인 지식을 가지고 있는 게 중요하다고 생각해서 전부터 배우려고 노력은 했지만 역시 산전수전 다 직접 겪어봐야 빠르게 성장 할 수 있습니다 😅\n저도 아직 많이 부족하지만, 데이터 외 직군 혹은 데이터를 다루지만 데이터 파이프라인에 대한 지식이 부족한 분들을 위해 아주 기본적인 개념들을 설명하려 합니다.","headline":"데이터의 흐름: 기본적인 데이터 파이프라인 개념 설명","image":["https://lh3.googleusercontent.com/pw/AM-JKLVqEoT9LETZzeAriZQM4cxYp9Kp7t_MEqPIfkBuk69NmxYsyT8p5if6fn64J6k9cy7oneLOBsfFapXrS9upM0nJTxtkiWcXJYWWzpUzAll0FFWNyoDJSvZc2conN164QAaRnKjToZF4jOUofN4SOMDrhw=w2133-h779-no?authuser=0"],"mainEntityOfPage":{"@type":"WebPage","@id":"http://sjp24.github.io/2021/06/17/basic-pipeline/"},"publisher":{"@type":"Organization","name":"Song Park","sameAs":[],"image":"https://lh3.googleusercontent.com/pw/AM-JKLXE0TOvzGd2C_G4f79oDYbTFd88BPZLRRX7PoOrqw4Y3txQSxo-yvOhdTBBii2e4n83qUxSVki9ZS7F0fdD541BlsX3k4m6-_La__Pr0s2i4Srb6gyYr1rjwe2raKgLes_e7PNjJrGA_40KK1EFPD9KUA=s989-no?authuser=0","logo":{"@type":"ImageObject","url":"https://lh3.googleusercontent.com/pw/AM-JKLXE0TOvzGd2C_G4f79oDYbTFd88BPZLRRX7PoOrqw4Y3txQSxo-yvOhdTBBii2e4n83qUxSVki9ZS7F0fdD541BlsX3k4m6-_La__Pr0s2i4Srb6gyYr1rjwe2raKgLes_e7PNjJrGA_40KK1EFPD9KUA=s989-no?authuser=0"}},"url":"http://sjp24.github.io/2021/06/17/basic-pipeline/","keywords":"Data Pipeline","thumbnailUrl":"https://lh3.googleusercontent.com/pw/AM-JKLVqEoT9LETZzeAriZQM4cxYp9Kp7t_MEqPIfkBuk69NmxYsyT8p5if6fn64J6k9cy7oneLOBsfFapXrS9upM0nJTxtkiWcXJYWWzpUzAll0FFWNyoDJSvZc2conN164QAaRnKjToZF4jOUofN4SOMDrhw=w2133-h779-no?authuser=0"}</script>
     <meta name="description" content="스타트업계로 오게 된 후로는 데이터 파이프라인이 얼마나 중요한지 뼈저리게 느끼고 있습니다. 데이터베이스 지식, 데이터 파이프라인 지식을 가지고 있는 게 중요하다고 생각해서 전부터 배우려고 노력은 했지만 역시 산전수전 다 직접 겪어봐야 빠르게 성장 할 수 있습니다 😅 저도 아직 많이 부족하지만, 데이터 외 직군 혹은 데이터를 다루지만 데이터 파이프라인에 대">
 <meta property="og:type" content="blog">
 <meta property="og:title" content="데이터의 흐름: 기본적인 데이터 파이프라인 개념 설명">
-<meta property="og:url" content="http://sjp24.github.io/2021/06/17/20210617-basic-pipeline/index.html">
+<meta property="og:url" content="http://sjp24.github.io/2021/06/17/basic-pipeline/index.html">
 <meta property="og:site_name" content="SJP">
 <meta property="og:description" content="스타트업계로 오게 된 후로는 데이터 파이프라인이 얼마나 중요한지 뼈저리게 느끼고 있습니다. 데이터베이스 지식, 데이터 파이프라인 지식을 가지고 있는 게 중요하다고 생각해서 전부터 배우려고 노력은 했지만 역시 산전수전 다 직접 겪어봐야 빠르게 성장 할 수 있습니다 😅 저도 아직 많이 부족하지만, 데이터 외 직군 혹은 데이터를 다루지만 데이터 파이프라인에 대">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://lh3.googleusercontent.com/pw/AM-JKLVqEoT9LETZzeAriZQM4cxYp9Kp7t_MEqPIfkBuk69NmxYsyT8p5if6fn64J6k9cy7oneLOBsfFapXrS9upM0nJTxtkiWcXJYWWzpUzAll0FFWNyoDJSvZc2conN164QAaRnKjToZF4jOUofN4SOMDrhw=w2133-h779-no?authuser=0">
 <meta property="og:image" content="https://lh3.googleusercontent.com/pw/AM-JKLWZQJGvtMmoyOtAKl8GJ-UcAjMMDR1OE4I5cBSEOSH4CELDL52kAr6TxDZ6LdNI_0qOWQ57MxPmn5laeXtrZL7Qlw5JcTUXRaehO9wIp53D9RDAX_uX954Fs-Eg-4wvt4N6YMxq6yf7NUcKHgRZgarPsw=w2133-h915-no?authuser=0">
 <meta property="article:published_time" content="2021-06-16T15:00:00.000Z">
-<meta property="article:modified_time" content="2021-12-22T17:32:11.129Z">
+<meta property="article:modified_time" content="2021-12-23T12:26:46.025Z">
 <meta property="article:author" content="Song Park">
 <meta property="article:tag" content="Data Pipeline">
 <meta name="twitter:card" content="summary">
@@ -158,40 +158,6 @@
                     
                         <a
                             class="sidebar-button-link "
-                            href="#about"
-                            
-                            rel="noopener"
-                            title="About"
-                        >
-                        <i class="sidebar-button-icon fa fa-question" aria-hidden="true"></i>
-                        <span class="sidebar-button-desc">About</span>
-                    </a>
-            </li>
-            
-                <li class="sidebar-button">
-                    
-                        <a
-                            class="sidebar-button-link "
-                            href="https://www.linkedin.com/in/song-park"
-                            
-                                target="_blank"
-                            
-                            rel="noopener"
-                            title="LinkedIn"
-                        >
-                        <i class="sidebar-button-icon fab fa-linkedin" aria-hidden="true"></i>
-                        <span class="sidebar-button-desc">LinkedIn</span>
-                    </a>
-            </li>
-            
-        </ul>
-        
-            <ul class="sidebar-buttons">
-            
-                <li class="sidebar-button">
-                    
-                        <a
-                            class="sidebar-button-link "
                             href="/all-categories"
                             
                             rel="noopener"
@@ -227,6 +193,54 @@
                         >
                         <i class="sidebar-button-icon fa fa-archive" aria-hidden="true"></i>
                         <span class="sidebar-button-desc">Archives</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a
+                            class="sidebar-button-link open-algolia-search"
+                            href="#search"
+                            
+                            rel="noopener"
+                            title="Search"
+                        >
+                        <i class="sidebar-button-icon fa fa-search" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">Search</span>
+                    </a>
+            </li>
+            
+        </ul>
+        
+            <ul class="sidebar-buttons">
+            
+                <li class="sidebar-button">
+                    
+                        <a
+                            class="sidebar-button-link "
+                            href="#about"
+                            
+                            rel="noopener"
+                            title="About"
+                        >
+                        <i class="sidebar-button-icon fa fa-question" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">About</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a
+                            class="sidebar-button-link "
+                            href="https://www.linkedin.com/in/song-park"
+                            
+                                target="_blank"
+                            
+                            rel="noopener"
+                            title="LinkedIn"
+                        >
+                        <i class="sidebar-button-icon fab fa-linkedin" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">LinkedIn</span>
                     </a>
             </li>
             
@@ -329,7 +343,7 @@
                     
                 <a
                     class="post-action-btn btn btn--default tooltip--top"
-                    href="/2021/08/26/20210826-colab-r-and-python/"
+                    href="/2021/08/26/colab-r-and-python/"
                     data-tooltip="Google Colab 101: Python-R 같이 사용하기"
                     aria-label="PREVIOUS: Google Colab 101: Python-R 같이 사용하기"
                 >
@@ -367,7 +381,7 @@
             <li class="post-action hide-xs">
                 <a
                     class="post-action-btn btn btn--default"
-                    target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://sjp24.github.io/2021/06/17/20210617-basic-pipeline/"
+                    target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://sjp24.github.io/2021/06/17/basic-pipeline/"
                     title="Share on Facebook"
                     aria-label="Share on Facebook"
                 >
@@ -380,7 +394,7 @@
             <li class="post-action hide-xs">
                 <a
                     class="post-action-btn btn btn--default"
-                    target="new" href="https://twitter.com/intent/tweet?text=http://sjp24.github.io/2021/06/17/20210617-basic-pipeline/"
+                    target="new" href="https://twitter.com/intent/tweet?text=http://sjp24.github.io/2021/06/17/basic-pipeline/"
                     title="Share on Twitter"
                     aria-label="Share on Twitter"
                 >
@@ -393,7 +407,7 @@
             <li class="post-action hide-xs">
                 <a
                     class="post-action-btn btn btn--default"
-                    target="new" href="https://www.linkedin.com/shareArticle?mini=true&amp;url=http://sjp24.github.io/2021/06/17/20210617-basic-pipeline/"
+                    target="new" href="https://www.linkedin.com/shareArticle?mini=true&amp;url=http://sjp24.github.io/2021/06/17/basic-pipeline/"
                     title="global.share_on_linkedin"
                     aria-label="global.share_on_linkedin"
                 >
@@ -437,7 +451,7 @@
                     
                 <a
                     class="post-action-btn btn btn--default tooltip--top"
-                    href="/2021/08/26/20210826-colab-r-and-python/"
+                    href="/2021/08/26/colab-r-and-python/"
                     data-tooltip="Google Colab 101: Python-R 같이 사용하기"
                     aria-label="PREVIOUS: Google Colab 101: Python-R 같이 사용하기"
                 >
@@ -475,7 +489,7 @@
             <li class="post-action hide-xs">
                 <a
                     class="post-action-btn btn btn--default"
-                    target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://sjp24.github.io/2021/06/17/20210617-basic-pipeline/"
+                    target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://sjp24.github.io/2021/06/17/basic-pipeline/"
                     title="Share on Facebook"
                     aria-label="Share on Facebook"
                 >
@@ -488,7 +502,7 @@
             <li class="post-action hide-xs">
                 <a
                     class="post-action-btn btn btn--default"
-                    target="new" href="https://twitter.com/intent/tweet?text=http://sjp24.github.io/2021/06/17/20210617-basic-pipeline/"
+                    target="new" href="https://twitter.com/intent/tweet?text=http://sjp24.github.io/2021/06/17/basic-pipeline/"
                     title="Share on Twitter"
                     aria-label="Share on Twitter"
                 >
@@ -501,7 +515,7 @@
             <li class="post-action hide-xs">
                 <a
                     class="post-action-btn btn btn--default"
-                    target="new" href="https://www.linkedin.com/shareArticle?mini=true&amp;url=http://sjp24.github.io/2021/06/17/20210617-basic-pipeline/"
+                    target="new" href="https://www.linkedin.com/shareArticle?mini=true&amp;url=http://sjp24.github.io/2021/06/17/basic-pipeline/"
                     title="global.share_on_linkedin"
                     aria-label="global.share_on_linkedin"
                 >
@@ -533,7 +547,7 @@
                     <a
                         class="share-option-btn"
                         target="new"
-                        href="https://www.facebook.com/sharer/sharer.php?u=http://sjp24.github.io/2021/06/17/20210617-basic-pipeline/"
+                        href="https://www.facebook.com/sharer/sharer.php?u=http://sjp24.github.io/2021/06/17/basic-pipeline/"
                         aria-label="Share on Facebook"
                     >
                         <i class="fab fa-facebook" aria-hidden="true"></i><span>Share on Facebook</span>
@@ -546,7 +560,7 @@
                     <a
                         class="share-option-btn"
                         target="new"
-                        href="https://twitter.com/intent/tweet?text=http://sjp24.github.io/2021/06/17/20210617-basic-pipeline/"
+                        href="https://twitter.com/intent/tweet?text=http://sjp24.github.io/2021/06/17/basic-pipeline/"
                         aria-label="Share on Twitter"
                     >
                         <i class="fab fa-twitter" aria-hidden="true"></i><span>Share on Twitter</span>
@@ -559,7 +573,7 @@
                     <a
                         class="share-option-btn"
                         target="new"
-                        href="https://www.linkedin.com/shareArticle?mini=true&amp;url=http://sjp24.github.io/2021/06/17/20210617-basic-pipeline/"
+                        href="https://www.linkedin.com/shareArticle?mini=true&amp;url=http://sjp24.github.io/2021/06/17/basic-pipeline/"
                         aria-label="global.share_on_linkedin"
                     >
                         <i class="fab fa-linkedin" aria-hidden="true"></i><span>global.share_on_linkedin</span>
@@ -611,6 +625,106 @@
 </div>
 
         
+            <div id="algolia-search-modal" class="modal-container">
+    <div class="modal">
+        <div class="modal-header">
+            <span class="close-button"><i class="fa fa-times"></i></span>
+            <a href="https://algolia.com" target="_blank" rel="noopener" class="searchby-algolia text-color-light link-unstyled">
+                <span class="searchby-algolia-text text-color-light text-small">by</span>
+                <img class="searchby-algolia-logo" src="/assets/images/logo-algolia-nebula-blue-full.svg">
+            </a>
+            <i class="search-icon fa fa-search"></i>
+            <form id="algolia-search-form">
+                <input type="text" id="algolia-search-input" name="search"
+                    class="form-control input--large search-input" placeholder="Search "
+                    />
+            </form>
+        </div>
+        <div class="modal-body">
+            <div class="no-result text-color-light text-center">no post found</div>
+            <div class="results">
+                
+                <div class="media">
+                    
+                    <div class="media-left">
+                        <a
+                            class="link-unstyled"
+                            href="http://sjp24.github.io/2021/06/17/basic-pipeline/"
+                            aria-label=": 데이터의 흐름: 기본적인 데이터 파이프라인 개념 설명"
+                        >
+                            <img class="media-image" src="https://lh3.googleusercontent.com/pw/AM-JKLVqEoT9LETZzeAriZQM4cxYp9Kp7t_MEqPIfkBuk69NmxYsyT8p5if6fn64J6k9cy7oneLOBsfFapXrS9upM0nJTxtkiWcXJYWWzpUzAll0FFWNyoDJSvZc2conN164QAaRnKjToZF4jOUofN4SOMDrhw=w2133-h779-no?authuser=0" width="90" height="90"/>
+                        </a>
+                    </div>
+                    
+                    <div class="media-body">
+                        <a
+                            class="link-unstyled"
+                            href="http://sjp24.github.io/2021/06/17/basic-pipeline/"
+                            aria-label=": 데이터의 흐름: 기본적인 데이터 파이프라인 개념 설명"
+                        >
+                            <h3 class="media-heading">데이터의 흐름: 기본적인 데이터 파이프라인 개념 설명</h3>
+                        </a>
+                        <span class="media-meta">
+                            <span class="media-date text-small">
+                                
+                                    Jun 17, 2021
+                                
+                            </span>
+                        </span>
+                        <div class="media-content hide-xs font-merryweather"><p>스타트업계로 오게 된 후로는 데이터 파이프라인이 얼마나 중요한지 뼈저리게 느끼고 있습니다. 데이터베이스 지식, 데이터 파이프라인 지식을 가지고 있는 게 중요하다고 생각해서 전부터 배우려고 노력은 했지만 역시 산전수전 다 직접 겪어봐야 빠르게 성장 할 수 있습니다 😅</p>
+<p>저도 아직 많이 부족하지만, 데이터 외 직군 혹은 데이터를 다루지만 데이터 파이프라인에 대한 지식이 부족한 분들을 위해 아주 기본적인 개념들을 설명하려 합니다.<br/><br/></p></div>
+                    </div>
+                    <div style="clear:both;"></div>
+                    <hr>
+                </div>
+                
+                <div class="media">
+                    
+                    <div class="media-left">
+                        <a
+                            class="link-unstyled"
+                            href="http://sjp24.github.io/2021/08/26/colab-r-and-python/"
+                            aria-label=": Google Colab 101: Python-R 같이 사용하기"
+                        >
+                            <img class="media-image" src="https://lh3.googleusercontent.com/pw/AM-JKLWNrbDmpUZPK5c76vmkQEwDcDrgeufFCoBZ_Phdt0yy0EDfWXUxxZgljMNgnpCt2TOuksg-lyESZVWXv7Q1Io5zsOaPNkLgaDxaG_JjKIpnhs56NP3OMTbRbpNokhRQBQ-TN8yviyq1w3gXb5ahDEM30g=s260-no?authuser=0" width="90" height="90"/>
+                        </a>
+                    </div>
+                    
+                    <div class="media-body">
+                        <a
+                            class="link-unstyled"
+                            href="http://sjp24.github.io/2021/08/26/colab-r-and-python/"
+                            aria-label=": Google Colab 101: Python-R 같이 사용하기"
+                        >
+                            <h3 class="media-heading">Google Colab 101: Python-R 같이 사용하기</h3>
+                        </a>
+                        <span class="media-meta">
+                            <span class="media-date text-small">
+                                
+                                    Aug 26, 2021
+                                
+                            </span>
+                        </span>
+                        <div class="media-content hide-xs font-merryweather"><p>한 노트북 안에서 여러 언어를 사용하는걸 지양해야 하지만, R와 파이썬을 둘 다 쓰는 사람이라면 두 언어를 동시에 사용할 수 있었으면 하는 순간들이 오기 마련입니다. 기본적으로 Colab 노트북은 Python 언어 기반이지만 (R 노트북도 쓸 수 있긴 하다) 한 노트북 안에서 Python과 R을 같이 쓸 수 있습니다!</p></div>
+                    </div>
+                    <div style="clear:both;"></div>
+                    <hr>
+                </div>
+                
+            </div>
+        </div>
+        <div class="modal-footer">
+            <p class="results-count text-medium"
+                data-message-zero="no post found"
+                data-message-one="1 post found"
+                data-message-other="{n} posts found">
+                2 posts found
+            </p>
+        </div>
+    </div>
+</div>
+
+        
         
 <div id="cover" style="background-image:url('https://lh3.googleusercontent.com/pw/AM-JKLUokKCH8YTuE2jQlSJ0Iy9wfhTBfv83xZFCcKvBx_z0JH8aL21ibW1-A90z_ZewKBkXWNPgo_l_MDNNuadNm1NoWMIElpDKo1w_Jh6llMQW-rzeqtfOUUKKXlhIQaOQcsfePIorTk1bMoFkHmga8jB5Ig=w852-h989-no?authuser=0');"></div>
         <!--SCRIPTS-->
@@ -630,6 +744,17 @@
 
 
 
+
+    
+<script src="/assets/js/moment-with-locales.js"></script>
+
+    
+<script src="/assets/js/algoliasearch.js"></script>
+
+    <script>
+      var algoliaClient = algoliasearch('YI41QHSRDA', '7ac34ce00551cc1166fca48a9f4a98f5');
+      var algoliaIndex = algoliaClient.initIndex('sjp24.github.io');
+    </script>
 
 
     </body>

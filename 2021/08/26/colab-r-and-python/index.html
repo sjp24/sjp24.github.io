@@ -9,7 +9,7 @@
     <title>Google Colab 101: Python-R 같이 사용하기 - SJP</title>
     <meta name="author" content="Song Park">
     
-        <meta name="keywords" content="colab,data">
+        <meta name="keywords" content="song park,data,song joyce park,data analyst,데이터 분석,데이터,스타트업,박송,colab,data">
     
     
     
@@ -17,16 +17,16 @@
             <link rel="alternate" type="application/atom+xml" title="RSS" href="/atom.xml">
         
     
-    <script type="application/ld+json">{"@context":"http://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Song Park","sameAs":[],"image":"https://lh3.googleusercontent.com/pw/AM-JKLXE0TOvzGd2C_G4f79oDYbTFd88BPZLRRX7PoOrqw4Y3txQSxo-yvOhdTBBii2e4n83qUxSVki9ZS7F0fdD541BlsX3k4m6-_La__Pr0s2i4Srb6gyYr1rjwe2raKgLes_e7PNjJrGA_40KK1EFPD9KUA=s989-no?authuser=0"},"articleBody":"한 노트북 안에서 여러 언어를 사용하는걸 지양하는게 좋긴 하지만, R와 파이썬을 둘 다 쓰는 사람이라면 두 언어를 동시에 사용할 수 있었으면 하는 순간들이 오기 마련입니다. 기본적으로 Colab 노트북은 Python 언어 기반이지만 (R 노트북도 쓸 수 있긴 하다) 한 노트북 안에서 Python과 R을 같이 쓸 수 있습니다!\n\n\n(TIP: 그냥 Colab R 노트북 사용하고 싶은 경우 이 링크로 Colab 접속하면 R 노트북이 생성됩니다: https://colab.research.google.com/#create=true&amp;language=r)\n\n\n\nColab에서 Python-R 같이 사용하기첫번째로, Colab 노트북에서 아래 코드를 실행:\n1%load_ext rpy2.ipython\n\n디폴트로는 모든 셀이 Python 셀이지만 R 코드 사용하고 싶은 경우, cell magic과 line magic 두가지 방법이 있습니다.\n\nCell magic: 셀 전체를 R 코드로 실행 → 셀 첫번째 행에 아래 코드 입력하면 셀의 모든 코드가 R 코드로 실행됩니다1%%R\nLine magic: 코드 행을 R 코드로 실행 → R 코드 실행할 행에 아래 코드 입력1%R\n\n\nTip #1: Python-R 언어 사이 Dataframe 복사R 코드 부분에서 dataframe이 생성되면, 파이썬 코드 부분에서는 해당 dataframe을 사용할 수 없습니다. 그래서 따로 두 언어 다 활용해서 dataframe을 다룰 경우에는 한쪽에서 생성된 dataframe을 다른 쪽에 만들어주는 방법을 사용해야합니다.\ndf 라는 dataframe이 있으면, 꼭 cell magic 이 아닌 line magic 으로 아래 코드를 실행 해주세요.\nPython → R1%R -i df\n\nR → Python1%R -o df\n\n여러 dataframe을 한번에12345#Python to R%R -i df -i df2#R to Python%R -o df -o df2\n\n\nTip #2: R Variable을 Python으로 복사Line magic은 헤당 행에 있는 쿠드에 적용이 되다보니 아래 코드와 같은 방법으로 R variable도 Python variable로 복사할 수 있습니다.\n1x = %R x\n\n\n위에 설명한 내용을 간단한 예시로 볼 수 있는 Colab 노트북입니다! → Example Colab Notebook\n","dateCreated":"2021-08-26T00:00:00+09:00","dateModified":"2021-12-23T02:30:28+09:00","datePublished":"2021-08-26T00:00:00+09:00","description":"한 노트북 안에서 여러 언어를 사용하는걸 지양하는게 좋긴 하지만, R와 파이썬을 둘 다 쓰는 사람이라면 두 언어를 동시에 사용할 수 있었으면 하는 순간들이 오기 마련입니다. 기본적으로 Colab 노트북은 Python 언어 기반이지만 (R 노트북도 쓸 수 있긴 하다) 한 노트북 안에서 Python과 R을 같이 쓸 수 있습니다!","headline":"Google Colab 101: Python-R 같이 사용하기","image":["https://lh3.googleusercontent.com/pw/AM-JKLWNrbDmpUZPK5c76vmkQEwDcDrgeufFCoBZ_Phdt0yy0EDfWXUxxZgljMNgnpCt2TOuksg-lyESZVWXv7Q1Io5zsOaPNkLgaDxaG_JjKIpnhs56NP3OMTbRbpNokhRQBQ-TN8yviyq1w3gXb5ahDEM30g=s260-no?authuser=0"],"mainEntityOfPage":{"@type":"WebPage","@id":"http://sjp24.github.io/2021/08/26/20210826-colab-r-and-python/"},"publisher":{"@type":"Organization","name":"Song Park","sameAs":[],"image":"https://lh3.googleusercontent.com/pw/AM-JKLXE0TOvzGd2C_G4f79oDYbTFd88BPZLRRX7PoOrqw4Y3txQSxo-yvOhdTBBii2e4n83qUxSVki9ZS7F0fdD541BlsX3k4m6-_La__Pr0s2i4Srb6gyYr1rjwe2raKgLes_e7PNjJrGA_40KK1EFPD9KUA=s989-no?authuser=0","logo":{"@type":"ImageObject","url":"https://lh3.googleusercontent.com/pw/AM-JKLXE0TOvzGd2C_G4f79oDYbTFd88BPZLRRX7PoOrqw4Y3txQSxo-yvOhdTBBii2e4n83qUxSVki9ZS7F0fdD541BlsX3k4m6-_La__Pr0s2i4Srb6gyYr1rjwe2raKgLes_e7PNjJrGA_40KK1EFPD9KUA=s989-no?authuser=0"}},"url":"http://sjp24.github.io/2021/08/26/20210826-colab-r-and-python/","keywords":"Colab, R, Python","thumbnailUrl":"https://lh3.googleusercontent.com/pw/AM-JKLWNrbDmpUZPK5c76vmkQEwDcDrgeufFCoBZ_Phdt0yy0EDfWXUxxZgljMNgnpCt2TOuksg-lyESZVWXv7Q1Io5zsOaPNkLgaDxaG_JjKIpnhs56NP3OMTbRbpNokhRQBQ-TN8yviyq1w3gXb5ahDEM30g=s260-no?authuser=0"}</script>
-    <meta name="description" content="한 노트북 안에서 여러 언어를 사용하는걸 지양하는게 좋긴 하지만, R와 파이썬을 둘 다 쓰는 사람이라면 두 언어를 동시에 사용할 수 있었으면 하는 순간들이 오기 마련입니다. 기본적으로 Colab 노트북은 Python 언어 기반이지만 (R 노트북도 쓸 수 있긴 하다) 한 노트북 안에서 Python과 R을 같이 쓸 수 있습니다!">
+    <script type="application/ld+json">{"@context":"http://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Song Park","sameAs":[],"image":"https://lh3.googleusercontent.com/pw/AM-JKLXE0TOvzGd2C_G4f79oDYbTFd88BPZLRRX7PoOrqw4Y3txQSxo-yvOhdTBBii2e4n83qUxSVki9ZS7F0fdD541BlsX3k4m6-_La__Pr0s2i4Srb6gyYr1rjwe2raKgLes_e7PNjJrGA_40KK1EFPD9KUA=s989-no?authuser=0"},"articleBody":"한 노트북 안에서 여러 언어를 사용하는걸 지양해야 하지만, R와 파이썬을 둘 다 쓰는 사람이라면 두 언어를 동시에 사용할 수 있었으면 하는 순간들이 오기 마련입니다. 기본적으로 Colab 노트북은 Python 언어 기반이지만 (R 노트북도 쓸 수 있긴 하다) 한 노트북 안에서 Python과 R을 같이 쓸 수 있습니다!\n\n\n(TIP: 그냥 Colab R 노트북 사용하고 싶은 경우 이 링크로 Colab 접속하면 R 노트북이 생성됩니다: https://colab.research.google.com/#create=true&amp;language=r)\n\n\n\nColab에서 Python-R 같이 사용하기첫번째로, Colab 노트북에서 아래 코드를 실행:\n1%load_ext rpy2.ipython\n\n디폴트로는 모든 셀이 Python 셀이지만 R 코드 사용하고 싶은 경우, cell magic과 line magic 두가지 방법이 있습니다.\n\nCell magic: 셀 전체를 R 코드로 실행 → 셀 첫번째 행에 아래 코드 입력하면 셀의 모든 코드가 R 코드로 실행됩니다1%%R\nLine magic: 코드 행을 R 코드로 실행 → R 코드 실행할 행에 아래 코드 입력1%R\n\n\nTip #1: Python-R 언어 사이 Dataframe 복사R 코드 부분에서 dataframe이 생성되면, 파이썬 코드 부분에서는 해당 dataframe을 사용할 수 없습니다. 그래서 따로 두 언어 다 활용해서 dataframe을 다룰 경우에는 한쪽에서 생성된 dataframe을 다른 쪽에 만들어주는 방법을 사용해야합니다.\ndf 라는 dataframe이 있으면, 꼭 cell magic 이 아닌 line magic 으로 아래 코드를 실행 해주세요.\nPython → R1%R -i df\n\nR → Python1%R -o df\n\n여러 dataframe을 한번에12345#Python to R%R -i df -i df2#R to Python%R -o df -o df2\n\n\nTip #2: R Variable을 Python으로 복사Line magic은 헤당 행에 있는 쿠드에 적용이 되다보니 아래 코드와 같은 방법으로 R variable도 Python variable로 복사할 수 있습니다.\n1x = %R x\n\n\n위에 설명한 내용을 간단한 예시로 볼 수 있는 Colab 노트북입니다! → Example Colab Notebook\n","dateCreated":"2021-08-26T00:00:00+09:00","dateModified":"2021-12-23T21:17:53+09:00","datePublished":"2021-08-26T00:00:00+09:00","description":"한 노트북 안에서 여러 언어를 사용하는걸 지양해야 하지만, R와 파이썬을 둘 다 쓰는 사람이라면 두 언어를 동시에 사용할 수 있었으면 하는 순간들이 오기 마련입니다. 기본적으로 Colab 노트북은 Python 언어 기반이지만 (R 노트북도 쓸 수 있긴 하다) 한 노트북 안에서 Python과 R을 같이 쓸 수 있습니다!","headline":"Google Colab 101: Python-R 같이 사용하기","image":["https://lh3.googleusercontent.com/pw/AM-JKLWNrbDmpUZPK5c76vmkQEwDcDrgeufFCoBZ_Phdt0yy0EDfWXUxxZgljMNgnpCt2TOuksg-lyESZVWXv7Q1Io5zsOaPNkLgaDxaG_JjKIpnhs56NP3OMTbRbpNokhRQBQ-TN8yviyq1w3gXb5ahDEM30g=s260-no?authuser=0"],"mainEntityOfPage":{"@type":"WebPage","@id":"http://sjp24.github.io/2021/08/26/colab-r-and-python/"},"publisher":{"@type":"Organization","name":"Song Park","sameAs":[],"image":"https://lh3.googleusercontent.com/pw/AM-JKLXE0TOvzGd2C_G4f79oDYbTFd88BPZLRRX7PoOrqw4Y3txQSxo-yvOhdTBBii2e4n83qUxSVki9ZS7F0fdD541BlsX3k4m6-_La__Pr0s2i4Srb6gyYr1rjwe2raKgLes_e7PNjJrGA_40KK1EFPD9KUA=s989-no?authuser=0","logo":{"@type":"ImageObject","url":"https://lh3.googleusercontent.com/pw/AM-JKLXE0TOvzGd2C_G4f79oDYbTFd88BPZLRRX7PoOrqw4Y3txQSxo-yvOhdTBBii2e4n83qUxSVki9ZS7F0fdD541BlsX3k4m6-_La__Pr0s2i4Srb6gyYr1rjwe2raKgLes_e7PNjJrGA_40KK1EFPD9KUA=s989-no?authuser=0"}},"url":"http://sjp24.github.io/2021/08/26/colab-r-and-python/","keywords":"Colab, R, Python","thumbnailUrl":"https://lh3.googleusercontent.com/pw/AM-JKLWNrbDmpUZPK5c76vmkQEwDcDrgeufFCoBZ_Phdt0yy0EDfWXUxxZgljMNgnpCt2TOuksg-lyESZVWXv7Q1Io5zsOaPNkLgaDxaG_JjKIpnhs56NP3OMTbRbpNokhRQBQ-TN8yviyq1w3gXb5ahDEM30g=s260-no?authuser=0"}</script>
+    <meta name="description" content="한 노트북 안에서 여러 언어를 사용하는걸 지양해야 하지만, R와 파이썬을 둘 다 쓰는 사람이라면 두 언어를 동시에 사용할 수 있었으면 하는 순간들이 오기 마련입니다. 기본적으로 Colab 노트북은 Python 언어 기반이지만 (R 노트북도 쓸 수 있긴 하다) 한 노트북 안에서 Python과 R을 같이 쓸 수 있습니다!">
 <meta property="og:type" content="blog">
 <meta property="og:title" content="Google Colab 101: Python-R 같이 사용하기">
-<meta property="og:url" content="http://sjp24.github.io/2021/08/26/20210826-colab-r-and-python/index.html">
+<meta property="og:url" content="http://sjp24.github.io/2021/08/26/colab-r-and-python/index.html">
 <meta property="og:site_name" content="SJP">
-<meta property="og:description" content="한 노트북 안에서 여러 언어를 사용하는걸 지양하는게 좋긴 하지만, R와 파이썬을 둘 다 쓰는 사람이라면 두 언어를 동시에 사용할 수 있었으면 하는 순간들이 오기 마련입니다. 기본적으로 Colab 노트북은 Python 언어 기반이지만 (R 노트북도 쓸 수 있긴 하다) 한 노트북 안에서 Python과 R을 같이 쓸 수 있습니다!">
+<meta property="og:description" content="한 노트북 안에서 여러 언어를 사용하는걸 지양해야 하지만, R와 파이썬을 둘 다 쓰는 사람이라면 두 언어를 동시에 사용할 수 있었으면 하는 순간들이 오기 마련입니다. 기본적으로 Colab 노트북은 Python 언어 기반이지만 (R 노트북도 쓸 수 있긴 하다) 한 노트북 안에서 Python과 R을 같이 쓸 수 있습니다!">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2021-08-25T15:00:00.000Z">
-<meta property="article:modified_time" content="2021-12-22T17:30:28.685Z">
+<meta property="article:modified_time" content="2021-12-23T12:17:53.044Z">
 <meta property="article:author" content="Song Park">
 <meta property="article:tag" content="Colab">
 <meta property="article:tag" content="R">
@@ -159,40 +159,6 @@
                     
                         <a
                             class="sidebar-button-link "
-                            href="#about"
-                            
-                            rel="noopener"
-                            title="About"
-                        >
-                        <i class="sidebar-button-icon fa fa-question" aria-hidden="true"></i>
-                        <span class="sidebar-button-desc">About</span>
-                    </a>
-            </li>
-            
-                <li class="sidebar-button">
-                    
-                        <a
-                            class="sidebar-button-link "
-                            href="https://www.linkedin.com/in/song-park"
-                            
-                                target="_blank"
-                            
-                            rel="noopener"
-                            title="LinkedIn"
-                        >
-                        <i class="sidebar-button-icon fab fa-linkedin" aria-hidden="true"></i>
-                        <span class="sidebar-button-desc">LinkedIn</span>
-                    </a>
-            </li>
-            
-        </ul>
-        
-            <ul class="sidebar-buttons">
-            
-                <li class="sidebar-button">
-                    
-                        <a
-                            class="sidebar-button-link "
                             href="/all-categories"
                             
                             rel="noopener"
@@ -228,6 +194,54 @@
                         >
                         <i class="sidebar-button-icon fa fa-archive" aria-hidden="true"></i>
                         <span class="sidebar-button-desc">Archives</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a
+                            class="sidebar-button-link open-algolia-search"
+                            href="#search"
+                            
+                            rel="noopener"
+                            title="Search"
+                        >
+                        <i class="sidebar-button-icon fa fa-search" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">Search</span>
+                    </a>
+            </li>
+            
+        </ul>
+        
+            <ul class="sidebar-buttons">
+            
+                <li class="sidebar-button">
+                    
+                        <a
+                            class="sidebar-button-link "
+                            href="#about"
+                            
+                            rel="noopener"
+                            title="About"
+                        >
+                        <i class="sidebar-button-icon fa fa-question" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">About</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a
+                            class="sidebar-button-link "
+                            href="https://www.linkedin.com/in/song-park"
+                            
+                                target="_blank"
+                            
+                            rel="noopener"
+                            title="LinkedIn"
+                        >
+                        <i class="sidebar-button-icon fab fa-linkedin" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">LinkedIn</span>
                     </a>
             </li>
             
@@ -273,7 +287,7 @@
     
     <div class="post-content markdown">
         <div class="main-content-wrap">
-            <p>한 노트북 안에서 여러 언어를 사용하는걸 지양하는게 좋긴 하지만, R와 파이썬을 둘 다 쓰는 사람이라면 두 언어를 동시에 사용할 수 있었으면 하는 순간들이 오기 마련입니다. 기본적으로 Colab 노트북은 Python 언어 기반이지만 (R 노트북도 쓸 수 있긴 하다) 한 노트북 안에서 Python과 R을 같이 쓸 수 있습니다!</p>
+            <p>한 노트북 안에서 여러 언어를 사용하는걸 지양해야 하지만, R와 파이썬을 둘 다 쓰는 사람이라면 두 언어를 동시에 사용할 수 있었으면 하는 순간들이 오기 마련입니다. 기본적으로 Colab 노트북은 Python 언어 기반이지만 (R 노트북도 쓸 수 있긴 하다) 한 노트북 안에서 Python과 R을 같이 쓸 수 있습니다!</p>
 <span id="more"></span>
 
 <p>(TIP: 그냥 Colab R 노트북 사용하고 싶은 경우 이 링크로 Colab 접속하면 R 노트북이 생성됩니다: <a target="_blank" rel="noopener" href="https://colab.research.google.com/#create=true&amp;language=r">https://colab.research.google.com/#create=true&amp;language=r</a>)<br><br/></p>
@@ -338,7 +352,7 @@
                     
                 <a
                     class="post-action-btn btn btn--default tooltip--top"
-                    href="/2021/06/17/20210617-basic-pipeline/"
+                    href="/2021/06/17/basic-pipeline/"
                     data-tooltip="데이터의 흐름: 기본적인 데이터 파이프라인 개념 설명"
                     aria-label="NEXT: 데이터의 흐름: 기본적인 데이터 파이프라인 개념 설명"
                 >
@@ -365,7 +379,7 @@
             <li class="post-action hide-xs">
                 <a
                     class="post-action-btn btn btn--default"
-                    target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://sjp24.github.io/2021/08/26/20210826-colab-r-and-python/"
+                    target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://sjp24.github.io/2021/08/26/colab-r-and-python/"
                     title="Share on Facebook"
                     aria-label="Share on Facebook"
                 >
@@ -378,7 +392,7 @@
             <li class="post-action hide-xs">
                 <a
                     class="post-action-btn btn btn--default"
-                    target="new" href="https://twitter.com/intent/tweet?text=http://sjp24.github.io/2021/08/26/20210826-colab-r-and-python/"
+                    target="new" href="https://twitter.com/intent/tweet?text=http://sjp24.github.io/2021/08/26/colab-r-and-python/"
                     title="Share on Twitter"
                     aria-label="Share on Twitter"
                 >
@@ -391,7 +405,7 @@
             <li class="post-action hide-xs">
                 <a
                     class="post-action-btn btn btn--default"
-                    target="new" href="https://www.linkedin.com/shareArticle?mini=true&amp;url=http://sjp24.github.io/2021/08/26/20210826-colab-r-and-python/"
+                    target="new" href="https://www.linkedin.com/shareArticle?mini=true&amp;url=http://sjp24.github.io/2021/08/26/colab-r-and-python/"
                     title="global.share_on_linkedin"
                     aria-label="global.share_on_linkedin"
                 >
@@ -464,7 +478,7 @@
                     
                 <a
                     class="post-action-btn btn btn--default tooltip--top"
-                    href="/2021/06/17/20210617-basic-pipeline/"
+                    href="/2021/06/17/basic-pipeline/"
                     data-tooltip="데이터의 흐름: 기본적인 데이터 파이프라인 개념 설명"
                     aria-label="NEXT: 데이터의 흐름: 기본적인 데이터 파이프라인 개념 설명"
                 >
@@ -491,7 +505,7 @@
             <li class="post-action hide-xs">
                 <a
                     class="post-action-btn btn btn--default"
-                    target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://sjp24.github.io/2021/08/26/20210826-colab-r-and-python/"
+                    target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://sjp24.github.io/2021/08/26/colab-r-and-python/"
                     title="Share on Facebook"
                     aria-label="Share on Facebook"
                 >
@@ -504,7 +518,7 @@
             <li class="post-action hide-xs">
                 <a
                     class="post-action-btn btn btn--default"
-                    target="new" href="https://twitter.com/intent/tweet?text=http://sjp24.github.io/2021/08/26/20210826-colab-r-and-python/"
+                    target="new" href="https://twitter.com/intent/tweet?text=http://sjp24.github.io/2021/08/26/colab-r-and-python/"
                     title="Share on Twitter"
                     aria-label="Share on Twitter"
                 >
@@ -517,7 +531,7 @@
             <li class="post-action hide-xs">
                 <a
                     class="post-action-btn btn btn--default"
-                    target="new" href="https://www.linkedin.com/shareArticle?mini=true&amp;url=http://sjp24.github.io/2021/08/26/20210826-colab-r-and-python/"
+                    target="new" href="https://www.linkedin.com/shareArticle?mini=true&amp;url=http://sjp24.github.io/2021/08/26/colab-r-and-python/"
                     title="global.share_on_linkedin"
                     aria-label="global.share_on_linkedin"
                 >
@@ -561,7 +575,7 @@
                     <a
                         class="share-option-btn"
                         target="new"
-                        href="https://www.facebook.com/sharer/sharer.php?u=http://sjp24.github.io/2021/08/26/20210826-colab-r-and-python/"
+                        href="https://www.facebook.com/sharer/sharer.php?u=http://sjp24.github.io/2021/08/26/colab-r-and-python/"
                         aria-label="Share on Facebook"
                     >
                         <i class="fab fa-facebook" aria-hidden="true"></i><span>Share on Facebook</span>
@@ -574,7 +588,7 @@
                     <a
                         class="share-option-btn"
                         target="new"
-                        href="https://twitter.com/intent/tweet?text=http://sjp24.github.io/2021/08/26/20210826-colab-r-and-python/"
+                        href="https://twitter.com/intent/tweet?text=http://sjp24.github.io/2021/08/26/colab-r-and-python/"
                         aria-label="Share on Twitter"
                     >
                         <i class="fab fa-twitter" aria-hidden="true"></i><span>Share on Twitter</span>
@@ -587,7 +601,7 @@
                     <a
                         class="share-option-btn"
                         target="new"
-                        href="https://www.linkedin.com/shareArticle?mini=true&amp;url=http://sjp24.github.io/2021/08/26/20210826-colab-r-and-python/"
+                        href="https://www.linkedin.com/shareArticle?mini=true&amp;url=http://sjp24.github.io/2021/08/26/colab-r-and-python/"
                         aria-label="global.share_on_linkedin"
                     >
                         <i class="fab fa-linkedin" aria-hidden="true"></i><span>global.share_on_linkedin</span>
@@ -639,6 +653,106 @@
 </div>
 
         
+            <div id="algolia-search-modal" class="modal-container">
+    <div class="modal">
+        <div class="modal-header">
+            <span class="close-button"><i class="fa fa-times"></i></span>
+            <a href="https://algolia.com" target="_blank" rel="noopener" class="searchby-algolia text-color-light link-unstyled">
+                <span class="searchby-algolia-text text-color-light text-small">by</span>
+                <img class="searchby-algolia-logo" src="/assets/images/logo-algolia-nebula-blue-full.svg">
+            </a>
+            <i class="search-icon fa fa-search"></i>
+            <form id="algolia-search-form">
+                <input type="text" id="algolia-search-input" name="search"
+                    class="form-control input--large search-input" placeholder="Search "
+                    />
+            </form>
+        </div>
+        <div class="modal-body">
+            <div class="no-result text-color-light text-center">no post found</div>
+            <div class="results">
+                
+                <div class="media">
+                    
+                    <div class="media-left">
+                        <a
+                            class="link-unstyled"
+                            href="http://sjp24.github.io/2021/06/17/basic-pipeline/"
+                            aria-label=": 데이터의 흐름: 기본적인 데이터 파이프라인 개념 설명"
+                        >
+                            <img class="media-image" src="https://lh3.googleusercontent.com/pw/AM-JKLVqEoT9LETZzeAriZQM4cxYp9Kp7t_MEqPIfkBuk69NmxYsyT8p5if6fn64J6k9cy7oneLOBsfFapXrS9upM0nJTxtkiWcXJYWWzpUzAll0FFWNyoDJSvZc2conN164QAaRnKjToZF4jOUofN4SOMDrhw=w2133-h779-no?authuser=0" width="90" height="90"/>
+                        </a>
+                    </div>
+                    
+                    <div class="media-body">
+                        <a
+                            class="link-unstyled"
+                            href="http://sjp24.github.io/2021/06/17/basic-pipeline/"
+                            aria-label=": 데이터의 흐름: 기본적인 데이터 파이프라인 개념 설명"
+                        >
+                            <h3 class="media-heading">데이터의 흐름: 기본적인 데이터 파이프라인 개념 설명</h3>
+                        </a>
+                        <span class="media-meta">
+                            <span class="media-date text-small">
+                                
+                                    Jun 17, 2021
+                                
+                            </span>
+                        </span>
+                        <div class="media-content hide-xs font-merryweather"><p>스타트업계로 오게 된 후로는 데이터 파이프라인이 얼마나 중요한지 뼈저리게 느끼고 있습니다. 데이터베이스 지식, 데이터 파이프라인 지식을 가지고 있는 게 중요하다고 생각해서 전부터 배우려고 노력은 했지만 역시 산전수전 다 직접 겪어봐야 빠르게 성장 할 수 있습니다 😅</p>
+<p>저도 아직 많이 부족하지만, 데이터 외 직군 혹은 데이터를 다루지만 데이터 파이프라인에 대한 지식이 부족한 분들을 위해 아주 기본적인 개념들을 설명하려 합니다.<br/><br/></p></div>
+                    </div>
+                    <div style="clear:both;"></div>
+                    <hr>
+                </div>
+                
+                <div class="media">
+                    
+                    <div class="media-left">
+                        <a
+                            class="link-unstyled"
+                            href="http://sjp24.github.io/2021/08/26/colab-r-and-python/"
+                            aria-label=": Google Colab 101: Python-R 같이 사용하기"
+                        >
+                            <img class="media-image" src="https://lh3.googleusercontent.com/pw/AM-JKLWNrbDmpUZPK5c76vmkQEwDcDrgeufFCoBZ_Phdt0yy0EDfWXUxxZgljMNgnpCt2TOuksg-lyESZVWXv7Q1Io5zsOaPNkLgaDxaG_JjKIpnhs56NP3OMTbRbpNokhRQBQ-TN8yviyq1w3gXb5ahDEM30g=s260-no?authuser=0" width="90" height="90"/>
+                        </a>
+                    </div>
+                    
+                    <div class="media-body">
+                        <a
+                            class="link-unstyled"
+                            href="http://sjp24.github.io/2021/08/26/colab-r-and-python/"
+                            aria-label=": Google Colab 101: Python-R 같이 사용하기"
+                        >
+                            <h3 class="media-heading">Google Colab 101: Python-R 같이 사용하기</h3>
+                        </a>
+                        <span class="media-meta">
+                            <span class="media-date text-small">
+                                
+                                    Aug 26, 2021
+                                
+                            </span>
+                        </span>
+                        <div class="media-content hide-xs font-merryweather"><p>한 노트북 안에서 여러 언어를 사용하는걸 지양해야 하지만, R와 파이썬을 둘 다 쓰는 사람이라면 두 언어를 동시에 사용할 수 있었으면 하는 순간들이 오기 마련입니다. 기본적으로 Colab 노트북은 Python 언어 기반이지만 (R 노트북도 쓸 수 있긴 하다) 한 노트북 안에서 Python과 R을 같이 쓸 수 있습니다!</p></div>
+                    </div>
+                    <div style="clear:both;"></div>
+                    <hr>
+                </div>
+                
+            </div>
+        </div>
+        <div class="modal-footer">
+            <p class="results-count text-medium"
+                data-message-zero="no post found"
+                data-message-one="1 post found"
+                data-message-other="{n} posts found">
+                2 posts found
+            </p>
+        </div>
+    </div>
+</div>
+
+        
         
 <div id="cover" style="background-image:url('https://lh3.googleusercontent.com/pw/AM-JKLUokKCH8YTuE2jQlSJ0Iy9wfhTBfv83xZFCcKvBx_z0JH8aL21ibW1-A90z_ZewKBkXWNPgo_l_MDNNuadNm1NoWMIElpDKo1w_Jh6llMQW-rzeqtfOUUKKXlhIQaOQcsfePIorTk1bMoFkHmga8jB5Ig=w852-h989-no?authuser=0');"></div>
         <!--SCRIPTS-->
@@ -660,9 +774,9 @@
     
         <script>
           var disqus_config = function() {
-            this.page.url = 'http://sjp24.github.io/2021/08/26/20210826-colab-r-and-python/';
+            this.page.url = 'http://sjp24.github.io/2021/08/26/colab-r-and-python/';
               
-            this.page.identifier = '2021/08/26/20210826-colab-r-and-python/';
+            this.page.identifier = '2021/08/26/colab-r-and-python/';
               
           };
           (function() {
@@ -677,6 +791,17 @@
     
 
 
+
+    
+<script src="/assets/js/moment-with-locales.js"></script>
+
+    
+<script src="/assets/js/algoliasearch.js"></script>
+
+    <script>
+      var algoliaClient = algoliasearch('YI41QHSRDA', '7ac34ce00551cc1166fca48a9f4a98f5');
+      var algoliaIndex = algoliaClient.initIndex('sjp24.github.io');
+    </script>
 
 
     </body>
