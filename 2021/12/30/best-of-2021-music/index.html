@@ -6,10 +6,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="generator" content="SJP">
-    <title>데이터의 흐름: 기본적인 데이터 파이프라인 개념 설명 - SJP</title>
+    <title>Best of 2021: 나와 함께했던 음악 - SJP</title>
     <meta name="author" content="Song Joyce Park">
     
-        <meta name="keywords" content="song park,data,song joyce park,data analyst,데이터 분석,데이터,스타트업,박송,data pipeline,data warehouse,database,data lake,etl,data">
+        <meta name="keywords" content="song park,data,song joyce park,data analyst,데이터 분석,데이터,스타트업,박송,Music">
     
     
         <link rel="icon" href="https://lh3.googleusercontent.com/pw/AM-JKLUNSvU-0Y-DLWEjt_5aNdb5PQWexWYHDsTRypPwdGQYxo8lmTq9Oku2CuZBQwEJuT6OLhjkcyPxtuRghqaIsS18rBB4IPw-aHXY0HNqnu0o0i7qCgp7MkhbzoNvlfpqdwfsrS5hcXfUNev5Q731KdOoMg=s989-no?authuser=0">
@@ -19,22 +19,41 @@
             <link rel="alternate" type="application/atom+xml" title="RSS" href="/atom.xml">
         
     
-    <script type="application/ld+json">{"@context":"http://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Song Joyce Park","sameAs":[],"image":"https://lh3.googleusercontent.com/pw/AM-JKLXE0TOvzGd2C_G4f79oDYbTFd88BPZLRRX7PoOrqw4Y3txQSxo-yvOhdTBBii2e4n83qUxSVki9ZS7F0fdD541BlsX3k4m6-_La__Pr0s2i4Srb6gyYr1rjwe2raKgLes_e7PNjJrGA_40KK1EFPD9KUA=s989-no?authuser=0"},"articleBody":"스타트업계로 오게 된 후로는 데이터 파이프라인이 얼마나 중요한지 뼈저리게 느끼고 있습니다. 데이터베이스 지식, 데이터 파이프라인 지식을 가지고 있는 게 중요하다고 생각해서 전부터 배우려고 노력은 했지만 역시 산전수전 다 직접 겪어봐야 빠르게 성장 할 수 있습니다 😅\n저도 아직 많이 부족하지만, 데이터 외 직군 혹은 데이터를 다루지만 데이터 파이프라인에 대한 지식이 부족한 분들을 위해 아주 기본적인 개념들을 설명하려 합니다.\n\n\n\n\n\n기본 용어비슷하지만 조금씩 다른 파이프라인 관련 용어.\nETL (Extract, Transform, Load): 데이터를 추출하고(extract) → 변환하여 (transform) → 적재하는 (load) 데이터 웨어하우스 구축 프로세스\nELT (Extract, Load, Transform): 데이터를 추출하고 (extract) → 적재하고 (load) → 변환하는 (transform) 프로세스\nData Warehouse (DW): 다양한 소스에서 발생한 데이터를 하나의 통합된 형태로 저장하는 공간. 데이터는 설계된 스키마에 맞게 처리되어 저장된다\nData Lake: 다양한 소스에서 발생한 데이터를 그대로 가져와 저장하는 공간. 데이터 웨어하우스와 달리 정형/반정형/비정형 데이터 등 다양한 형태의 소스 raw 데이터를 통합하지 않고 한 곳에 모은다\nData Mart: 특정 목적 (대체로 팀/부서와 같은 조직 단위)을 위해 만들어진 데이터 웨어하우스. 보통 하나의 데이터 웨어하우스에서 조직 단위별로 여러 데이터 마트가 만들어진다\nData Pipeline: 데이터가 흐르는 모든 과정의 총칭 (생성, 변환, 저장, 등)\nRDB (Relational Database): 2차원 (속성, 값) 형식 테이블들로 구성된 관계형 데이터베이스. “관계형”이란 각 테이블 안에서 속성과 값 사이 관계가 있고 테이블과 테이블 사이에도 관계를 가지고 있다. 가장 일반적인 데이터베이스 타입이고 일반적으로 SQL (Structured Query Language) 언어를 통해 데이터를 조회한다\nRDBMS (Relational Database Management System): 관계형 데이터베이스 관리 (생성, 수정, 등)를 위한 프로그램. 예: MySQL, Oracle, SQL Server, 등등\n\n\n\n기본 ETL 과정조직마다 설계가 다르고 구체적인 프로세스는 보기보다 훨씬 복잡하지만, 대부분 아래와 같은 ETL 프로세스를 통해 데이터 웨어하우스를 구축합니다.\n\n\nExtract. 다양한 곳에서 생성된 데이터를 추출하는 단계. 조직마다 소스들은 다르지만 커머스에서는 가장 기본적으로 아래와 같은 데이터 소스들이 있습니다:\n\n운영 데이터베이스 → 주문, 상품 데이터와 같은 데이터가 담긴 데이터베이스\n웹/앱 이벤트 데이터\n마케팅 데이터 → 페이스북, 구글, 카카오, 등\n사용하는 다른 서드파티 앱 데이터\n\nTransform. 소스 데이터가 어떤 형태인지에 따라 이 과정은 많이 달라집니다. 간단한 변환은 각 소스의 날짜 컬럼 형식들을 하나의 기준으로 맞추기, 빈값 처리하는 방식 통일하기와 같은 작업이 있고 보통 테이블들을 조인하고 계산된 필드 만드는 변환이 들어갑니다 → 예: members 테이블에 각 멤버의 구매 이력 관련 컬럼 생성 (첫 구매일, 지난 3개월 총 구매액, 등등). 자주 보는 지표들은 summary 테이블로 만들 수 있습니다 → 예: 일별 거래액, 일별 모든 매체의 총 마케팅 비용 합계.\nLoad. 변환된 데이터를 데이터 웨어하우스에 적재합니다.\nETL vs ELTELT은 여러 소스의 데이터를 추출하여 바로 raw 형태로 적재 후 변환합니다. 즉, 데이터 레이크에 일단 모든 소스의 데이터를 담고 변환은 스테이징 필요 없이 데이터 레이크/웨어하우스 안에서 이루어집니다. 최신 클라우드 기반 기술로 인해 ETL에 비해 비교적 새로운 기술이고 뜨고 있는 데이터 처리 방식입니다. 이 과정은 적재가 빠르게 이루어진다는 게 장점이지만 유연한 만큼 데이터 신뢰/정합성은 떨어질 수 있습니다.\nData Mart큰 규모의 조직에서는 조직 단위로 특화된 데이터 마트를 설계하고 각 조직에서 봐야 하는 데이터만 볼 수 있게 권한을 관리합니다. 스타트업이나 더 작은 규모의 조직에서는 비교적 팀/부서와 같은 조직 단위 사이 경계가 덜 명확하기 때문에 조직 단위별 마트 없이 하나의 데이터 웨어하우스를 사용하는 방식이 크게 문제 되지 않을 수 있습니다.하지만 전사 조직용 데이터에 비해 데이터 마트에 있는 테이블들은 유연하게 수정/변환 할 수 있기 때문에 빠르게 변하는 스타트업 조직에도 데이터 마트를 잘 활용한다면 효율적으로 분석하고 인사이트 얻을 수 있습니다.\n\n","dateCreated":"2021-06-17T00:00:00+09:00","dateModified":"2021-12-23T23:33:39+09:00","datePublished":"2021-06-17T00:00:00+09:00","description":"스타트업계로 오게 된 후로는 데이터 파이프라인이 얼마나 중요한지 뼈저리게 느끼고 있습니다. 데이터베이스 지식, 데이터 파이프라인 지식을 가지고 있는 게 중요하다고 생각해서 전부터 배우려고 노력은 했지만 역시 산전수전 다 직접 겪어봐야 빠르게 성장 할 수 있습니다 😅\n저도 아직 많이 부족하지만, 데이터 외 직군 혹은 데이터를 다루지만 데이터 파이프라인에 대한 지식이 부족한 분들을 위해 아주 기본적인 개념들을 설명하려 합니다.","headline":"데이터의 흐름: 기본적인 데이터 파이프라인 개념 설명","image":["https://lh3.googleusercontent.com/pw/AM-JKLVqEoT9LETZzeAriZQM4cxYp9Kp7t_MEqPIfkBuk69NmxYsyT8p5if6fn64J6k9cy7oneLOBsfFapXrS9upM0nJTxtkiWcXJYWWzpUzAll0FFWNyoDJSvZc2conN164QAaRnKjToZF4jOUofN4SOMDrhw=w2133-h779-no?authuser=0"],"mainEntityOfPage":{"@type":"WebPage","@id":"http://sjp24.github.io/2021/06/17/basic-pipeline/"},"publisher":{"@type":"Organization","name":"Song Joyce Park","sameAs":[],"image":"https://lh3.googleusercontent.com/pw/AM-JKLXE0TOvzGd2C_G4f79oDYbTFd88BPZLRRX7PoOrqw4Y3txQSxo-yvOhdTBBii2e4n83qUxSVki9ZS7F0fdD541BlsX3k4m6-_La__Pr0s2i4Srb6gyYr1rjwe2raKgLes_e7PNjJrGA_40KK1EFPD9KUA=s989-no?authuser=0","logo":{"@type":"ImageObject","url":"https://lh3.googleusercontent.com/pw/AM-JKLXE0TOvzGd2C_G4f79oDYbTFd88BPZLRRX7PoOrqw4Y3txQSxo-yvOhdTBBii2e4n83qUxSVki9ZS7F0fdD541BlsX3k4m6-_La__Pr0s2i4Srb6gyYr1rjwe2raKgLes_e7PNjJrGA_40KK1EFPD9KUA=s989-no?authuser=0"}},"url":"http://sjp24.github.io/2021/06/17/basic-pipeline/","keywords":"Data Pipeline","thumbnailUrl":"https://lh3.googleusercontent.com/pw/AM-JKLVqEoT9LETZzeAriZQM4cxYp9Kp7t_MEqPIfkBuk69NmxYsyT8p5if6fn64J6k9cy7oneLOBsfFapXrS9upM0nJTxtkiWcXJYWWzpUzAll0FFWNyoDJSvZc2conN164QAaRnKjToZF4jOUofN4SOMDrhw=w2133-h779-no?authuser=0"}</script>
-    <meta name="description" content="스타트업계로 오게 된 후로는 데이터 파이프라인이 얼마나 중요한지 뼈저리게 느끼고 있습니다. 데이터베이스 지식, 데이터 파이프라인 지식을 가지고 있는 게 중요하다고 생각해서 전부터 배우려고 노력은 했지만 역시 산전수전 다 직접 겪어봐야 빠르게 성장 할 수 있습니다 😅 저도 아직 많이 부족하지만, 데이터 외 직군 혹은 데이터를 다루지만 데이터 파이프라인에 대">
+    <script type="application/ld+json">{"@context":"http://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Song Joyce Park","sameAs":[],"image":"https://lh3.googleusercontent.com/pw/AM-JKLXE0TOvzGd2C_G4f79oDYbTFd88BPZLRRX7PoOrqw4Y3txQSxo-yvOhdTBBii2e4n83qUxSVki9ZS7F0fdD541BlsX3k4m6-_La__Pr0s2i4Srb6gyYr1rjwe2raKgLes_e7PNjJrGA_40KK1EFPD9KUA=s989-no?authuser=0"},"articleBody":"음악에 푹 빠져 살았던 시절도 있었는데 갈수록 음악을 덜 듣기도 하고 그냥 아는 아티스트들의 신곡만 듣는 것 같네요. 그럼에도 올해 정말 많은 곡을 들었고 나중에 이 곡들을 들었을 때 2021년을 떠오르게 될 것 같아요. \n올해 많이 들었던, 그냥 좋았던, 혹은 의미 있었던 곡 20곡입니다. 키워드로는 인디, 쇼미더머니, YG…일것 같네요 ㅎㅎ\n\n\n\n\n\n\n\n\n\n\n이미지\n이름\n\n\n\n\nGlen Check - Dazed &amp; Confused\n\n\n\nGlen Check - Dive Baby, Dive\n\n\n\n검정치마 - Girl Scout\n\n\n\nYaeji &amp; 오혁 - 29\n\n\n\nROSÉ - On The Ground\n\n\n\nCL - Lover Like Me\n\n\n\nKYUL(결) - Broken\n\n\n\nAKMU - 낙하\n\n\n\nonthedal - Homework\n\n\n\ncoldnight - slow down\n\n\n\nsokodomo - 회전목마 (feat. Zion.T, 원슈타인)\n\n\n\nLISA - LALISA\n\n\n\n그리즐리 - Favorite (feat. punchnello, SOLE)\n\n\n\n윤지영 - 우우우린\n\n\n\nMY Q - 이 시간은 우리를 어디로\n\n\n\nO.O.O - 우리는 영문도 모른 채\n\n\n\n원슈타인 - X (Butterfly)\n\n\n\n트레저 - 음 (MMM)\n\n\n\n비오 - MBTI (feat. 쿠기, 로꼬)\n\n\n\n베이식 - 만남은 쉽고 이별은 어려워 (feat. Leellamarz)\n\n\n\n\n\n\n","dateCreated":"2021-12-30T00:00:00+09:00","dateModified":"2021-12-30T03:53:35+09:00","datePublished":"2021-12-30T00:00:00+09:00","description":"음악에 푹 빠져 살았던 시절도 있었는데 갈수록 음악을 덜 듣기도 하고 그냥 아는 아티스트들의 신곡만 듣는 것 같네요. 그럼에도 올해 정말 많은 곡을 들었고 나중에 이 곡들을 들었을 때 2021년을 떠오르게 될 것 같아요. \n올해 많이 들었던, 그냥 좋았던, 혹은 의미 있었던 곡 20곡입니다. 키워드로는 인디, 쇼미더머니, YG…일것 같네요 ㅎㅎ","headline":"Best of 2021: 나와 함께했던 음악","image":["https://lh3.googleusercontent.com/pw/AM-JKLWQOyJYmICWvgJnn1m9vsIkfgxyOe72u_Z26FJ6x_NMAvg5p5395nIuO8iMXHcjpzL4yNDD7g8VGxEKkbZVYZYt1oOtnAjx9GQAUSQbuAWZ71q0kkAfUYFyPMhVena61OE-JBInAw1zClPFthUA55SeJQ=s500-no?authuser=0"],"mainEntityOfPage":{"@type":"WebPage","@id":"http://sjp24.github.io/2021/12/30/best-of-2021-music/"},"publisher":{"@type":"Organization","name":"Song Joyce Park","sameAs":[],"image":"https://lh3.googleusercontent.com/pw/AM-JKLXE0TOvzGd2C_G4f79oDYbTFd88BPZLRRX7PoOrqw4Y3txQSxo-yvOhdTBBii2e4n83qUxSVki9ZS7F0fdD541BlsX3k4m6-_La__Pr0s2i4Srb6gyYr1rjwe2raKgLes_e7PNjJrGA_40KK1EFPD9KUA=s989-no?authuser=0","logo":{"@type":"ImageObject","url":"https://lh3.googleusercontent.com/pw/AM-JKLXE0TOvzGd2C_G4f79oDYbTFd88BPZLRRX7PoOrqw4Y3txQSxo-yvOhdTBBii2e4n83qUxSVki9ZS7F0fdD541BlsX3k4m6-_La__Pr0s2i4Srb6gyYr1rjwe2raKgLes_e7PNjJrGA_40KK1EFPD9KUA=s989-no?authuser=0"}},"url":"http://sjp24.github.io/2021/12/30/best-of-2021-music/","keywords":"Music, BestOf2021","thumbnailUrl":"https://lh3.googleusercontent.com/pw/AM-JKLWQOyJYmICWvgJnn1m9vsIkfgxyOe72u_Z26FJ6x_NMAvg5p5395nIuO8iMXHcjpzL4yNDD7g8VGxEKkbZVYZYt1oOtnAjx9GQAUSQbuAWZ71q0kkAfUYFyPMhVena61OE-JBInAw1zClPFthUA55SeJQ=s500-no?authuser=0"}</script>
+    <meta name="description" content="음악에 푹 빠져 살았던 시절도 있었는데 갈수록 음악을 덜 듣기도 하고 그냥 아는 아티스트들의 신곡만 듣는 것 같네요. 그럼에도 올해 정말 많은 곡을 들었고 나중에 이 곡들을 들었을 때 2021년을 떠오르게 될 것 같아요.  올해 많이 들었던, 그냥 좋았던, 혹은 의미 있었던 곡 20곡입니다. 키워드로는 인디, 쇼미더머니, YG…일것 같네요 ㅎㅎ">
 <meta property="og:type" content="blog">
-<meta property="og:title" content="데이터의 흐름: 기본적인 데이터 파이프라인 개념 설명">
-<meta property="og:url" content="http://sjp24.github.io/2021/06/17/basic-pipeline/index.html">
+<meta property="og:title" content="Best of 2021: 나와 함께했던 음악">
+<meta property="og:url" content="http://sjp24.github.io/2021/12/30/best-of-2021-music/index.html">
 <meta property="og:site_name" content="SJP">
-<meta property="og:description" content="스타트업계로 오게 된 후로는 데이터 파이프라인이 얼마나 중요한지 뼈저리게 느끼고 있습니다. 데이터베이스 지식, 데이터 파이프라인 지식을 가지고 있는 게 중요하다고 생각해서 전부터 배우려고 노력은 했지만 역시 산전수전 다 직접 겪어봐야 빠르게 성장 할 수 있습니다 😅 저도 아직 많이 부족하지만, 데이터 외 직군 혹은 데이터를 다루지만 데이터 파이프라인에 대">
+<meta property="og:description" content="음악에 푹 빠져 살았던 시절도 있었는데 갈수록 음악을 덜 듣기도 하고 그냥 아는 아티스트들의 신곡만 듣는 것 같네요. 그럼에도 올해 정말 많은 곡을 들었고 나중에 이 곡들을 들었을 때 2021년을 떠오르게 될 것 같아요.  올해 많이 들었던, 그냥 좋았던, 혹은 의미 있었던 곡 20곡입니다. 키워드로는 인디, 쇼미더머니, YG…일것 같네요 ㅎㅎ">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="https://lh3.googleusercontent.com/pw/AM-JKLVqEoT9LETZzeAriZQM4cxYp9Kp7t_MEqPIfkBuk69NmxYsyT8p5if6fn64J6k9cy7oneLOBsfFapXrS9upM0nJTxtkiWcXJYWWzpUzAll0FFWNyoDJSvZc2conN164QAaRnKjToZF4jOUofN4SOMDrhw=w2133-h779-no?authuser=0">
-<meta property="og:image" content="https://lh3.googleusercontent.com/pw/AM-JKLWZQJGvtMmoyOtAKl8GJ-UcAjMMDR1OE4I5cBSEOSH4CELDL52kAr6TxDZ6LdNI_0qOWQ57MxPmn5laeXtrZL7Qlw5JcTUXRaehO9wIp53D9RDAX_uX954Fs-Eg-4wvt4N6YMxq6yf7NUcKHgRZgarPsw=w2133-h915-no?authuser=0">
-<meta property="article:published_time" content="2021-06-16T15:00:00.000Z">
-<meta property="article:modified_time" content="2021-12-23T14:33:39.913Z">
+<meta property="og:image" content="https://lh3.googleusercontent.com/pw/AM-JKLWQOyJYmICWvgJnn1m9vsIkfgxyOe72u_Z26FJ6x_NMAvg5p5395nIuO8iMXHcjpzL4yNDD7g8VGxEKkbZVYZYt1oOtnAjx9GQAUSQbuAWZ71q0kkAfUYFyPMhVena61OE-JBInAw1zClPFthUA55SeJQ=s500-no?authuser=0">
+<meta property="og:image" content="https://lh3.googleusercontent.com/pw/AM-JKLWQOyJYmICWvgJnn1m9vsIkfgxyOe72u_Z26FJ6x_NMAvg5p5395nIuO8iMXHcjpzL4yNDD7g8VGxEKkbZVYZYt1oOtnAjx9GQAUSQbuAWZ71q0kkAfUYFyPMhVena61OE-JBInAw1zClPFthUA55SeJQ=s500-no?authuser=0">
+<meta property="og:image" content="https://lh3.googleusercontent.com/pw/AM-JKLWoG6q556xB4dkXRj1ZWtTV1TVy21BCy_GcbYxyy44eOi3dTDzR6_asxOXHb_Zzwjd9Kiupi2xHnBvTEnJg40Jtg_wFiRj-dxTR8qlXaUHkIpNGmwycdxIivy7jZwDB3kxfP2qr1i1o0UYoBDgTwUdw9A=w811-h779-no?authuser=0">
+<meta property="og:image" content="https://lh3.googleusercontent.com/pw/AM-JKLUXsreXJL7IHgQBUMWtCFlzWBNtV_uS7oBuaOUItmXNggftgO9oLi0aei5qLi3mqOuWww3ShxP7XgqoiTBi5bD3w-x59oQQ9mlnIvs0oOLme1cFlXq5ODepPx9BG-Uiej5nUOW4BMTKTVb5d2URdyjEBA=s500-no?authuser=0">
+<meta property="og:image" content="https://lh3.googleusercontent.com/pw/AM-JKLVgUlt0-lVcF8GnUn1omLA06NVLbN1muVqTWjmm-3BB3qeEqhEzIRwdhtvThk3s26nuWKQ6rzh2a8YBBCUTPGTR2uQMWdRrQqa1g5_T-Zrmn3EYfvDvxoOq64AvNoyHFIh_A4X-Hbe3bYzaget3WUkRiA=s500-no?authuser=0">
+<meta property="og:image" content="https://lh3.googleusercontent.com/pw/AM-JKLXQCsBDvnhjKmmZ7-qsBeGyAlnRRKXbN5X6zaSMBPeMEJqHOJujwl0NqrXs4I1QqF6Acib4SU3ORiubgHiXDRnufEAHa_DD6DSBIHcp56f4jJsYRWHV4rhu_f_1V9SRqJUE1iFrkUpc6YPpZYwsbYzyzg=s500-no?authuser=0">
+<meta property="og:image" content="https://lh3.googleusercontent.com/pw/AM-JKLXyVG-owNN5XklZ4OnRSW9WLl4-b9bSdb9APzlugKNAZ5Nkn7DScdC3Ewg9QlHzwjPq0AgZDgil1CItXIlmlOrftW4ylDhgYYkiTVwam_OWmXSjqW6Ws6DmhUfQPqJxRv2saiw7TbvtuxMVOo9WdcnrAw=s500-no?authuser=0">
+<meta property="og:image" content="https://lh3.googleusercontent.com/pw/AM-JKLVJamOIYrpjIbp4dfAKn7obVqSBzyoy3fL0P3TyBl08WLTkmxnFKitzHGEkyogTImCE0lNikRmp-kur7SZoQb2W6OIYHFsmzl3x-_E_XQdeB9xIPDuQZ5LF0pU_PQGSNmZTxVHXK3UMxcbj9IVFzPR_3g=s989-no?authuser=0">
+<meta property="og:image" content="https://lh3.googleusercontent.com/pw/AM-JKLXh_lI8yr8_r0C7DmlK7ctpYhwRW1CBkDSMPzq1rJyGg0Nf_H0EVZD5l05VbFaIVhccAvDE4vAsU09K8JhMJpv79r5fWIM45Pca9B0DDlpPNrYOe4gbwt7RWoDMaJvbGPI8mukDY7YBzpPEo6K5x1SoRg=s989-no?authuser=0">
+<meta property="og:image" content="https://lh3.googleusercontent.com/pw/AM-JKLV08-CbGMFu6D-JvIcvVNA7UaezJCyyoyTc1yaYMsCKo3E-uSP4Pkgwq1GPMyMynPpmyC4kZP6UlKKYwLNTFrk3i7Yyvj1fbsm4s4IhCoYwGaCCmBKtUmVqUCK68mLH2UehSRU4LzRwSj0TsAoLDE1YsA=s500-no?authuser=0">
+<meta property="og:image" content="https://lh3.googleusercontent.com/pw/AM-JKLU4HPg-Hb1bOVvy0q-QDBtEw3QiZKxtinRnezNRrIl8zmvRxAJVWWXqsq6EYWa9ZMG-lrpggVmLEfWM8W3Q-vkOfLDuwp0zETjXeQoZbviH9F1Rtjyianhf2T8wjV4Ga-snZEPk3ktFt5MQvGFDTJLQfA=s600-no?authuser=0">
+<meta property="og:image" content="https://lh3.googleusercontent.com/pw/AM-JKLXh0gu7uocpD5mHdH_682BvcJ2Kem2pOWn_q9mfKAQcXOqagcaKSO6jwYrbyNHImhtpY1fR4AaRwEgDMRBXNNNAfKUdltTVz4RtxMIKnCBCv40BxmorH4rQCGLBJIZiCW5noedjNU-PuSmGwxkiCQ7y_A=s989-no?authuser=0">
+<meta property="og:image" content="https://lh3.googleusercontent.com/pw/AM-JKLUKfh4BipI__kSHzRtYa56mKHg6ZjWrb1FBVJB163rqZk2ZouestI_FkADKi1aJ8mEk42BJ_aUYJn4m65eH5Pcksa7Cg6ffyM0xCB03VuSEwfoL1GIK-mR_EhRYLgpj2ZfDXHjNAUsTajtdZt4qjHSIlQ=s500-no?authuser=0">
+<meta property="og:image" content="https://lh3.googleusercontent.com/pw/AM-JKLXNDGZ3Os4o18eViOtd84KODLlNMpS1UGnWniS2dtvRaNL90tmjIeZr1a6c-aj94zAfW9AKfyd_NOoi-XjCeQ52gkEFGmqXVi2On-fTYNRJxJ-uSvHBtlDXe5u46lwJcvAvO9eTfaZYEbHMrvzlv4TvEg=s500-no?authuser=0">
+<meta property="og:image" content="https://lh3.googleusercontent.com/pw/AM-JKLUKL2cjy8rHZZoDa2OuZm4OwHDr_sE2cRagFBGq6QspPIkmIh8RmhGFEoHX6JaD0-uRMx5brmPX_nvJWxxd_31KktXR8_4AX4SgOzm0u8Bqyr2JkpHrK_GTBiB_-jyUc8mRlquBob6IPN25TRk9H6lqOA=s500-no?authuser=0">
+<meta property="og:image" content="https://lh3.googleusercontent.com/pw/AM-JKLX3kfyTFFzykOX4rlLEiGOJYdJSJ9Eqs3rkEtfTgbcPZo3OwzHd-tA9DLSSNxI6JuJcmAzhsZgiFJ7z7DS42gePpX2dO3I5vG-IxIG015SYNxaafeLkpCtIGa5yEenCJ0rPkEcTfziTe4aBO_qvDrcbUQ=s600-no?authuser=0">
+<meta property="og:image" content="https://lh3.googleusercontent.com/pw/AM-JKLViv8SgONFKSq7kPIya1sSJkjLYbQ-3iYLzDhkX376yIldBO2DcfCyoU8OYCDqMbOzB_SNfAnhg9K5F05muflzRuB5Zhc6qMrrsmjaeF4PamMZuzgT7lJ2VaXGTpdOuQ1a5b5HCbA3siqS_1fjcD6jThQ=s500-no?authuser=0">
+<meta property="og:image" content="https://lh3.googleusercontent.com/pw/AM-JKLX0JRdSPAFbtQkm1occbhFmsEIY3nhOVlAms297kFexjSciLZFEKgQk_Gqlu3WaZyTD4QYypLekYfO2DmDh1ErFdaQ6-Mr9d5iqAwQy8FWwdNGEQBRyStSGcOWyTFChc_R3LqfxiDyA5NZY0ll-Xwta1Q=s500-no?authuser=0">
+<meta property="og:image" content="https://lh3.googleusercontent.com/pw/AM-JKLWON7U5Y517zFX5j2Vj9S6e_kaAwcDyeD7bwx05tNzQo_zDqlMBSvvlS_fE9AQLcdZdLQG7Y-ySJCr97co8yFqNfmIfsdoktg5umaRhGodv8sziD0-sV6VprChgN3fUZi9nuvFC5asbyNB_oJsXJZx4vg=s800-no?authuser=0">
+<meta property="og:image" content="https://lh3.googleusercontent.com/pw/AM-JKLU3rXse2GjNXqMAzYuZrZk0xbMHFLXXp1YKof5Pu-zstiguRU7nBPH1rqNp_fl40fBT-W28fr_yuXXCxnPjxPXTqdvJb7jP6pMsE2ogrtjCoCKAeQcZv6zm7x75_iDwx8x4Mce-fBZayMB5inVSE7UX1g=s640-no?authuser=0">
+<meta property="article:published_time" content="2021-12-29T15:00:00.000Z">
+<meta property="article:modified_time" content="2021-12-29T18:53:35.507Z">
 <meta property="article:author" content="Song Joyce Park">
-<meta property="article:tag" content="Data Pipeline">
+<meta property="article:tag" content="Music">
+<meta property="article:tag" content="BestOf2021">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://lh3.googleusercontent.com/pw/AM-JKLVqEoT9LETZzeAriZQM4cxYp9Kp7t_MEqPIfkBuk69NmxYsyT8p5if6fn64J6k9cy7oneLOBsfFapXrS9upM0nJTxtkiWcXJYWWzpUzAll0FFWNyoDJSvZc2conN164QAaRnKjToZF4jOUofN4SOMDrhw=w2133-h779-no?authuser=0">
+<meta name="twitter:image" content="https://lh3.googleusercontent.com/pw/AM-JKLWQOyJYmICWvgJnn1m9vsIkfgxyOe72u_Z26FJ6x_NMAvg5p5395nIuO8iMXHcjpzL4yNDD7g8VGxEKkbZVYZYt1oOtnAjx9GQAUSQbuAWZ71q0kkAfUYFyPMhVena61OE-JBInAw1zClPFthUA55SeJQ=s500-no?authuser=0">
     
     
         
@@ -43,8 +62,8 @@
         <meta property="og:image" content="https://lh3.googleusercontent.com/pw/AM-JKLXE0TOvzGd2C_G4f79oDYbTFd88BPZLRRX7PoOrqw4Y3txQSxo-yvOhdTBBii2e4n83qUxSVki9ZS7F0fdD541BlsX3k4m6-_La__Pr0s2i4Srb6gyYr1rjwe2raKgLes_e7PNjJrGA_40KK1EFPD9KUA=s989-no?authuser=0"/>
     
     
-        <meta property="og:image" content="https://lh3.googleusercontent.com/pw/AM-JKLVqEoT9LETZzeAriZQM4cxYp9Kp7t_MEqPIfkBuk69NmxYsyT8p5if6fn64J6k9cy7oneLOBsfFapXrS9upM0nJTxtkiWcXJYWWzpUzAll0FFWNyoDJSvZc2conN164QAaRnKjToZF4jOUofN4SOMDrhw=w2133-h779-no?authuser=0"/>
-        <meta class="swiftype" name="image" data-type="enum" content="https://lh3.googleusercontent.com/pw/AM-JKLVqEoT9LETZzeAriZQM4cxYp9Kp7t_MEqPIfkBuk69NmxYsyT8p5if6fn64J6k9cy7oneLOBsfFapXrS9upM0nJTxtkiWcXJYWWzpUzAll0FFWNyoDJSvZc2conN164QAaRnKjToZF4jOUofN4SOMDrhw=w2133-h779-no?authuser=0"/>
+        <meta property="og:image" content="https://lh3.googleusercontent.com/pw/AM-JKLWQOyJYmICWvgJnn1m9vsIkfgxyOe72u_Z26FJ6x_NMAvg5p5395nIuO8iMXHcjpzL4yNDD7g8VGxEKkbZVYZYt1oOtnAjx9GQAUSQbuAWZ71q0kkAfUYFyPMhVena61OE-JBInAw1zClPFthUA55SeJQ=s500-no?authuser=0"/>
+        <meta class="swiftype" name="image" data-type="enum" content="https://lh3.googleusercontent.com/pw/AM-JKLWQOyJYmICWvgJnn1m9vsIkfgxyOe72u_Z26FJ6x_NMAvg5p5395nIuO8iMXHcjpzL4yNDD7g8VGxEKkbZVYZYt1oOtnAjx9GQAUSQbuAWZ71q0kkAfUYFyPMhVena61OE-JBInAw1zClPFthUA55SeJQ=s500-no?authuser=0"/>
     
     
     
@@ -259,20 +278,20 @@
         <div class="post-header main-content-wrap text-left">
     
         <h1 class="post-title">
-            데이터의 흐름: 기본적인 데이터 파이프라인 개념 설명
+            Best of 2021: 나와 함께했던 음악
         </h1>
     
     
         <div class="post-meta">
-    <time datetime="2021-06-17T00:00:00+09:00">
+    <time datetime="2021-12-30T00:00:00+09:00">
 	
-		    Jun 17, 2021
+		    Dec 30, 2021
     	
     </time>
     
         <span>in </span>
         
-    <a class="category-link" href="/categories/Guides/">Guides</a>
+    <a class="category-link" href="/categories/Life/">Life</a>
 
 
     
@@ -284,41 +303,108 @@
     
     <div class="post-content markdown">
         <div class="main-content-wrap">
-            <p>스타트업계로 오게 된 후로는 데이터 파이프라인이 얼마나 중요한지 뼈저리게 느끼고 있습니다. 데이터베이스 지식, 데이터 파이프라인 지식을 가지고 있는 게 중요하다고 생각해서 전부터 배우려고 노력은 했지만 역시 산전수전 다 직접 겪어봐야 빠르게 성장 할 수 있습니다 😅</p>
-<p>저도 아직 많이 부족하지만, 데이터 외 직군 혹은 데이터를 다루지만 데이터 파이프라인에 대한 지식이 부족한 분들을 위해 아주 기본적인 개념들을 설명하려 합니다.<br/><br/></p>
+            <p>음악에 푹 빠져 살았던 시절도 있었는데 갈수록 음악을 덜 듣기도 하고 그냥 아는 아티스트들의 신곡만 듣는 것 같네요. 그럼에도 올해 정말 많은 곡을 들었고 나중에 이 곡들을 들었을 때 2021년을 떠오르게 될 것 같아요. </p>
+<p><strong>올해 많이 들었던, 그냥 좋았던, 혹은 의미 있었던 곡 20곡입니다.</strong> 키워드로는 인디, 쇼미더머니, YG…일것 같네요 ㅎㅎ</p>
 <span id="more"></span>
 
+<br/>
+
 <hr>
 <br/>
 
-<h1 id="기본-용어"><a href="#기본-용어" class="headerlink" title="기본 용어"></a>기본 용어</h1><p>비슷하지만 조금씩 다른 파이프라인 관련 용어.</p>
-<p><strong><span class="highlight-text primary">ETL (Extract, Transform, Load)</span></strong>: 데이터를 추출하고(extract) → 변환하여 (transform) → 적재하는 (load) 데이터 웨어하우스 구축 프로세스</p>
-<p><strong><span class="highlight-text primary">ELT (Extract, Load, Transform)</span></strong>: 데이터를 추출하고 (extract) → 적재하고 (load) → 변환하는 (transform) 프로세스</p>
-<p><strong><span class="highlight-text primary">Data Warehouse (DW)</span></strong>: 다양한 소스에서 발생한 데이터를 하나의 통합된 형태로 저장하는 공간. 데이터는 설계된 스키마에 맞게 처리되어 저장된다</p>
-<p><strong><span class="highlight-text primary">Data Lake</span></strong>: 다양한 소스에서 발생한 데이터를 그대로 가져와 저장하는 공간. 데이터 웨어하우스와 달리 정형/반정형/비정형 데이터 등 다양한 형태의 소스 raw 데이터를 통합하지 않고 한 곳에 모은다</p>
-<p><strong><span class="highlight-text primary">Data Mart</span></strong>: 특정 목적 (대체로 팀/부서와 같은 조직 단위)을 위해 만들어진 데이터 웨어하우스. 보통 하나의 데이터 웨어하우스에서 조직 단위별로 여러 데이터 마트가 만들어진다</p>
-<p><strong><span class="highlight-text primary">Data Pipeline</span></strong>: 데이터가 흐르는 모든 과정의 총칭 (생성, 변환, 저장, 등)</p>
-<p><strong><span class="highlight-text primary">RDB (Relational Database)</span></strong>: 2차원 (속성, 값) 형식 테이블들로 구성된 관계형 데이터베이스. “관계형”이란 각 테이블 안에서 속성과 값 사이 관계가 있고 테이블과 테이블 사이에도 관계를 가지고 있다. 가장 일반적인 데이터베이스 타입이고 일반적으로 SQL (Structured Query Language) 언어를 통해 데이터를 조회한다</p>
-<p><strong><span class="highlight-text primary">RDBMS (Relational Database Management System)</span></strong>: 관계형 데이터베이스 관리 (생성, 수정, 등)를 위한 프로그램. 예: MySQL, Oracle, SQL Server, 등등<br><br/></p>
-<hr>
-<br/>
+<table>
+<thead>
+<tr>
+<th align="center">이미지</th>
+<th align="center">이름</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center"><img src="https://lh3.googleusercontent.com/pw/AM-JKLWQOyJYmICWvgJnn1m9vsIkfgxyOe72u_Z26FJ6x_NMAvg5p5395nIuO8iMXHcjpzL4yNDD7g8VGxEKkbZVYZYt1oOtnAjx9GQAUSQbuAWZ71q0kkAfUYFyPMhVena61OE-JBInAw1zClPFthUA55SeJQ=s500-no?authuser=0" class="" width="80" height="80"></td>
+<td align="center"><a target="_blank" rel="noopener" href="https://youtu.be/-JviOqV3Kgc" title="Title">Glen Check - Dazed &amp; Confused</a></td>
+</tr>
+<tr>
+<td align="center"><img src="https://lh3.googleusercontent.com/pw/AM-JKLWQOyJYmICWvgJnn1m9vsIkfgxyOe72u_Z26FJ6x_NMAvg5p5395nIuO8iMXHcjpzL4yNDD7g8VGxEKkbZVYZYt1oOtnAjx9GQAUSQbuAWZ71q0kkAfUYFyPMhVena61OE-JBInAw1zClPFthUA55SeJQ=s500-no?authuser=0" class="" width="80" height="80"></td>
+<td align="center"><a target="_blank" rel="noopener" href="https://youtu.be/ylakJHYCp4I" title="Title">Glen Check - Dive Baby, Dive</a></td>
+</tr>
+<tr>
+<td align="center"><img src="https://lh3.googleusercontent.com/pw/AM-JKLWoG6q556xB4dkXRj1ZWtTV1TVy21BCy_GcbYxyy44eOi3dTDzR6_asxOXHb_Zzwjd9Kiupi2xHnBvTEnJg40Jtg_wFiRj-dxTR8qlXaUHkIpNGmwycdxIivy7jZwDB3kxfP2qr1i1o0UYoBDgTwUdw9A=w811-h779-no?authuser=0" class="" width="80" height="80"></td>
+<td align="center"><a target="_blank" rel="noopener" href="https://youtu.be/xoRWoCvh6kc" title="Title">검정치마 - Girl Scout</a></td>
+</tr>
+<tr>
+<td align="center"><img src="https://lh3.googleusercontent.com/pw/AM-JKLUXsreXJL7IHgQBUMWtCFlzWBNtV_uS7oBuaOUItmXNggftgO9oLi0aei5qLi3mqOuWww3ShxP7XgqoiTBi5bD3w-x59oQQ9mlnIvs0oOLme1cFlXq5ODepPx9BG-Uiej5nUOW4BMTKTVb5d2URdyjEBA=s500-no?authuser=0" class="" width="80" height="80"></td>
+<td align="center"><a target="_blank" rel="noopener" href="https://youtu.be/KrfDknXJivw" title="Title">Yaeji &amp; 오혁 - 29</a></td>
+</tr>
+<tr>
+<td align="center"><img src="https://lh3.googleusercontent.com/pw/AM-JKLVgUlt0-lVcF8GnUn1omLA06NVLbN1muVqTWjmm-3BB3qeEqhEzIRwdhtvThk3s26nuWKQ6rzh2a8YBBCUTPGTR2uQMWdRrQqa1g5_T-Zrmn3EYfvDvxoOq64AvNoyHFIh_A4X-Hbe3bYzaget3WUkRiA=s500-no?authuser=0" class="" width="80" height="80"></td>
+<td align="center"><a target="_blank" rel="noopener" href="https://youtu.be/CKZvWhCqx1s" title="Title">ROSÉ - On The Ground</a></td>
+</tr>
+<tr>
+<td align="center"><img src="https://lh3.googleusercontent.com/pw/AM-JKLXQCsBDvnhjKmmZ7-qsBeGyAlnRRKXbN5X6zaSMBPeMEJqHOJujwl0NqrXs4I1QqF6Acib4SU3ORiubgHiXDRnufEAHa_DD6DSBIHcp56f4jJsYRWHV4rhu_f_1V9SRqJUE1iFrkUpc6YPpZYwsbYzyzg=s500-no?authuser=0" class="" width="80" height="80"></td>
+<td align="center"><a target="_blank" rel="noopener" href="https://youtu.be/qoqA-th1ZPE" title="Title">CL - Lover Like Me</a></td>
+</tr>
+<tr>
+<td align="center"><img src="https://lh3.googleusercontent.com/pw/AM-JKLXyVG-owNN5XklZ4OnRSW9WLl4-b9bSdb9APzlugKNAZ5Nkn7DScdC3Ewg9QlHzwjPq0AgZDgil1CItXIlmlOrftW4ylDhgYYkiTVwam_OWmXSjqW6Ws6DmhUfQPqJxRv2saiw7TbvtuxMVOo9WdcnrAw=s500-no?authuser=0" class="" width="80" height="80"></td>
+<td align="center"><a target="_blank" rel="noopener" href="https://youtu.be/kS09nfMyLJ8" title="Title">KYUL(결) - Broken</a></td>
+</tr>
+<tr>
+<td align="center"><img src="https://lh3.googleusercontent.com/pw/AM-JKLVJamOIYrpjIbp4dfAKn7obVqSBzyoy3fL0P3TyBl08WLTkmxnFKitzHGEkyogTImCE0lNikRmp-kur7SZoQb2W6OIYHFsmzl3x-_E_XQdeB9xIPDuQZ5LF0pU_PQGSNmZTxVHXK3UMxcbj9IVFzPR_3g=s989-no?authuser=0" class="" width="80" height="80"></td>
+<td align="center"><a target="_blank" rel="noopener" href="https://youtu.be/EtiPbWzUY9o" title="Title">AKMU - 낙하</a></td>
+</tr>
+<tr>
+<td align="center"><img src="https://lh3.googleusercontent.com/pw/AM-JKLXh_lI8yr8_r0C7DmlK7ctpYhwRW1CBkDSMPzq1rJyGg0Nf_H0EVZD5l05VbFaIVhccAvDE4vAsU09K8JhMJpv79r5fWIM45Pca9B0DDlpPNrYOe4gbwt7RWoDMaJvbGPI8mukDY7YBzpPEo6K5x1SoRg=s989-no?authuser=0" class="" width="80" height="80"></td>
+<td align="center"><a target="_blank" rel="noopener" href="https://youtu.be/I3beae4-4iE" title="Title">onthedal - Homework</a></td>
+</tr>
+<tr>
+<td align="center"><img src="https://lh3.googleusercontent.com/pw/AM-JKLV08-CbGMFu6D-JvIcvVNA7UaezJCyyoyTc1yaYMsCKo3E-uSP4Pkgwq1GPMyMynPpmyC4kZP6UlKKYwLNTFrk3i7Yyvj1fbsm4s4IhCoYwGaCCmBKtUmVqUCK68mLH2UehSRU4LzRwSj0TsAoLDE1YsA=s500-no?authuser=0" class="" width="80" height="80"></td>
+<td align="center"><a target="_blank" rel="noopener" href="https://youtu.be/1ZOl7RInT4g" title="Title">coldnight - slow down</a></td>
+</tr>
+<tr>
+<td align="center"><img src="https://lh3.googleusercontent.com/pw/AM-JKLU4HPg-Hb1bOVvy0q-QDBtEw3QiZKxtinRnezNRrIl8zmvRxAJVWWXqsq6EYWa9ZMG-lrpggVmLEfWM8W3Q-vkOfLDuwp0zETjXeQoZbviH9F1Rtjyianhf2T8wjV4Ga-snZEPk3ktFt5MQvGFDTJLQfA=s600-no?authuser=0" class="" width="80" height="80"></td>
+<td align="center"><a target="_blank" rel="noopener" href="https://youtu.be/tnAxZipkuWw" title="Title">sokodomo - 회전목마 (feat. Zion.T, 원슈타인)</a></td>
+</tr>
+<tr>
+<td align="center"><img src="https://lh3.googleusercontent.com/pw/AM-JKLXh0gu7uocpD5mHdH_682BvcJ2Kem2pOWn_q9mfKAQcXOqagcaKSO6jwYrbyNHImhtpY1fR4AaRwEgDMRBXNNNAfKUdltTVz4RtxMIKnCBCv40BxmorH4rQCGLBJIZiCW5noedjNU-PuSmGwxkiCQ7y_A=s989-no?authuser=0" class="" width="80" height="80"></td>
+<td align="center"><a target="_blank" rel="noopener" href="https://youtu.be/awkkyBH2zEo%22Title%22">LISA - LALISA</a></td>
+</tr>
+<tr>
+<td align="center"><img src="https://lh3.googleusercontent.com/pw/AM-JKLUKfh4BipI__kSHzRtYa56mKHg6ZjWrb1FBVJB163rqZk2ZouestI_FkADKi1aJ8mEk42BJ_aUYJn4m65eH5Pcksa7Cg6ffyM0xCB03VuSEwfoL1GIK-mR_EhRYLgpj2ZfDXHjNAUsTajtdZt4qjHSIlQ=s500-no?authuser=0" class="" width="80" height="80"></td>
+<td align="center"><a target="_blank" rel="noopener" href="https://youtu.be/IiYX1vXo_BA" title="Title">그리즐리 - Favorite (feat. punchnello, SOLE)</a></td>
+</tr>
+<tr>
+<td align="center"><img src="https://lh3.googleusercontent.com/pw/AM-JKLXNDGZ3Os4o18eViOtd84KODLlNMpS1UGnWniS2dtvRaNL90tmjIeZr1a6c-aj94zAfW9AKfyd_NOoi-XjCeQ52gkEFGmqXVi2On-fTYNRJxJ-uSvHBtlDXe5u46lwJcvAvO9eTfaZYEbHMrvzlv4TvEg=s500-no?authuser=0" class="" width="80" height="80"></td>
+<td align="center"><a target="_blank" rel="noopener" href="https://youtu.be/q1Acqo5F40gA" title="Title">윤지영 - 우우우린</a></td>
+</tr>
+<tr>
+<td align="center"><img src="https://lh3.googleusercontent.com/pw/AM-JKLUKL2cjy8rHZZoDa2OuZm4OwHDr_sE2cRagFBGq6QspPIkmIh8RmhGFEoHX6JaD0-uRMx5brmPX_nvJWxxd_31KktXR8_4AX4SgOzm0u8Bqyr2JkpHrK_GTBiB_-jyUc8mRlquBob6IPN25TRk9H6lqOA=s500-no?authuser=0" class="" width="80" height="80"></td>
+<td align="center"><a target="_blank" rel="noopener" href="https://youtu.be/mpMP-OmvEwU" title="Title">MY Q - 이 시간은 우리를 어디로</a></td>
+</tr>
+<tr>
+<td align="center"><img src="https://lh3.googleusercontent.com/pw/AM-JKLX3kfyTFFzykOX4rlLEiGOJYdJSJ9Eqs3rkEtfTgbcPZo3OwzHd-tA9DLSSNxI6JuJcmAzhsZgiFJ7z7DS42gePpX2dO3I5vG-IxIG015SYNxaafeLkpCtIGa5yEenCJ0rPkEcTfziTe4aBO_qvDrcbUQ=s600-no?authuser=0" class="" width="80" height="80"></td>
+<td align="center"><a target="_blank" rel="noopener" href="https://youtu.be/3DvWZLZt4s4" title="Title">O.O.O - 우리는 영문도 모른 채</a></td>
+</tr>
+<tr>
+<td align="center"><img src="https://lh3.googleusercontent.com/pw/AM-JKLViv8SgONFKSq7kPIya1sSJkjLYbQ-3iYLzDhkX376yIldBO2DcfCyoU8OYCDqMbOzB_SNfAnhg9K5F05muflzRuB5Zhc6qMrrsmjaeF4PamMZuzgT7lJ2VaXGTpdOuQ1a5b5HCbA3siqS_1fjcD6jThQ=s500-no?authuser=0" class="" width="80" height="80"></td>
+<td align="center"><a target="_blank" rel="noopener" href="https://youtu.be/_ZSYNnuWJK8" title="Title">원슈타인 - X (Butterfly)</a></td>
+</tr>
+<tr>
+<td align="center"><img src="https://lh3.googleusercontent.com/pw/AM-JKLX0JRdSPAFbtQkm1occbhFmsEIY3nhOVlAms297kFexjSciLZFEKgQk_Gqlu3WaZyTD4QYypLekYfO2DmDh1ErFdaQ6-Mr9d5iqAwQy8FWwdNGEQBRyStSGcOWyTFChc_R3LqfxiDyA5NZY0ll-Xwta1Q=s500-no?authuser=0" class="" width="80" height="80"></td>
+<td align="center"><a target="_blank" rel="noopener" href="https://youtu.be/RjbNMogQw8s" title="Title">트레저 - 음 (MMM)</a></td>
+</tr>
+<tr>
+<td align="center"><img src="https://lh3.googleusercontent.com/pw/AM-JKLWON7U5Y517zFX5j2Vj9S6e_kaAwcDyeD7bwx05tNzQo_zDqlMBSvvlS_fE9AQLcdZdLQG7Y-ySJCr97co8yFqNfmIfsdoktg5umaRhGodv8sziD0-sV6VprChgN3fUZi9nuvFC5asbyNB_oJsXJZx4vg=s800-no?authuser=0" class="" width="80" height="80"></td>
+<td align="center"><a target="_blank" rel="noopener" href="https://youtu.be/Tv3FtmMWfPQ" title="Title">비오 - MBTI (feat. 쿠기, 로꼬)</a></td>
+</tr>
+<tr>
+<td align="center"><img src="https://lh3.googleusercontent.com/pw/AM-JKLU3rXse2GjNXqMAzYuZrZk0xbMHFLXXp1YKof5Pu-zstiguRU7nBPH1rqNp_fl40fBT-W28fr_yuXXCxnPjxPXTqdvJb7jP6pMsE2ogrtjCoCKAeQcZv6zm7x75_iDwx8x4Mce-fBZayMB5inVSE7UX1g=s640-no?authuser=0" class="" width="80" height="80"></td>
+<td align="center"><a target="_blank" rel="noopener" href="https://youtu.be/XZ4UK31FpRw" title="Title">베이식 - 만남은 쉽고 이별은 어려워 (feat. Leellamarz)</a></td>
+</tr>
+<tr>
+<td align="center"><br/></td>
+<td align="center"></td>
+</tr>
+</tbody></table>
 
-<h1 id="기본-ETL-과정"><a href="#기본-ETL-과정" class="headerlink" title="기본 ETL 과정"></a>기본 ETL 과정</h1><p>조직마다 설계가 다르고 구체적인 프로세스는 보기보다 훨씬 복잡하지만, 대부분 아래와 같은 ETL 프로세스를 통해 데이터 웨어하우스를 구축합니다.<br/><br/></p>
-<img src="https://lh3.googleusercontent.com/pw/AM-JKLVqEoT9LETZzeAriZQM4cxYp9Kp7t_MEqPIfkBuk69NmxYsyT8p5if6fn64J6k9cy7oneLOBsfFapXrS9upM0nJTxtkiWcXJYWWzpUzAll0FFWNyoDJSvZc2conN164QAaRnKjToZF4jOUofN4SOMDrhw=w2133-h779-no?authuser=0" class="fig-100">
-
-<p><strong><span class="highlight-text primary">Extract.</span></strong> 다양한 곳에서 생성된 데이터를 추출하는 단계. 조직마다 소스들은 다르지만 커머스에서는 가장 기본적으로 아래와 같은 데이터 소스들이 있습니다:</p>
-<ul>
-<li>운영 데이터베이스 → 주문, 상품 데이터와 같은 데이터가 담긴 데이터베이스</li>
-<li>웹/앱 이벤트 데이터</li>
-<li>마케팅 데이터 → 페이스북, 구글, 카카오, 등</li>
-<li>사용하는 다른 서드파티 앱 데이터</li>
-</ul>
-<p><strong><span class="highlight-text primary">Transform.</span></strong> 소스 데이터가 어떤 형태인지에 따라 이 과정은 많이 달라집니다. 간단한 변환은 각 소스의 날짜 컬럼 형식들을 하나의 기준으로 맞추기, 빈값 처리하는 방식 통일하기와 같은 작업이 있고 보통 테이블들을 조인하고 계산된 필드 만드는 변환이 들어갑니다 → 예: members 테이블에 각 멤버의 구매 이력 관련 컬럼 생성 (첫 구매일, 지난 3개월 총 구매액, 등등). 자주 보는 지표들은 summary 테이블로 만들 수 있습니다 → 예: 일별 거래액, 일별 모든 매체의 총 마케팅 비용 합계.</p>
-<p><strong><span class="highlight-text primary">Load.</span></strong> 변환된 데이터를 데이터 웨어하우스에 적재합니다.<br/><br/></p>
-<h1 id="ETL-vs-ELT"><a href="#ETL-vs-ELT" class="headerlink" title="ETL vs ELT"></a>ETL vs ELT</h1><p>ELT은 여러 소스의 데이터를 추출하여 바로 raw 형태로 적재 후 변환합니다. 즉, 데이터 레이크에 일단 모든 소스의 데이터를 담고 변환은 스테이징 필요 없이 데이터 레이크/웨어하우스 안에서 이루어집니다. 최신 클라우드 기반 기술로 인해 ETL에 비해 비교적 새로운 기술이고 뜨고 있는 데이터 처리 방식입니다. 이 과정은 적재가 빠르게 이루어진다는 게 장점이지만 유연한 만큼 데이터 신뢰/정합성은 떨어질 수 있습니다.<br/><br/></p>
-<h1 id="Data-Mart"><a href="#Data-Mart" class="headerlink" title="Data Mart"></a>Data Mart</h1><p>큰 규모의 조직에서는 조직 단위로 특화된 데이터 마트를 설계하고 각 조직에서 봐야 하는 데이터만 볼 수 있게 권한을 관리합니다. 스타트업이나 더 작은 규모의 조직에서는 비교적 팀/부서와 같은 조직 단위 사이 경계가 덜 명확하기 때문에 조직 단위별 마트 없이 하나의 데이터 웨어하우스를 사용하는 방식이 크게 문제 되지 않을 수 있습니다.<br>하지만 전사 조직용 데이터에 비해 데이터 마트에 있는 테이블들은 유연하게 수정/변환 할 수 있기 때문에 빠르게 변하는 스타트업 조직에도 데이터 마트를 잘 활용한다면 효율적으로 분석하고 인사이트 얻을 수 있습니다.<br/><br/></p>
-<img src="https://lh3.googleusercontent.com/pw/AM-JKLWZQJGvtMmoyOtAKl8GJ-UcAjMMDR1OE4I5cBSEOSH4CELDL52kAr6TxDZ6LdNI_0qOWQ57MxPmn5laeXtrZL7Qlw5JcTUXRaehO9wIp53D9RDAX_uX954Fs-Eg-4wvt4N6YMxq6yf7NUcKHgRZgarPsw=w2133-h915-no?authuser=0" class="">
-<br/>
             
 
 
@@ -329,7 +415,7 @@
             <div class="post-footer-tags">
                 <span class="text-color-light text-small">Tagged In</span><br/>
                 
-    <a class="tag tag--primary tag--small t-none-link" href="/tags/Data-Pipeline/" rel="tag">Data Pipeline</a>
+    <a class="tag tag--primary tag--small t-none-link" href="/tags/BestOf2021/" rel="tag">BestOf2021</a> <a class="tag tag--primary tag--small t-none-link" href="/tags/Music/" rel="tag">Music</a>
 
             </div>
         
@@ -339,25 +425,25 @@
         <ul class="post-actions post-action-nav">
             <li class="post-action">
                 
-                    
-                <a
-                    class="post-action-btn btn btn--default tooltip--top"
-                    href="/2021/08/26/colab-r-and-python/"
-                    data-tooltip="Google Colab 101: Python-R 같이 사용하기"
-                    aria-label="PREVIOUS: Google Colab 101: Python-R 같이 사용하기"
-                >
-                    
+                    <a
+                        class="post-action-btn btn btn--disabled"
+                        aria-hidden="true"
+                    >
+                        
                         <i class="fa fa-angle-left" aria-hidden="true"></i>
                         <span class="hide-xs hide-sm text-small icon-ml">PREVIOUS</span>
                     </a>
             </li>
             <li class="post-action">
                 
-                    <a
-                        class="post-action-btn btn btn--disabled"
-                        aria-hidden="true"
-                    >
-                        
+                    
+                <a
+                    class="post-action-btn btn btn--default tooltip--top"
+                    href="/2021/09/17/colab-bigquery-connect/"
+                    data-tooltip="Google Colab 101: BigQuery 연동하고 쿼리하기"
+                    aria-label="NEXT: Google Colab 101: BigQuery 연동하고 쿼리하기"
+                >
+                    
                         <span class="hide-xs hide-sm text-small icon-mr">NEXT</span>
                         <i class="fa fa-angle-right" aria-hidden="true"></i>
                     </a>
@@ -380,7 +466,7 @@
             <li class="post-action hide-xs">
                 <a
                     class="post-action-btn btn btn--default"
-                    target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://sjp24.github.io/2021/06/17/basic-pipeline/"
+                    target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://sjp24.github.io/2021/12/30/best-of-2021-music/"
                     title="Share on Facebook"
                     aria-label="Share on Facebook"
                 >
@@ -393,7 +479,7 @@
             <li class="post-action hide-xs">
                 <a
                     class="post-action-btn btn btn--default"
-                    target="new" href="https://twitter.com/intent/tweet?text=http://sjp24.github.io/2021/06/17/basic-pipeline/"
+                    target="new" href="https://twitter.com/intent/tweet?text=http://sjp24.github.io/2021/12/30/best-of-2021-music/"
                     title="Share on Twitter"
                     aria-label="Share on Twitter"
                 >
@@ -406,7 +492,7 @@
             <li class="post-action hide-xs">
                 <a
                     class="post-action-btn btn btn--default"
-                    target="new" href="https://www.linkedin.com/shareArticle?mini=true&amp;url=http://sjp24.github.io/2021/06/17/basic-pipeline/"
+                    target="new" href="https://www.linkedin.com/shareArticle?mini=true&amp;url=http://sjp24.github.io/2021/12/30/best-of-2021-music/"
                     title="global.share_on_linkedin"
                     aria-label="global.share_on_linkedin"
                 >
@@ -465,25 +551,25 @@
         <ul class="post-actions post-action-nav">
             <li class="post-action">
                 
-                    
-                <a
-                    class="post-action-btn btn btn--default tooltip--top"
-                    href="/2021/08/26/colab-r-and-python/"
-                    data-tooltip="Google Colab 101: Python-R 같이 사용하기"
-                    aria-label="PREVIOUS: Google Colab 101: Python-R 같이 사용하기"
-                >
-                    
+                    <a
+                        class="post-action-btn btn btn--disabled"
+                        aria-hidden="true"
+                    >
+                        
                         <i class="fa fa-angle-left" aria-hidden="true"></i>
                         <span class="hide-xs hide-sm text-small icon-ml">PREVIOUS</span>
                     </a>
             </li>
             <li class="post-action">
                 
-                    <a
-                        class="post-action-btn btn btn--disabled"
-                        aria-hidden="true"
-                    >
-                        
+                    
+                <a
+                    class="post-action-btn btn btn--default tooltip--top"
+                    href="/2021/09/17/colab-bigquery-connect/"
+                    data-tooltip="Google Colab 101: BigQuery 연동하고 쿼리하기"
+                    aria-label="NEXT: Google Colab 101: BigQuery 연동하고 쿼리하기"
+                >
+                    
                         <span class="hide-xs hide-sm text-small icon-mr">NEXT</span>
                         <i class="fa fa-angle-right" aria-hidden="true"></i>
                     </a>
@@ -506,7 +592,7 @@
             <li class="post-action hide-xs">
                 <a
                     class="post-action-btn btn btn--default"
-                    target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://sjp24.github.io/2021/06/17/basic-pipeline/"
+                    target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://sjp24.github.io/2021/12/30/best-of-2021-music/"
                     title="Share on Facebook"
                     aria-label="Share on Facebook"
                 >
@@ -519,7 +605,7 @@
             <li class="post-action hide-xs">
                 <a
                     class="post-action-btn btn btn--default"
-                    target="new" href="https://twitter.com/intent/tweet?text=http://sjp24.github.io/2021/06/17/basic-pipeline/"
+                    target="new" href="https://twitter.com/intent/tweet?text=http://sjp24.github.io/2021/12/30/best-of-2021-music/"
                     title="Share on Twitter"
                     aria-label="Share on Twitter"
                 >
@@ -532,7 +618,7 @@
             <li class="post-action hide-xs">
                 <a
                     class="post-action-btn btn btn--default"
-                    target="new" href="https://www.linkedin.com/shareArticle?mini=true&amp;url=http://sjp24.github.io/2021/06/17/basic-pipeline/"
+                    target="new" href="https://www.linkedin.com/shareArticle?mini=true&amp;url=http://sjp24.github.io/2021/12/30/best-of-2021-music/"
                     title="global.share_on_linkedin"
                     aria-label="global.share_on_linkedin"
                 >
@@ -576,7 +662,7 @@
                     <a
                         class="share-option-btn"
                         target="new"
-                        href="https://www.facebook.com/sharer/sharer.php?u=http://sjp24.github.io/2021/06/17/basic-pipeline/"
+                        href="https://www.facebook.com/sharer/sharer.php?u=http://sjp24.github.io/2021/12/30/best-of-2021-music/"
                         aria-label="Share on Facebook"
                     >
                         <i class="fab fa-facebook" aria-hidden="true"></i><span>Share on Facebook</span>
@@ -589,7 +675,7 @@
                     <a
                         class="share-option-btn"
                         target="new"
-                        href="https://twitter.com/intent/tweet?text=http://sjp24.github.io/2021/06/17/basic-pipeline/"
+                        href="https://twitter.com/intent/tweet?text=http://sjp24.github.io/2021/12/30/best-of-2021-music/"
                         aria-label="Share on Twitter"
                     >
                         <i class="fab fa-twitter" aria-hidden="true"></i><span>Share on Twitter</span>
@@ -602,7 +688,7 @@
                     <a
                         class="share-option-btn"
                         target="new"
-                        href="https://www.linkedin.com/shareArticle?mini=true&amp;url=http://sjp24.github.io/2021/06/17/basic-pipeline/"
+                        href="https://www.linkedin.com/shareArticle?mini=true&amp;url=http://sjp24.github.io/2021/12/30/best-of-2021-music/"
                         aria-label="global.share_on_linkedin"
                     >
                         <i class="fab fa-linkedin" aria-hidden="true"></i><span>global.share_on_linkedin</span>
@@ -876,9 +962,9 @@
     
         <script>
           var disqus_config = function() {
-            this.page.url = 'http://sjp24.github.io/2021/06/17/basic-pipeline/';
+            this.page.url = 'http://sjp24.github.io/2021/12/30/best-of-2021-music/';
               
-            this.page.identifier = '2021/06/17/basic-pipeline/';
+            this.page.identifier = '2021/12/30/best-of-2021-music/';
               
           };
           (function() {
