@@ -1,6 +1,7 @@
 @charset "UTF-8";
 @import url(http://fonts.googleapis.com/earlyaccess/notosanskr.css);
 @import url(http://fonts.googleapis.com/earlyaccess/nanumgothiccoding.css);
+@import url(https://hangeul.pstatic.net/hangeul_static/css/nanum-square.css);
 @font-face {
   font-family: 'Open Sans';
   font-style: normal;
@@ -44,7 +45,7 @@
   src: local("Merriweather Bold Italic"), local("Merriweather-BoldItalic"), url(../fonts/merriweather-bold-italic.ttf) format("truetype"); }
 
 html {
-  font-family: "Noto Sans KR", sans-serif;
+  font-family: "NanumSquare";
   font-size: 10px;
   -ms-text-size-adjust: 100%;
   -webkit-text-size-adjust: 100%;
@@ -58,7 +59,7 @@ body {
   margin: 0;
   padding: 0;
   background: white;
-  font-family: "Noto Sans KR", sans-serif;
+  font-family: "NanumSquare";
   font-size: 1.6rem;
   line-height: 1.9em;
   letter-spacing: 0.01em;
@@ -74,7 +75,7 @@ h4,
 h5,
 h6 {
   letter-spacing: -0.04em;
-  font-family: "Open Sans", sans-serif;
+  font-family: "NanumSquare";
   font-weight: 700;
   line-height: 1.45em;
   color: #4a4a4a; }
@@ -93,7 +94,7 @@ h1 {
   font-size: 2.4rem; }
 
 h2 {
-  font-size: 2.4rem; }
+  font-size: 2.2rem; }
 
 h3 {
   font-size: 2rem; }
@@ -165,7 +166,7 @@ pre > code {
   font-size: 1.4rem; }
 
 code {
-  font-size: 1.5rem;
+  font-size: 1.4rem;
   display: inline-block;
   font-family: "Nanum Gothic Coding", monospace;
   font-weight: 400;
@@ -189,11 +190,11 @@ blockquote {
 
 @media only screen and (max-width: 767px) {
   code {
-    font-size: 1.4rem; }
+    font-size: 1.3rem; }
   h1 {
     font-size: 2.2rem; }
   h2 {
-    font-size: 2.2rem; }
+    font-size: 2rem; }
   h3 {
     font-size: 1.8rem; }
   h4 {
@@ -207,7 +208,7 @@ blockquote {
   h1 {
     font-size: 2.25rem; }
   h2 {
-    font-size: 2.25rem; }
+    font-size: 2.05rem; }
   h3 {
     font-size: 1.85rem; }
   h4 {
@@ -445,7 +446,7 @@ blockquote {
 
 #footer {
   color: #9eabb3;
-  font-size: 1.5rem;
+  font-size: 1.4rem;
   text-align: center;
   margin-top: 70px;
   height: auto;
@@ -642,7 +643,7 @@ blockquote {
       transform: translate3d(75px, 0, 0); } }
 
 #sidebar {
-  font-family: "Noto Sans KR", sans-serif;
+  font-family: "NanumSquare";
   height: 100%;
   position: fixed;
   top: 0;
@@ -1441,7 +1442,7 @@ blockquote {
     border: 1px solid #bd1908; }
 
 .btn--medium {
-  font-size: 1.5rem;
+  font-size: 1.4rem;
   padding: 8px 15px; }
 
 .btn--small {
@@ -1450,7 +1451,7 @@ blockquote {
 
 .caption {
   display: block;
-  font-family: "Noto Sans KR", sans-serif;
+  font-family: "NanumSquare";
   font-size: 1.3rem;
   color: #81929d;
   text-align: center;
@@ -1702,7 +1703,7 @@ figure.highlight,
     position: absolute;
     bottom: 0;
     width: calc(100% - (1.5em) * 2);
-    font-family: "Noto Sans KR", sans-serif;
+    font-family: "NanumSquare";
     font-style: italic;
     background: rgba(0, 0, 0, 0.75);
     font-size: 1.3rem;
@@ -1773,17 +1774,17 @@ a.fancybox {
 
 @media only screen and (max-width: 767px) {
   .markdown h1 {
-    font-size: 2.65rem; }
+    font-size: 2.6rem; }
   .markdown h2 {
-    font-size: 2.35rem; }
+    font-size: 2.3rem; }
   .markdown h3 {
-    font-size: 2.05rem; }
+    font-size: 2rem; }
   .markdown h4 {
-    font-size: 1.75rem; }
+    font-size: 1.7rem; }
   .markdown h5 {
-    font-size: 1.55rem; }
+    font-size: 1.5rem; }
   .markdown h6 {
-    font-size: 1.35rem; } }
+    font-size: 1.3rem; } }
 
 @media only screen and (min-width: 768px) and (max-width: 1023px) {
   .markdown h1 {
@@ -1912,7 +1913,7 @@ a.fancybox {
       text-decoration: none; }
   .post .post-meta {
     line-height: 1.5em;
-    font-family: "Noto Sans KR", sans-serif;
+    font-family: "NanumSquare";
     font-size: 1.3rem;
     font-weight: 400;
     color: #9eabb3; }
@@ -1921,7 +1922,7 @@ a.fancybox {
   .post .post-content {
     text-rendering: optimizelegibility;
     letter-spacing: -0.3px;
-    font-family: "Noto Sans KR", sans-serif;
+    font-family: "NanumSquare";
     color: #5d686f;
     margin-top: 20px;
     font-weight: 400;
@@ -2052,7 +2053,7 @@ a.fancybox {
         text-decoration: none; }
     .post-header-cover .post-header .post-meta {
       max-width: 750px;
-      font-family: "Noto Sans KR", sans-serif;
+      font-family: "NanumSquare";
       font-size: 1.6rem;
       color: white !important;
       font-weight: 400;
@@ -2200,15 +2201,15 @@ a.fancybox {
   .postShorten .postShorten-meta,
   .postShorten .postShorten-readingtime,
   .postShorten .postShorten-excerpt_link {
-    font-family: "Noto Sans KR", sans-serif;
+    font-family: "NanumSquare";
     font-size: 1.3rem;
     font-weight: 400; }
   .postShorten .postShorten-excerpt,
   .postShorten .postShorten-content {
     text-rendering: optimizelegibility;
     letter-spacing: -0.3px;
-    font-family: "Noto Sans KR", sans-serif;
-    color: #5d686f;
+    font-family: "NanumSquare";
+    color: #9eabb3;
     font-weight: 400;
     overflow: hidden;
     -webkit-hypens: auto;
@@ -2236,25 +2237,25 @@ a.fancybox {
     margin: 5px 0 30px 15px; }
     .postShorten.postShorten--thumbnailimg-right .postShorten-thumbnailimg img {
       display: block;
-      width: 140px;
-      height: 140px;
+      width: 120px;
+      height: 120px;
       object-fit: cover;
       overflow: hidden; }
   .postShorten.postShorten--thumbnailimg-right .postShorten-wrap {
     float: left;
-    width: calc(100% - 140px - 20px); }
+    width: calc(100% - 120px - 20px); }
   .postShorten.postShorten--thumbnailimg-left .postShorten-thumbnailimg {
     float: left;
     margin: 5px 15px 30px 0; }
     .postShorten.postShorten--thumbnailimg-left .postShorten-thumbnailimg img {
       display: block;
-      width: 140px;
-      height: 140px;
+      width: 120px;
+      height: 120px;
       object-fit: cover;
       overflow: hidden; }
   .postShorten.postShorten--thumbnailimg-left .postShorten-wrap {
     float: right;
-    width: calc(100% - 140px - 20px); }
+    width: calc(100% - 120px - 20px); }
   .postShorten.postShorten--thumbnailimg-top .postShorten-thumbnailimg {
     margin-top: 5px; }
   .postShorten.postShorten--thumbnailimg-bottom .postShorten-wrap {
@@ -2381,12 +2382,12 @@ a.tag--success,
 
 a.tag--primary,
 .tag--primary {
-  color: #349ef3 !important;
-  border: 1px solid #349ef3; }
+  color: #9eabb3 !important;
+  border: 1px solid #9eabb3; }
   a.tag--primary:hover,
   .tag--primary:hover {
-    color: #0c78ce !important;
-    border: 1px solid #0c78ce;
+    color: #738691 !important;
+    border: 1px solid #738691;
     text-decoration: none; }
 
 a.tag--danger,
@@ -2440,16 +2441,16 @@ a.tag--small,
   font-size: 1.3rem !important; }
 
 .text-medium {
-  font-size: 1.5rem !important; }
+  font-size: 1.4rem !important; }
 
 .text-base {
   font-size: 1.6rem !important; }
 
 .text-large {
-  font-size: 1.7rem !important; }
+  font-size: 1.6rem !important; }
 
 .text-xlarge {
-  font-size: 1.8rem !important; }
+  font-size: 1.7rem !important; }
 
 .text-strong {
   font-weight: 700 !important; }
