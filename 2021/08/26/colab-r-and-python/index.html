@@ -19,7 +19,7 @@
             <link rel="alternate" type="application/atom+xml" title="RSS" href="/atom.xml">
         
     
-    <script type="application/ld+json">{"@context":"http://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Song Joyce Park","sameAs":[],"image":"https://lh3.googleusercontent.com/pw/AM-JKLUwPXnPwHfIHvKP-8XbaVeDdFzvusBZL8soRLfZE25Vo8cXJXEU2eK1Aj8VSCbUNQPRHw5as9AoYzCyN7yQWI4l8Dy7Dhc79NXhFJkbJt1u1lib6TxSlALHwcjOtRgM5IryKtEXlcD8BhofpLOs2c_b3g=s989-no?authuser=0"},"articleBody":"한 노트북 안에서 여러 언어를 사용하는걸 지양해야 하지만, R와 파이썬을 둘 다 쓰는 사람이라면 두 언어를 같이 사용할 수 있었으면 하는 순간들이 오기 마련입니다. 기본적으로 Colab 노트북은 Python 언어 기반이지만 (R 노트북도 쓸 수 있긴 하다) 한 노트북 안에서 Python과 R을 같이 쓸 수 있습니다!\n\n\n(TIP: 그냥 Colab R 노트북 사용하고 싶은 경우 이 링크로 Colab 접속하면 R 노트북이 생성됩니다: https://colab.research.google.com/#create=true&amp;language=r)\n\n\n\nColab에서 Python-R 같이 사용하기첫번째로, Colab 노트북에서 아래 코드를 실행:\n1%load_ext rpy2.ipython\n\n디폴트로는 모든 셀이 Python 셀이지만 R 코드 사용하고 싶은 경우, cell magic과 line magic 두가지 방법이 있습니다.\n\nCell magic: 셀 전체를 R 코드로 실행 → 셀 첫번째 행에 아래 코드 입력하면 셀의 모든 코드가 R 코드로 실행됩니다1%%R\nLine magic: 코드 행을 R 코드로 실행 → R 코드 실행할 행에 아래 코드 입력1%R\n\n\nTip #1: Python-R 언어 사이 Dataframe 복사R 코드 부분에서 dataframe이 생성되면, 파이썬 코드 부분에서는 해당 dataframe을 사용할 수 없습니다. 그래서 따로 두 언어 다 활용해서 dataframe을 다룰 경우에는 한쪽에서 생성된 dataframe을 다른 쪽에 만들어주는 방법을 사용해야합니다.\ndf 라는 dataframe이 있으면, 꼭 cell magic 이 아닌 line magic 으로 아래 코드를 실행 해주세요.\nPython → R1%R -i df\n\nR → Python1%R -o df\n\n여러 dataframe을 한번에12345#Python to R%R -i df -i df2#R to Python%R -o df -o df2\n\n\nTip #2: R Variable을 Python으로 복사Line magic은 헤당 행에 있는 쿠드에 적용이 되다보니 아래 코드와 같은 방법으로 R variable도 Python variable로 복사할 수 있습니다.\n1x = %R x\n\n\n위에 설명한 내용을 간단한 예시로 볼 수 있는 Colab 노트북입니다! → Example Colab Notebook\n","dateCreated":"2021-08-26T00:00:00+09:00","dateModified":"2021-12-23T23:36:09+09:00","datePublished":"2021-08-26T00:00:00+09:00","description":"한 노트북 안에서 여러 언어를 사용하는걸 지양해야 하지만, R와 파이썬을 둘 다 쓰는 사람이라면 두 언어를 같이 사용할 수 있었으면 하는 순간들이 오기 마련입니다. 기본적으로 Colab 노트북은 Python 언어 기반이지만 (R 노트북도 쓸 수 있긴 하다) 한 노트북 안에서 Python과 R을 같이 쓸 수 있습니다!","headline":"Google Colab 101: Python-R 같이 사용하기","image":["https://lh3.googleusercontent.com/pw/AM-JKLWNrbDmpUZPK5c76vmkQEwDcDrgeufFCoBZ_Phdt0yy0EDfWXUxxZgljMNgnpCt2TOuksg-lyESZVWXv7Q1Io5zsOaPNkLgaDxaG_JjKIpnhs56NP3OMTbRbpNokhRQBQ-TN8yviyq1w3gXb5ahDEM30g=s260-no?authuser=0"],"mainEntityOfPage":{"@type":"WebPage","@id":"http://sjp24.github.io/2021/08/26/colab-r-and-python/"},"publisher":{"@type":"Organization","name":"Song Joyce Park","sameAs":[],"image":"https://lh3.googleusercontent.com/pw/AM-JKLUwPXnPwHfIHvKP-8XbaVeDdFzvusBZL8soRLfZE25Vo8cXJXEU2eK1Aj8VSCbUNQPRHw5as9AoYzCyN7yQWI4l8Dy7Dhc79NXhFJkbJt1u1lib6TxSlALHwcjOtRgM5IryKtEXlcD8BhofpLOs2c_b3g=s989-no?authuser=0","logo":{"@type":"ImageObject","url":"https://lh3.googleusercontent.com/pw/AM-JKLUwPXnPwHfIHvKP-8XbaVeDdFzvusBZL8soRLfZE25Vo8cXJXEU2eK1Aj8VSCbUNQPRHw5as9AoYzCyN7yQWI4l8Dy7Dhc79NXhFJkbJt1u1lib6TxSlALHwcjOtRgM5IryKtEXlcD8BhofpLOs2c_b3g=s989-no?authuser=0"}},"url":"http://sjp24.github.io/2021/08/26/colab-r-and-python/","keywords":"Colab, Python, R","thumbnailUrl":"https://lh3.googleusercontent.com/pw/AM-JKLWNrbDmpUZPK5c76vmkQEwDcDrgeufFCoBZ_Phdt0yy0EDfWXUxxZgljMNgnpCt2TOuksg-lyESZVWXv7Q1Io5zsOaPNkLgaDxaG_JjKIpnhs56NP3OMTbRbpNokhRQBQ-TN8yviyq1w3gXb5ahDEM30g=s260-no?authuser=0"}</script>
+    <script type="application/ld+json">{"@context":"http://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Song Joyce Park","sameAs":[],"image":"https://lh3.googleusercontent.com/pw/AM-JKLUwPXnPwHfIHvKP-8XbaVeDdFzvusBZL8soRLfZE25Vo8cXJXEU2eK1Aj8VSCbUNQPRHw5as9AoYzCyN7yQWI4l8Dy7Dhc79NXhFJkbJt1u1lib6TxSlALHwcjOtRgM5IryKtEXlcD8BhofpLOs2c_b3g=s989-no?authuser=0"},"articleBody":"한 노트북 안에서 여러 언어를 사용하는걸 지양해야 하지만, R와 파이썬을 둘 다 쓰는 사람이라면 두 언어를 같이 사용할 수 있었으면 하는 순간들이 오기 마련입니다. 기본적으로 Colab 노트북은 Python 언어 기반이지만 (R 노트북도 쓸 수 있긴 하다) 한 노트북 안에서 Python과 R을 같이 쓸 수 있습니다!\n\n\n(TIP: 그냥 Colab R 노트북 사용하고 싶은 경우 이 링크로 Colab 접속하면 R 노트북이 생성됩니다: https://colab.research.google.com/#create=true&amp;language=r)\n\n\n\nColab에서 Python-R 같이 사용하기첫번째로, Colab 노트북에서 아래 코드를 실행:\n1%load_ext rpy2.ipython\n\n디폴트로는 모든 셀이 Python 셀이지만 R 코드 사용하고 싶은 경우, cell magic과 line magic 두가지 방법이 있습니다.\n\nCell magic: 셀 전체를 R 코드로 실행 → 셀 첫번째 행에 아래 코드 입력하면 셀의 모든 코드가 R 코드로 실행됩니다1%%R\nLine magic: 코드 행을 R 코드로 실행 → R 코드 실행할 행에 아래 코드 입력1%R\n\n\nTip #1: Python-R 언어 사이 Dataframe 복사R 코드 부분에서 dataframe이 생성되면, 파이썬 코드 부분에서는 해당 dataframe을 사용할 수 없습니다. 그래서 따로 두 언어 다 활용해서 dataframe을 다룰 경우에는 한쪽에서 생성된 dataframe을 다른 쪽에 만들어주는 방법을 사용해야합니다.\ndf 라는 dataframe이 있으면, 꼭 cell magic 이 아닌 line magic 으로 아래 코드를 실행 해주세요.\nPython → R1%R -i df\n\nR → Python1%R -o df\n\n여러 dataframe을 한번에12345#Python to R%R -i df -i df2#R to Python%R -o df -o df2\n\n\nTip #2: R Variable을 Python으로 복사Line magic은 헤당 행에 있는 쿠드에 적용이 되다보니 아래 코드와 같은 방법으로 R variable도 Python variable로 복사할 수 있습니다.\n1x = %R x\n\n\n위에 설명한 내용을 간단한 예시로 볼 수 있는 Colab 노트북입니다! → Example Colab Notebook\n","dateCreated":"2021-08-26T00:00:00+09:00","dateModified":"2021-12-31T16:38:21+09:00","datePublished":"2021-08-26T00:00:00+09:00","description":"한 노트북 안에서 여러 언어를 사용하는걸 지양해야 하지만, R와 파이썬을 둘 다 쓰는 사람이라면 두 언어를 같이 사용할 수 있었으면 하는 순간들이 오기 마련입니다. 기본적으로 Colab 노트북은 Python 언어 기반이지만 (R 노트북도 쓸 수 있긴 하다) 한 노트북 안에서 Python과 R을 같이 쓸 수 있습니다!","headline":"Google Colab 101: Python-R 같이 사용하기","image":["https://lh3.googleusercontent.com/pw/AM-JKLWNrbDmpUZPK5c76vmkQEwDcDrgeufFCoBZ_Phdt0yy0EDfWXUxxZgljMNgnpCt2TOuksg-lyESZVWXv7Q1Io5zsOaPNkLgaDxaG_JjKIpnhs56NP3OMTbRbpNokhRQBQ-TN8yviyq1w3gXb5ahDEM30g=s260-no?authuser=0"],"mainEntityOfPage":{"@type":"WebPage","@id":"http://sjp24.github.io/2021/08/26/colab-r-and-python/"},"publisher":{"@type":"Organization","name":"Song Joyce Park","sameAs":[],"image":"https://lh3.googleusercontent.com/pw/AM-JKLUwPXnPwHfIHvKP-8XbaVeDdFzvusBZL8soRLfZE25Vo8cXJXEU2eK1Aj8VSCbUNQPRHw5as9AoYzCyN7yQWI4l8Dy7Dhc79NXhFJkbJt1u1lib6TxSlALHwcjOtRgM5IryKtEXlcD8BhofpLOs2c_b3g=s989-no?authuser=0","logo":{"@type":"ImageObject","url":"https://lh3.googleusercontent.com/pw/AM-JKLUwPXnPwHfIHvKP-8XbaVeDdFzvusBZL8soRLfZE25Vo8cXJXEU2eK1Aj8VSCbUNQPRHw5as9AoYzCyN7yQWI4l8Dy7Dhc79NXhFJkbJt1u1lib6TxSlALHwcjOtRgM5IryKtEXlcD8BhofpLOs2c_b3g=s989-no?authuser=0"}},"url":"http://sjp24.github.io/2021/08/26/colab-r-and-python/","keywords":"Colab, Python, R","thumbnailUrl":"https://lh3.googleusercontent.com/pw/AM-JKLWNrbDmpUZPK5c76vmkQEwDcDrgeufFCoBZ_Phdt0yy0EDfWXUxxZgljMNgnpCt2TOuksg-lyESZVWXv7Q1Io5zsOaPNkLgaDxaG_JjKIpnhs56NP3OMTbRbpNokhRQBQ-TN8yviyq1w3gXb5ahDEM30g=s260-no?authuser=0"}</script>
     <meta name="description" content="한 노트북 안에서 여러 언어를 사용하는걸 지양해야 하지만, R와 파이썬을 둘 다 쓰는 사람이라면 두 언어를 같이 사용할 수 있었으면 하는 순간들이 오기 마련입니다. 기본적으로 Colab 노트북은 Python 언어 기반이지만 (R 노트북도 쓸 수 있긴 하다) 한 노트북 안에서 Python과 R을 같이 쓸 수 있습니다!">
 <meta property="og:type" content="blog">
 <meta property="og:title" content="Google Colab 101: Python-R 같이 사용하기">
@@ -28,7 +28,7 @@
 <meta property="og:description" content="한 노트북 안에서 여러 언어를 사용하는걸 지양해야 하지만, R와 파이썬을 둘 다 쓰는 사람이라면 두 언어를 같이 사용할 수 있었으면 하는 순간들이 오기 마련입니다. 기본적으로 Colab 노트북은 Python 언어 기반이지만 (R 노트북도 쓸 수 있긴 하다) 한 노트북 안에서 Python과 R을 같이 쓸 수 있습니다!">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2021-08-25T15:00:00.000Z">
-<meta property="article:modified_time" content="2021-12-23T14:36:09.812Z">
+<meta property="article:modified_time" content="2021-12-31T07:38:21.106Z">
 <meta property="article:author" content="Song Joyce Park">
 <meta property="article:tag" content="Colab">
 <meta property="article:tag" content="Python">
@@ -328,7 +328,7 @@
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">x = %R x</span><br></pre></td></tr></table></figure>
 
 <hr>
-<p>위에 설명한 내용을 간단한 예시로 볼 수 있는 Colab 노트북입니다! → <a target="_blank" rel="noopener" href="https://colab.research.google.com/drive/1MKFJ6LyWAMQ6JBewbeuk8sI6ne-jbMN2?usp=sharing" title="Title">Example Colab Notebook</a></p>
+<p>위에 설명한 내용을 간단한 예시로 볼 수 있는 Colab 노트북입니다! → <a target="_blank" rel="noopener" href="https://colab.research.google.com/drive/1MKFJ6LyWAMQ6JBewbeuk8sI6ne-jbMN2?usp=sharing" title="Example Colab Notebook">Example Colab Notebook</a></p>
 
             
 
@@ -875,7 +875,40 @@
                                 
                             </span>
                         </span>
-                        <div class="media-content hide-xs font-nanum-square"><p>올해는 2월 초에 새로운 회사로 이직하면서부터 진정한 시니어 데이터 분석가의 길을 걷기 시작했다. 연차는 이제 어느 정도 쌓였고 데이터 분석가 직무 특성상 여러 다양한 직군들과 협업하고 커뮤니케이션 해왔지만 늘 목적 조직 팀 내 유일한 데이터 분석가로 일을 해와서 막상 같은 데이터 분석가들과 가깝게 일할 기회는 생각보다 많이 없었다.</p></div>
+                        <div class="media-content hide-xs font-nanum-square"><p>올해는 2월 초에 새로운 회사로 이직하면서부터 진정한 시니어 데이터 분석가의 길을 걷기 시작했다. 연차는 이제 어느 정도 쌓였고 데이터 분석가 직무 특성상 다양한 직군들과 협업하고 커뮤니케이션 해왔지만 늘 목적 조직 팀 내 유일한 데이터 분석가로 일을 해와서 막상 같은 데이터 분석가들과 가깝게 일할 기회는 생각보다 많이 없었다.</p></div>
+                    </div>
+                    <div style="clear:both;"></div>
+                    <hr>
+                </div>
+                
+                <div class="media">
+                    
+                    <div class="media-left">
+                        <a
+                            class="link-unstyled"
+                            href="http://sjp24.github.io/2021/12/31/2021-wrap-up-content/"
+                            aria-label=": 2021 Wrap-Up: 콘텐츠 마니아가 올해 재밌게 본 것들"
+                        >
+                            <img class="media-image" src="https://lh3.googleusercontent.com/pw/AM-JKLWcgJvJO5KOELLrEAwpYJsN22D9zXSY0Prg0BsVI5yq-zKG48LeSBOmygGm4q91w5zunPusCRbckGbPltgkScqOeh5LFfqy8Og5eyZCsHVBgGr9WnnvSeAY51XbA_MhbZNC9L_xwUY6tQHSlzBJKpL4lg=w985-h720-no?authuser=0" width="60" height="60"/>
+                        </a>
+                    </div>
+                    
+                    <div class="media-body">
+                        <a
+                            class="link-unstyled"
+                            href="http://sjp24.github.io/2021/12/31/2021-wrap-up-content/"
+                            aria-label=": 2021 Wrap-Up: 콘텐츠 마니아가 올해 재밌게 본 것들"
+                        >
+                            <h3 class="media-heading">2021 Wrap-Up: 콘텐츠 마니아가 올해 재밌게 본 것들</h3>
+                        </a>
+                        <span class="media-meta">
+                            <span class="media-date text-small">
+                                
+                                    Dec 31, 2021
+                                
+                            </span>
+                        </span>
+                        <div class="media-content hide-xs font-nanum-square"><p>올해는 바빠서 콘텐츠 소비를 많이 못한 줄 알았는데 이 글이 준비하면서 역시나 나는 콘텐츠 마니아 (중독자…?) 라는걸 다시 한번 깨달았다. 바쁘다는 핑계로 각 잡고 봐야 하는 영화나 TV보다 유튜브를 정말 많이 봤던 것 같다. “할 일 많으니까 잠깐 이거 5분짜리 영상 하나만 보자…”</p></div>
                     </div>
                     <div style="clear:both;"></div>
                     <hr>
@@ -888,7 +921,7 @@
                 data-message-zero="no post found"
                 data-message-one="1 post found"
                 data-message-other="{n} posts found">
-                6 posts found
+                7 posts found
             </p>
         </div>
     </div>
