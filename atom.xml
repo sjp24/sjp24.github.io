@@ -154,9 +154,9 @@
     
     <category term="Colab" scheme="http://sjp24.github.io/tags/Colab/"/>
     
-    <category term="Python" scheme="http://sjp24.github.io/tags/Python/"/>
-    
     <category term="R" scheme="http://sjp24.github.io/tags/R/"/>
+    
+    <category term="Python" scheme="http://sjp24.github.io/tags/Python/"/>
     
   </entry>
   

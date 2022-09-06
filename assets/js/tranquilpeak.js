@@ -934,7 +934,7 @@
           html += '<a class="link-unstyled" href="' + (post.link || post.permalink) + '">';
           html += '<img class="media-image" ' +
             'src="' + post.thumbnailImageUrl + '" ' +
-            'width="90" height="90"/>';
+            'width="60" height="60"/>';
           html += '</a>';
           html += '</div>';
         }
@@ -948,7 +948,7 @@
         html += moment(post.date).locale(lang).format('ll');
         html += '</span>';
         html += '</span>';
-        html += '<div class="media-content hide-xs font-merryweather">' + post.excerpt + '</div>';
+        html += '<div class="media-content hide-xs font-nanum-square">' + post.excerpt + '</div>';
         html += '</div>';
         html += '<div style="clear:both;"></div>';
         html += '<hr>';

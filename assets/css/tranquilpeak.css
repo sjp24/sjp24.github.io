@@ -2209,7 +2209,7 @@ a.fancybox {
     text-rendering: optimizelegibility;
     letter-spacing: -0.3px;
     font-family: "NanumSquare";
-    color: #9eabb3;
+    color: #5d686f;
     font-weight: 400;
     overflow: hidden;
     -webkit-hypens: auto;
@@ -2237,25 +2237,25 @@ a.fancybox {
     margin: 5px 0 30px 15px; }
     .postShorten.postShorten--thumbnailimg-right .postShorten-thumbnailimg img {
       display: block;
-      width: 120px;
-      height: 120px;
+      width: 100px;
+      height: 100px;
       object-fit: cover;
       overflow: hidden; }
   .postShorten.postShorten--thumbnailimg-right .postShorten-wrap {
     float: left;
-    width: calc(100% - 120px - 20px); }
+    width: calc(100% - 100px - 20px); }
   .postShorten.postShorten--thumbnailimg-left .postShorten-thumbnailimg {
     float: left;
     margin: 5px 15px 30px 0; }
     .postShorten.postShorten--thumbnailimg-left .postShorten-thumbnailimg img {
       display: block;
-      width: 120px;
-      height: 120px;
+      width: 100px;
+      height: 100px;
       object-fit: cover;
       overflow: hidden; }
   .postShorten.postShorten--thumbnailimg-left .postShorten-wrap {
     float: right;
-    width: calc(100% - 120px - 20px); }
+    width: calc(100% - 100px - 20px); }
   .postShorten.postShorten--thumbnailimg-top .postShorten-thumbnailimg {
     margin-top: 5px; }
   .postShorten.postShorten--thumbnailimg-bottom .postShorten-wrap {
@@ -2628,7 +2628,7 @@ a.tag--small,
     left: 15px;
     color: #5d686f; }
   #algolia-search-modal .media-content {
-    font-size: 0.95em; }
+    font-size: 0.85em; }
   #algolia-search-modal .search-input {
     box-sizing: border-box;
     padding: 0 130px 0 25px;
