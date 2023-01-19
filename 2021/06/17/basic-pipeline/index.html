@@ -12,14 +12,14 @@
         <meta name="keywords" content="song park,data,song joyce park,data analyst,데이터 분석,데이터,스타트업,박송,data pipeline,data warehouse,database,data lake,etl,data">
     
     
-        <link rel="icon" href="https://lh3.googleusercontent.com/pw/AM-JKLXckriNVBRUItT9skScUqiuuCVPBM8TFQaBM_ICpckq8xOx5v4N3wsere00Xkr87yw29YXK7I9S6WCKBroEZpUYXBmB2ZfND5LsWshPYg0ehMMgK-VdN_Yi50PG43-welMLggI3Xbcoyk18ZMeu0jjDjQ=s989-no?authuser=0">
+        <link rel="icon" href="https://lh3.googleusercontent.com/ZWIlJ3A2jHyXj0s2uJk_zn_WnFH1Mzuu8oc4WdcQanRiWZ5X96HG47OKgroJqEn5__g4jF2rWBEzdPYk-indrgowKb8fcDNJchG0LxOunkTFk9PcYWkkdGYQ7OYwFgO-1AoSNnoOlzdVxSUqntMOmvA8TtDo02zrF3y5gjnJtnGtGoTStmqFig9alDg3lNOC4mGN2XBnUhuzPZA-OpzVV9mZ8zjgjAqDGFhmCr1NM19OJVOKELNlOEyQIyv4H-cHlndBLAJB-HMV0-gO69MrbsYFlLLi6JzXX6o2jPVpcPwM0acgVg6YSobf4TsboNdfsjvD3o30HXUw7OjX4Ety3UV1_gKIv5mAAWCQILcWTdGtDXRpGaWTFb2zwmEVNHF8pL3Ezn3PmdspgNByk4WSF6EWMscXF36s9oiYP5V_kXA0_0eLwO0K1zrdlP7DdHXozA_-yf-Qj-aLjRrdMpsie2N0LlCoV4pUsH51W7crqH4wR4aFxTYxYEttXybyB6rKEeDQKCZHIDZxwn902V6_DWd6ksmeLp_HQ2db07nyAOnZGxFSX10-Uj7_MXxnakw6YkBdVeJRuRgxchp_FUAqHOgbPcyKbY75SE_7T4NpculDLGh3ik6lQCzI6zPY00je2coLfNOXa-TOUkWuhfYvXJhoTKvnq0TJGM98tPlx23zmdONZd-AwrbiP8sH9sbDW5oviw7RrsDv30nu8LcYQCEOZZol04Gz5UibzQX4gRR-VZ_o6Fs2wkLkvlblvRaE4wgEqdKbPJl0vpUZsuICwDhJkKRxb8a9qr_inDxUuv5Vz0sJb_8un0XClwd7WvyqI4iiyfO03Zaex-t4MfkQg_Ln9KvDlNuo5UhuDOiXUtP-G8R1aDhKpcdU3hOOTNWjWdHhFj7MQW4n4Hfw3WZaS7UlN1IiFKwh3Ex84ti090LjBOQ=s576-no?authuser=0">
     
     
         
             <link rel="alternate" type="application/atom+xml" title="RSS" href="/atom.xml">
         
     
-    <script type="application/ld+json">{"@context":"http://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Song Joyce Park","sameAs":[],"image":"https://lh3.googleusercontent.com/pw/AM-JKLUwPXnPwHfIHvKP-8XbaVeDdFzvusBZL8soRLfZE25Vo8cXJXEU2eK1Aj8VSCbUNQPRHw5as9AoYzCyN7yQWI4l8Dy7Dhc79NXhFJkbJt1u1lib6TxSlALHwcjOtRgM5IryKtEXlcD8BhofpLOs2c_b3g=s989-no?authuser=0"},"articleBody":"스타트업계로 오게 된 후로는 데이터 파이프라인이 얼마나 중요한지 뼈저리게 느끼고 있습니다. 데이터베이스 지식, 데이터 파이프라인 지식을 가지고 있는 게 중요하다고 생각해서 전부터 배우려고 노력은 했지만 역시 산전수전 다 직접 겪어봐야 빠르게 성장 할 수 있습니다 😅\n저도 아직 많이 부족하지만, 데이터 외 직군 혹은 데이터를 다루지만 데이터 파이프라인에 대한 지식이 부족한 분들을 위해 아주 기본적인 개념들을 설명하려 합니다.\n\n\n\n\n\n기본 용어비슷하지만 조금씩 다른 파이프라인 관련 용어.\nETL (Extract, Transform, Load): 데이터를 추출하고(extract) → 변환하여 (transform) → 적재하는 (load) 데이터 웨어하우스 구축 프로세스\nELT (Extract, Load, Transform): 데이터를 추출하고 (extract) → 적재하고 (load) → 변환하는 (transform) 프로세스\nData Warehouse (DW): 다양한 소스에서 발생한 데이터를 하나의 통합된 형태로 저장하는 공간. 데이터는 설계된 스키마에 맞게 처리되어 저장된다\nData Lake: 다양한 소스에서 발생한 데이터를 그대로 가져와 저장하는 공간. 데이터 웨어하우스와 달리 정형/반정형/비정형 데이터 등 다양한 형태의 소스 raw 데이터를 통합하지 않고 한 곳에 모은다\nData Mart: 특정 목적 (대체로 팀/부서와 같은 조직 단위)을 위해 만들어진 데이터 웨어하우스. 보통 하나의 데이터 웨어하우스에서 조직 단위별로 여러 데이터 마트가 만들어진다\nData Pipeline: 데이터가 흐르는 모든 과정의 총칭 (생성, 변환, 저장, 등)\nRDB (Relational Database): 2차원 (속성, 값) 형식 테이블들로 구성된 관계형 데이터베이스. “관계형”이란 각 테이블 안에서 속성과 값 사이 관계가 있고 테이블과 테이블 사이에도 관계를 가지고 있다. 가장 일반적인 데이터베이스 타입이고 일반적으로 SQL (Structured Query Language) 언어를 통해 데이터를 조회한다\nRDBMS (Relational Database Management System): 관계형 데이터베이스 관리 (생성, 수정, 등)를 위한 프로그램. 예: MySQL, Oracle, SQL Server, 등등\n\n\n\n기본 ETL 과정조직마다 설계가 다르고 구체적인 프로세스는 보기보다 훨씬 복잡하지만, 대부분 아래와 같은 ETL 프로세스를 통해 데이터 웨어하우스를 구축합니다.\n\n\nExtract. 다양한 곳에서 생성된 데이터를 추출하는 단계. 조직마다 소스들은 다르지만 커머스에서는 가장 기본적으로 아래와 같은 데이터 소스들이 있습니다:\n\n운영 데이터베이스 → 주문, 상품 데이터와 같은 데이터가 담긴 데이터베이스\n웹/앱 이벤트 데이터\n마케팅 데이터 → 페이스북, 구글, 카카오, 등\n사용하는 다른 서드파티 앱 데이터\n\nTransform. 소스 데이터가 어떤 형태인지에 따라 이 과정은 많이 달라집니다. 간단한 변환은 각 소스의 날짜 컬럼 형식들을 하나의 기준으로 맞추기, 빈값 처리하는 방식 통일하기와 같은 작업이 있고 보통 테이블들을 조인하고 계산된 필드 만드는 변환이 들어갑니다 → 예: members 테이블에 각 멤버의 구매 이력 관련 컬럼 생성 (첫 구매일, 지난 3개월 총 구매액, 등등). 자주 보는 지표들은 summary 테이블로 만들 수 있습니다 → 예: 일별 거래액, 일별 모든 매체의 총 마케팅 비용 합계.\nLoad. 변환된 데이터를 데이터 웨어하우스에 적재합니다.\nETL vs ELTELT은 여러 소스의 데이터를 추출하여 바로 raw 형태로 적재 후 변환합니다. 즉, 데이터 레이크에 일단 모든 소스의 데이터를 담고 변환은 스테이징 필요 없이 데이터 레이크/웨어하우스 안에서 이루어집니다. 최신 클라우드 기반 기술로 인해 ETL에 비해 비교적 새로운 기술이고 뜨고 있는 데이터 처리 방식입니다. 이 과정은 적재가 빠르게 이루어진다는 게 장점이지만 유연한 만큼 데이터 신뢰/정합성은 떨어질 수 있습니다.\nData Mart큰 규모의 조직에서는 조직 단위로 특화된 데이터 마트를 설계하고 각 조직에서 봐야 하는 데이터만 볼 수 있게 권한을 관리합니다. 스타트업이나 더 작은 규모의 조직에서는 비교적 팀/부서와 같은 조직 단위 사이 경계가 덜 명확하기 때문에 조직 단위별 마트 없이 하나의 데이터 웨어하우스를 사용하는 방식이 크게 문제 되지 않을 수 있습니다.하지만 전사 조직용 데이터에 비해 데이터 마트에 있는 테이블들은 유연하게 수정/변환 할 수 있기 때문에 빠르게 변하는 스타트업 조직에도 데이터 마트를 잘 활용한다면 효율적으로 분석하고 인사이트 얻을 수 있습니다.\n\n","dateCreated":"2021-06-17T00:00:00+09:00","dateModified":"2021-12-23T23:33:39+09:00","datePublished":"2021-06-17T00:00:00+09:00","description":"스타트업계로 오게 된 후로는 데이터 파이프라인이 얼마나 중요한지 뼈저리게 느끼고 있습니다. 데이터베이스 지식, 데이터 파이프라인 지식을 가지고 있는 게 중요하다고 생각해서 전부터 배우려고 노력은 했지만 역시 산전수전 다 직접 겪어봐야 빠르게 성장 할 수 있습니다 😅\n저도 아직 많이 부족하지만, 데이터 외 직군 혹은 데이터를 다루지만 데이터 파이프라인에 대한 지식이 부족한 분들을 위해 아주 기본적인 개념들을 설명하려 합니다.","headline":"데이터의 흐름: 기본적인 데이터 파이프라인 개념 설명","image":["https://lh3.googleusercontent.com/pw/AM-JKLVqEoT9LETZzeAriZQM4cxYp9Kp7t_MEqPIfkBuk69NmxYsyT8p5if6fn64J6k9cy7oneLOBsfFapXrS9upM0nJTxtkiWcXJYWWzpUzAll0FFWNyoDJSvZc2conN164QAaRnKjToZF4jOUofN4SOMDrhw=w2133-h779-no?authuser=0"],"mainEntityOfPage":{"@type":"WebPage","@id":"http://sjp24.github.io/2021/06/17/basic-pipeline/"},"publisher":{"@type":"Organization","name":"Song Joyce Park","sameAs":[],"image":"https://lh3.googleusercontent.com/pw/AM-JKLUwPXnPwHfIHvKP-8XbaVeDdFzvusBZL8soRLfZE25Vo8cXJXEU2eK1Aj8VSCbUNQPRHw5as9AoYzCyN7yQWI4l8Dy7Dhc79NXhFJkbJt1u1lib6TxSlALHwcjOtRgM5IryKtEXlcD8BhofpLOs2c_b3g=s989-no?authuser=0","logo":{"@type":"ImageObject","url":"https://lh3.googleusercontent.com/pw/AM-JKLUwPXnPwHfIHvKP-8XbaVeDdFzvusBZL8soRLfZE25Vo8cXJXEU2eK1Aj8VSCbUNQPRHw5as9AoYzCyN7yQWI4l8Dy7Dhc79NXhFJkbJt1u1lib6TxSlALHwcjOtRgM5IryKtEXlcD8BhofpLOs2c_b3g=s989-no?authuser=0"}},"url":"http://sjp24.github.io/2021/06/17/basic-pipeline/","keywords":"Data Pipeline","thumbnailUrl":"https://lh3.googleusercontent.com/pw/AM-JKLVqEoT9LETZzeAriZQM4cxYp9Kp7t_MEqPIfkBuk69NmxYsyT8p5if6fn64J6k9cy7oneLOBsfFapXrS9upM0nJTxtkiWcXJYWWzpUzAll0FFWNyoDJSvZc2conN164QAaRnKjToZF4jOUofN4SOMDrhw=w2133-h779-no?authuser=0"}</script>
+    <script type="application/ld+json">{"@context":"http://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Song Joyce Park","sameAs":[],"image":"https://lh3.googleusercontent.com/ZWIlJ3A2jHyXj0s2uJk_zn_WnFH1Mzuu8oc4WdcQanRiWZ5X96HG47OKgroJqEn5__g4jF2rWBEzdPYk-indrgowKb8fcDNJchG0LxOunkTFk9PcYWkkdGYQ7OYwFgO-1AoSNnoOlzdVxSUqntMOmvA8TtDo02zrF3y5gjnJtnGtGoTStmqFig9alDg3lNOC4mGN2XBnUhuzPZA-OpzVV9mZ8zjgjAqDGFhmCr1NM19OJVOKELNlOEyQIyv4H-cHlndBLAJB-HMV0-gO69MrbsYFlLLi6JzXX6o2jPVpcPwM0acgVg6YSobf4TsboNdfsjvD3o30HXUw7OjX4Ety3UV1_gKIv5mAAWCQILcWTdGtDXRpGaWTFb2zwmEVNHF8pL3Ezn3PmdspgNByk4WSF6EWMscXF36s9oiYP5V_kXA0_0eLwO0K1zrdlP7DdHXozA_-yf-Qj-aLjRrdMpsie2N0LlCoV4pUsH51W7crqH4wR4aFxTYxYEttXybyB6rKEeDQKCZHIDZxwn902V6_DWd6ksmeLp_HQ2db07nyAOnZGxFSX10-Uj7_MXxnakw6YkBdVeJRuRgxchp_FUAqHOgbPcyKbY75SE_7T4NpculDLGh3ik6lQCzI6zPY00je2coLfNOXa-TOUkWuhfYvXJhoTKvnq0TJGM98tPlx23zmdONZd-AwrbiP8sH9sbDW5oviw7RrsDv30nu8LcYQCEOZZol04Gz5UibzQX4gRR-VZ_o6Fs2wkLkvlblvRaE4wgEqdKbPJl0vpUZsuICwDhJkKRxb8a9qr_inDxUuv5Vz0sJb_8un0XClwd7WvyqI4iiyfO03Zaex-t4MfkQg_Ln9KvDlNuo5UhuDOiXUtP-G8R1aDhKpcdU3hOOTNWjWdHhFj7MQW4n4Hfw3WZaS7UlN1IiFKwh3Ex84ti090LjBOQ=s576-no?authuser=0"},"articleBody":"스타트업계로 오게 된 후로는 데이터 파이프라인이 얼마나 중요한지 뼈저리게 느끼고 있습니다. 데이터베이스 지식, 데이터 파이프라인 지식을 가지고 있는 게 중요하다고 생각해서 전부터 배우려고 노력은 했지만 역시 산전수전 다 직접 겪어봐야 빠르게 성장 할 수 있습니다 😅\n저도 아직 많이 부족하지만, 데이터 외 직군 혹은 데이터를 다루지만 데이터 파이프라인에 대한 지식이 부족한 분들을 위해 아주 기본적인 개념들을 설명하려 합니다.\n\n\n\n\n\n기본 용어비슷하지만 조금씩 다른 파이프라인 관련 용어.\nETL (Extract, Transform, Load): 데이터를 추출하고(extract) → 변환하여 (transform) → 적재하는 (load) 데이터 웨어하우스 구축 프로세스\nELT (Extract, Load, Transform): 데이터를 추출하고 (extract) → 적재하고 (load) → 변환하는 (transform) 프로세스\nData Warehouse (DW): 다양한 소스에서 발생한 데이터를 하나의 통합된 형태로 저장하는 공간. 데이터는 설계된 스키마에 맞게 처리되어 저장된다\nData Lake: 다양한 소스에서 발생한 데이터를 그대로 가져와 저장하는 공간. 데이터 웨어하우스와 달리 정형/반정형/비정형 데이터 등 다양한 형태의 소스 raw 데이터를 통합하지 않고 한 곳에 모은다\nData Mart: 특정 목적 (대체로 팀/부서와 같은 조직 단위)을 위해 만들어진 데이터 웨어하우스. 보통 하나의 데이터 웨어하우스에서 조직 단위별로 여러 데이터 마트가 만들어진다\nData Pipeline: 데이터가 흐르는 모든 과정의 총칭 (생성, 변환, 저장, 등)\nRDB (Relational Database): 2차원 (속성, 값) 형식 테이블들로 구성된 관계형 데이터베이스. “관계형”이란 각 테이블 안에서 속성과 값 사이 관계가 있고 테이블과 테이블 사이에도 관계를 가지고 있다. 가장 일반적인 데이터베이스 타입이고 일반적으로 SQL (Structured Query Language) 언어를 통해 데이터를 조회한다\nRDBMS (Relational Database Management System): 관계형 데이터베이스 관리 (생성, 수정, 등)를 위한 프로그램. 예: MySQL, Oracle, SQL Server, 등등\n\n\n\n기본 ETL 과정조직마다 설계가 다르고 구체적인 프로세스는 보기보다 훨씬 복잡하지만, 대부분 아래와 같은 ETL 프로세스를 통해 데이터 웨어하우스를 구축합니다.\n\n\nExtract. 다양한 곳에서 생성된 데이터를 추출하는 단계. 조직마다 소스들은 다르지만 커머스에서는 가장 기본적으로 아래와 같은 데이터 소스들이 있습니다:\n\n운영 데이터베이스 → 주문, 상품 데이터와 같은 데이터가 담긴 데이터베이스\n웹/앱 이벤트 데이터\n마케팅 데이터 → 페이스북, 구글, 카카오, 등\n사용하는 다른 서드파티 앱 데이터\n\nTransform. 소스 데이터가 어떤 형태인지에 따라 이 과정은 많이 달라집니다. 간단한 변환은 각 소스의 날짜 컬럼 형식들을 하나의 기준으로 맞추기, 빈값 처리하는 방식 통일하기와 같은 작업이 있고 보통 테이블들을 조인하고 계산된 필드 만드는 변환이 들어갑니다 → 예: members 테이블에 각 멤버의 구매 이력 관련 컬럼 생성 (첫 구매일, 지난 3개월 총 구매액, 등등). 자주 보는 지표들은 summary 테이블로 만들 수 있습니다 → 예: 일별 거래액, 일별 모든 매체의 총 마케팅 비용 합계.\nLoad. 변환된 데이터를 데이터 웨어하우스에 적재합니다.\nETL vs ELTELT은 여러 소스의 데이터를 추출하여 바로 raw 형태로 적재 후 변환합니다. 즉, 데이터 레이크에 일단 모든 소스의 데이터를 담고 변환은 스테이징 필요 없이 데이터 레이크/웨어하우스 안에서 이루어집니다. 최신 클라우드 기반 기술로 인해 ETL에 비해 비교적 새로운 기술이고 뜨고 있는 데이터 처리 방식입니다. 이 과정은 적재가 빠르게 이루어진다는 게 장점이지만 유연한 만큼 데이터 신뢰/정합성은 떨어질 수 있습니다.\nData Mart큰 규모의 조직에서는 조직 단위로 특화된 데이터 마트를 설계하고 각 조직에서 봐야 하는 데이터만 볼 수 있게 권한을 관리합니다. 스타트업이나 더 작은 규모의 조직에서는 비교적 팀/부서와 같은 조직 단위 사이 경계가 덜 명확하기 때문에 조직 단위별 마트 없이 하나의 데이터 웨어하우스를 사용하는 방식이 크게 문제 되지 않을 수 있습니다.하지만 전사 조직용 데이터에 비해 데이터 마트에 있는 테이블들은 유연하게 수정/변환 할 수 있기 때문에 빠르게 변하는 스타트업 조직에도 데이터 마트를 잘 활용한다면 효율적으로 분석하고 인사이트 얻을 수 있습니다.\n\n","dateCreated":"2021-06-17T00:00:00+09:00","dateModified":"2021-12-23T23:33:39+09:00","datePublished":"2021-06-17T00:00:00+09:00","description":"스타트업계로 오게 된 후로는 데이터 파이프라인이 얼마나 중요한지 뼈저리게 느끼고 있습니다. 데이터베이스 지식, 데이터 파이프라인 지식을 가지고 있는 게 중요하다고 생각해서 전부터 배우려고 노력은 했지만 역시 산전수전 다 직접 겪어봐야 빠르게 성장 할 수 있습니다 😅\n저도 아직 많이 부족하지만, 데이터 외 직군 혹은 데이터를 다루지만 데이터 파이프라인에 대한 지식이 부족한 분들을 위해 아주 기본적인 개념들을 설명하려 합니다.","headline":"데이터의 흐름: 기본적인 데이터 파이프라인 개념 설명","image":["https://lh3.googleusercontent.com/pw/AM-JKLVqEoT9LETZzeAriZQM4cxYp9Kp7t_MEqPIfkBuk69NmxYsyT8p5if6fn64J6k9cy7oneLOBsfFapXrS9upM0nJTxtkiWcXJYWWzpUzAll0FFWNyoDJSvZc2conN164QAaRnKjToZF4jOUofN4SOMDrhw=w2133-h779-no?authuser=0"],"mainEntityOfPage":{"@type":"WebPage","@id":"http://sjp24.github.io/2021/06/17/basic-pipeline/"},"publisher":{"@type":"Organization","name":"Song Joyce Park","sameAs":[],"image":"https://lh3.googleusercontent.com/ZWIlJ3A2jHyXj0s2uJk_zn_WnFH1Mzuu8oc4WdcQanRiWZ5X96HG47OKgroJqEn5__g4jF2rWBEzdPYk-indrgowKb8fcDNJchG0LxOunkTFk9PcYWkkdGYQ7OYwFgO-1AoSNnoOlzdVxSUqntMOmvA8TtDo02zrF3y5gjnJtnGtGoTStmqFig9alDg3lNOC4mGN2XBnUhuzPZA-OpzVV9mZ8zjgjAqDGFhmCr1NM19OJVOKELNlOEyQIyv4H-cHlndBLAJB-HMV0-gO69MrbsYFlLLi6JzXX6o2jPVpcPwM0acgVg6YSobf4TsboNdfsjvD3o30HXUw7OjX4Ety3UV1_gKIv5mAAWCQILcWTdGtDXRpGaWTFb2zwmEVNHF8pL3Ezn3PmdspgNByk4WSF6EWMscXF36s9oiYP5V_kXA0_0eLwO0K1zrdlP7DdHXozA_-yf-Qj-aLjRrdMpsie2N0LlCoV4pUsH51W7crqH4wR4aFxTYxYEttXybyB6rKEeDQKCZHIDZxwn902V6_DWd6ksmeLp_HQ2db07nyAOnZGxFSX10-Uj7_MXxnakw6YkBdVeJRuRgxchp_FUAqHOgbPcyKbY75SE_7T4NpculDLGh3ik6lQCzI6zPY00je2coLfNOXa-TOUkWuhfYvXJhoTKvnq0TJGM98tPlx23zmdONZd-AwrbiP8sH9sbDW5oviw7RrsDv30nu8LcYQCEOZZol04Gz5UibzQX4gRR-VZ_o6Fs2wkLkvlblvRaE4wgEqdKbPJl0vpUZsuICwDhJkKRxb8a9qr_inDxUuv5Vz0sJb_8un0XClwd7WvyqI4iiyfO03Zaex-t4MfkQg_Ln9KvDlNuo5UhuDOiXUtP-G8R1aDhKpcdU3hOOTNWjWdHhFj7MQW4n4Hfw3WZaS7UlN1IiFKwh3Ex84ti090LjBOQ=s576-no?authuser=0","logo":{"@type":"ImageObject","url":"https://lh3.googleusercontent.com/ZWIlJ3A2jHyXj0s2uJk_zn_WnFH1Mzuu8oc4WdcQanRiWZ5X96HG47OKgroJqEn5__g4jF2rWBEzdPYk-indrgowKb8fcDNJchG0LxOunkTFk9PcYWkkdGYQ7OYwFgO-1AoSNnoOlzdVxSUqntMOmvA8TtDo02zrF3y5gjnJtnGtGoTStmqFig9alDg3lNOC4mGN2XBnUhuzPZA-OpzVV9mZ8zjgjAqDGFhmCr1NM19OJVOKELNlOEyQIyv4H-cHlndBLAJB-HMV0-gO69MrbsYFlLLi6JzXX6o2jPVpcPwM0acgVg6YSobf4TsboNdfsjvD3o30HXUw7OjX4Ety3UV1_gKIv5mAAWCQILcWTdGtDXRpGaWTFb2zwmEVNHF8pL3Ezn3PmdspgNByk4WSF6EWMscXF36s9oiYP5V_kXA0_0eLwO0K1zrdlP7DdHXozA_-yf-Qj-aLjRrdMpsie2N0LlCoV4pUsH51W7crqH4wR4aFxTYxYEttXybyB6rKEeDQKCZHIDZxwn902V6_DWd6ksmeLp_HQ2db07nyAOnZGxFSX10-Uj7_MXxnakw6YkBdVeJRuRgxchp_FUAqHOgbPcyKbY75SE_7T4NpculDLGh3ik6lQCzI6zPY00je2coLfNOXa-TOUkWuhfYvXJhoTKvnq0TJGM98tPlx23zmdONZd-AwrbiP8sH9sbDW5oviw7RrsDv30nu8LcYQCEOZZol04Gz5UibzQX4gRR-VZ_o6Fs2wkLkvlblvRaE4wgEqdKbPJl0vpUZsuICwDhJkKRxb8a9qr_inDxUuv5Vz0sJb_8un0XClwd7WvyqI4iiyfO03Zaex-t4MfkQg_Ln9KvDlNuo5UhuDOiXUtP-G8R1aDhKpcdU3hOOTNWjWdHhFj7MQW4n4Hfw3WZaS7UlN1IiFKwh3Ex84ti090LjBOQ=s576-no?authuser=0"}},"url":"http://sjp24.github.io/2021/06/17/basic-pipeline/","keywords":"Data Pipeline","thumbnailUrl":"https://lh3.googleusercontent.com/pw/AM-JKLVqEoT9LETZzeAriZQM4cxYp9Kp7t_MEqPIfkBuk69NmxYsyT8p5if6fn64J6k9cy7oneLOBsfFapXrS9upM0nJTxtkiWcXJYWWzpUzAll0FFWNyoDJSvZc2conN164QAaRnKjToZF4jOUofN4SOMDrhw=w2133-h779-no?authuser=0"}</script>
     <meta name="description" content="스타트업계로 오게 된 후로는 데이터 파이프라인이 얼마나 중요한지 뼈저리게 느끼고 있습니다. 데이터베이스 지식, 데이터 파이프라인 지식을 가지고 있는 게 중요하다고 생각해서 전부터 배우려고 노력은 했지만 역시 산전수전 다 직접 겪어봐야 빠르게 성장 할 수 있습니다 😅 저도 아직 많이 부족하지만, 데이터 외 직군 혹은 데이터를 다루지만 데이터 파이프라인에 대">
 <meta property="og:type" content="blog">
 <meta property="og:title" content="데이터의 흐름: 기본적인 데이터 파이프라인 개념 설명">
@@ -40,7 +40,7 @@
         
     
     
-        <meta property="og:image" content="https://lh3.googleusercontent.com/pw/AM-JKLUwPXnPwHfIHvKP-8XbaVeDdFzvusBZL8soRLfZE25Vo8cXJXEU2eK1Aj8VSCbUNQPRHw5as9AoYzCyN7yQWI4l8Dy7Dhc79NXhFJkbJt1u1lib6TxSlALHwcjOtRgM5IryKtEXlcD8BhofpLOs2c_b3g=s989-no?authuser=0"/>
+        <meta property="og:image" content="https://lh3.googleusercontent.com/ZWIlJ3A2jHyXj0s2uJk_zn_WnFH1Mzuu8oc4WdcQanRiWZ5X96HG47OKgroJqEn5__g4jF2rWBEzdPYk-indrgowKb8fcDNJchG0LxOunkTFk9PcYWkkdGYQ7OYwFgO-1AoSNnoOlzdVxSUqntMOmvA8TtDo02zrF3y5gjnJtnGtGoTStmqFig9alDg3lNOC4mGN2XBnUhuzPZA-OpzVV9mZ8zjgjAqDGFhmCr1NM19OJVOKELNlOEyQIyv4H-cHlndBLAJB-HMV0-gO69MrbsYFlLLi6JzXX6o2jPVpcPwM0acgVg6YSobf4TsboNdfsjvD3o30HXUw7OjX4Ety3UV1_gKIv5mAAWCQILcWTdGtDXRpGaWTFb2zwmEVNHF8pL3Ezn3PmdspgNByk4WSF6EWMscXF36s9oiYP5V_kXA0_0eLwO0K1zrdlP7DdHXozA_-yf-Qj-aLjRrdMpsie2N0LlCoV4pUsH51W7crqH4wR4aFxTYxYEttXybyB6rKEeDQKCZHIDZxwn902V6_DWd6ksmeLp_HQ2db07nyAOnZGxFSX10-Uj7_MXxnakw6YkBdVeJRuRgxchp_FUAqHOgbPcyKbY75SE_7T4NpculDLGh3ik6lQCzI6zPY00je2coLfNOXa-TOUkWuhfYvXJhoTKvnq0TJGM98tPlx23zmdONZd-AwrbiP8sH9sbDW5oviw7RrsDv30nu8LcYQCEOZZol04Gz5UibzQX4gRR-VZ_o6Fs2wkLkvlblvRaE4wgEqdKbPJl0vpUZsuICwDhJkKRxb8a9qr_inDxUuv5Vz0sJb_8un0XClwd7WvyqI4iiyfO03Zaex-t4MfkQg_Ln9KvDlNuo5UhuDOiXUtP-G8R1aDhKpcdU3hOOTNWjWdHhFj7MQW4n4Hfw3WZaS7UlN1IiFKwh3Ex84ti090LjBOQ=s576-no?authuser=0"/>
     
     
         <meta property="og:image" content="https://lh3.googleusercontent.com/pw/AM-JKLVqEoT9LETZzeAriZQM4cxYp9Kp7t_MEqPIfkBuk69NmxYsyT8p5if6fn64J6k9cy7oneLOBsfFapXrS9upM0nJTxtkiWcXJYWWzpUzAll0FFWNyoDJSvZc2conN164QAaRnKjToZF4jOUofN4SOMDrhw=w2133-h779-no?authuser=0"/>
@@ -126,7 +126,7 @@
                     href="/#about"
                     aria-label="Read more about the author"
                 >
-                    <img class="sidebar-profile-picture" src="https://lh3.googleusercontent.com/pw/AM-JKLUwPXnPwHfIHvKP-8XbaVeDdFzvusBZL8soRLfZE25Vo8cXJXEU2eK1Aj8VSCbUNQPRHw5as9AoYzCyN7yQWI4l8Dy7Dhc79NXhFJkbJt1u1lib6TxSlALHwcjOtRgM5IryKtEXlcD8BhofpLOs2c_b3g=s989-no?authuser=0" alt="Author&#39;s picture"/>
+                    <img class="sidebar-profile-picture" src="https://lh3.googleusercontent.com/ZWIlJ3A2jHyXj0s2uJk_zn_WnFH1Mzuu8oc4WdcQanRiWZ5X96HG47OKgroJqEn5__g4jF2rWBEzdPYk-indrgowKb8fcDNJchG0LxOunkTFk9PcYWkkdGYQ7OYwFgO-1AoSNnoOlzdVxSUqntMOmvA8TtDo02zrF3y5gjnJtnGtGoTStmqFig9alDg3lNOC4mGN2XBnUhuzPZA-OpzVV9mZ8zjgjAqDGFhmCr1NM19OJVOKELNlOEyQIyv4H-cHlndBLAJB-HMV0-gO69MrbsYFlLLi6JzXX6o2jPVpcPwM0acgVg6YSobf4TsboNdfsjvD3o30HXUw7OjX4Ety3UV1_gKIv5mAAWCQILcWTdGtDXRpGaWTFb2zwmEVNHF8pL3Ezn3PmdspgNByk4WSF6EWMscXF36s9oiYP5V_kXA0_0eLwO0K1zrdlP7DdHXozA_-yf-Qj-aLjRrdMpsie2N0LlCoV4pUsH51W7crqH4wR4aFxTYxYEttXybyB6rKEeDQKCZHIDZxwn902V6_DWd6ksmeLp_HQ2db07nyAOnZGxFSX10-Uj7_MXxnakw6YkBdVeJRuRgxchp_FUAqHOgbPcyKbY75SE_7T4NpculDLGh3ik6lQCzI6zPY00je2coLfNOXa-TOUkWuhfYvXJhoTKvnq0TJGM98tPlx23zmdONZd-AwrbiP8sH9sbDW5oviw7RrsDv30nu8LcYQCEOZZol04Gz5UibzQX4gRR-VZ_o6Fs2wkLkvlblvRaE4wgEqdKbPJl0vpUZsuICwDhJkKRxb8a9qr_inDxUuv5Vz0sJb_8un0XClwd7WvyqI4iiyfO03Zaex-t4MfkQg_Ln9KvDlNuo5UhuDOiXUtP-G8R1aDhKpcdU3hOOTNWjWdHhFj7MQW4n4Hfw3WZaS7UlN1IiFKwh3Ex84ti090LjBOQ=s576-no?authuser=0" alt="Author&#39;s picture"/>
                 </a>
                 <h4 class="sidebar-profile-name">Song Joyce Park</h4>
                 
@@ -469,7 +469,7 @@
 
                 <footer id="footer" class="main-content-wrap">
     <span class="copyrights">
-        Copyrights &copy; 2022 Song Joyce Park. All Rights Reserved.
+        Copyrights &copy; 2023 Song Joyce Park. All Rights Reserved.
     </span>
 </footer>
 
@@ -644,7 +644,7 @@
             <i class="fa fa-times"></i>
         </div>
         
-            <img id="about-card-picture" src="https://lh3.googleusercontent.com/pw/AM-JKLUwPXnPwHfIHvKP-8XbaVeDdFzvusBZL8soRLfZE25Vo8cXJXEU2eK1Aj8VSCbUNQPRHw5as9AoYzCyN7yQWI4l8Dy7Dhc79NXhFJkbJt1u1lib6TxSlALHwcjOtRgM5IryKtEXlcD8BhofpLOs2c_b3g=s989-no?authuser=0" alt="Author&#39;s picture"/>
+            <img id="about-card-picture" src="https://lh3.googleusercontent.com/ZWIlJ3A2jHyXj0s2uJk_zn_WnFH1Mzuu8oc4WdcQanRiWZ5X96HG47OKgroJqEn5__g4jF2rWBEzdPYk-indrgowKb8fcDNJchG0LxOunkTFk9PcYWkkdGYQ7OYwFgO-1AoSNnoOlzdVxSUqntMOmvA8TtDo02zrF3y5gjnJtnGtGoTStmqFig9alDg3lNOC4mGN2XBnUhuzPZA-OpzVV9mZ8zjgjAqDGFhmCr1NM19OJVOKELNlOEyQIyv4H-cHlndBLAJB-HMV0-gO69MrbsYFlLLi6JzXX6o2jPVpcPwM0acgVg6YSobf4TsboNdfsjvD3o30HXUw7OjX4Ety3UV1_gKIv5mAAWCQILcWTdGtDXRpGaWTFb2zwmEVNHF8pL3Ezn3PmdspgNByk4WSF6EWMscXF36s9oiYP5V_kXA0_0eLwO0K1zrdlP7DdHXozA_-yf-Qj-aLjRrdMpsie2N0LlCoV4pUsH51W7crqH4wR4aFxTYxYEttXybyB6rKEeDQKCZHIDZxwn902V6_DWd6ksmeLp_HQ2db07nyAOnZGxFSX10-Uj7_MXxnakw6YkBdVeJRuRgxchp_FUAqHOgbPcyKbY75SE_7T4NpculDLGh3ik6lQCzI6zPY00je2coLfNOXa-TOUkWuhfYvXJhoTKvnq0TJGM98tPlx23zmdONZd-AwrbiP8sH9sbDW5oviw7RrsDv30nu8LcYQCEOZZol04Gz5UibzQX4gRR-VZ_o6Fs2wkLkvlblvRaE4wgEqdKbPJl0vpUZsuICwDhJkKRxb8a9qr_inDxUuv5Vz0sJb_8un0XClwd7WvyqI4iiyfO03Zaex-t4MfkQg_Ln9KvDlNuo5UhuDOiXUtP-G8R1aDhKpcdU3hOOTNWjWdHhFj7MQW4n4Hfw3WZaS7UlN1IiFKwh3Ex84ti090LjBOQ=s576-no?authuser=0" alt="Author&#39;s picture"/>
         
             <h4 id="about-card-name">Song Joyce Park</h4>
         
@@ -913,6 +913,72 @@
                     <hr>
                 </div>
                 
+                <div class="media">
+                    
+                    <div class="media-left">
+                        <a
+                            class="link-unstyled"
+                            href="http://sjp24.github.io/2022/09/15/startup-data-analyst-resume/"
+                            aria-label=": 스타트업 데이터 분석가 이력서 #1: 서류탈락 하는 이력서"
+                        >
+                            <img class="media-image" src="https://lh3.googleusercontent.com/CUJcdX56nd6XfoSBEWL2Ref8DK2EFaOtj6QGH77_vHyGKrVZee4TLYG-F1XtOuI0Abb9Q9t32kMphRrDqk0YqOuRR-DDMnqJB9gHwncDbGucR2F6S63-lO0hsM1v4opHb82WNcY4Gk79gAkQOFbVryZE32PYLoCsiUgwAKw3fFbgaWXOubsR_Oh0FiavhOuOzzfX1eNPRrkS_qFkSakauYJT_eEvXEtG_evkT__8bjpKGSsvOk1Cg4T9yJ4G2LJH1oCBsPjBWsa88C6fAkYMwu_8fJ1XbcuJyyOtRSJyDMNjJkle-1-Fu6SYNUmCwOVb1EOL9KpLOnBlIOZUNBIBOCU1BhDlJx4scHZEb7K5w9QKo37nM9xWtzrg0tXDblDRErMhgOEyWfycsOmK3EdOT0q3Yh6kVCL3pcrtEOOS3dSGza2fweJwZQWcNC8vjaG11IDcnLsWomJwfHFZP0_OhCqfClaLlQxe5Xg9CYxTkKU-Znw8CmgyVFL2aISicmPlPk3SPZMZi5k8DNCJ7TgRhw2dCTzAmzPULCbpWNBL5DEOfICGAiwTNziKBpSEFC9eu2qh6PizFEnTW0vjq-qxiy-yMWFiJYaAF-8yuEH_fGz_rYxezSbTu9-Iu_C_E2VAx73hfAj6ukUs_bymGWq0QHg6024nL4lKREzmLvxV5cWCyfRZ_a2WPm52vDj_ZAB3R6y7chYtxOfQsDbnS_VtWZCr4FZ0AjnLpXytLxA1DpyI6ASIm5_hiZSrQStrUzRWV2r4a6-GI-Zt4sIyBoxiVTs0XK3Lyvz1VVjNG7NDTKKta1x1MN06-1iouTxpR4hYkTdxN-fwTQcCOQ6Mtff0nDJnDqbGnx7ZaF6xsajWcpJtIgqJuTGU-f8oQc7HKLM63GE-CUclvsSIQp0WjWyGC22z8xi23oh_EgdRpJjcAyU8zg=w1961-h1307-no?authuser=0" width="60" height="60"/>
+                        </a>
+                    </div>
+                    
+                    <div class="media-body">
+                        <a
+                            class="link-unstyled"
+                            href="http://sjp24.github.io/2022/09/15/startup-data-analyst-resume/"
+                            aria-label=": 스타트업 데이터 분석가 이력서 #1: 서류탈락 하는 이력서"
+                        >
+                            <h3 class="media-heading">스타트업 데이터 분석가 이력서 #1: 서류탈락 하는 이력서</h3>
+                        </a>
+                        <span class="media-meta">
+                            <span class="media-date text-small">
+                                
+                                    Sep 15, 2022
+                                
+                            </span>
+                        </span>
+                        <div class="media-content hide-xs font-nanum-square"><p>데이터 분석 직무 자체가 워낙 회사마다, 심지어 회사 안에 있는 팀마다 다르기 때문에 회사마다 기준이 조금씩 다를 수 있습니다. 데이터 분석 직무는 요구하는 기술직인 역량이 개발자 같은 포지션 만큼은 아니기에 허들이 더 낮다고 생각하는 경우도 있지만, 기술적인 부분 외에도 정말 다양한 역량이 필요한 직무인 만큼 지원자의 역량 mix가 회사의 니즈와 안 맞는 경우가 많습니다.</p></div>
+                    </div>
+                    <div style="clear:both;"></div>
+                    <hr>
+                </div>
+                
+                <div class="media">
+                    
+                    <div class="media-left">
+                        <a
+                            class="link-unstyled"
+                            href="http://sjp24.github.io/2022/09/16/startup-data-analyst-resume-2/"
+                            aria-label=": 스타트업 데이터 분석가 이력서 #2: 이력서/포트폴리오에 내용"
+                        >
+                            <img class="media-image" src="https://lh3.googleusercontent.com/6yqbuqYzJ2fX6Q7Vs4w204c5BH6EOqvPDe5RY2peQMSZt_ob08fxbeD7N1hzrjxxn9K0ibiDqBju8SIQMjYtzAnc6mvj6FyrDd5IOuoI5G6aG5GvR02OKb-ha2OIo_Ag9coA5V_T-757gVOsLoVO5-Hag-7dHoNJZ24cRyPl3Txn5DuqA9cPMEspNBgOwYd8RAzBlJYYPIDqp3ebJ5u5KiuG5dBv05DvHy6kKaYOv53-6XIshmNRMtlrtpnlj74HNlD2-s9flEMnapx2eC3Exon0HtQJ22G0YAgTWr3c44nXlAs2Mpm7DpiGrEN8sXj4BXvx96hoQexzhwHVV_IvprLDrAusHI9gf5UYSwUTWX6RXe96VadAZOPDSeweWrVR2U8icKJV01wjWAEGwiGLWfGO6hPGxbI8k3FXZq5xDfGWbj2wrjH9MHi9kJoaMdix5Viqj_W0rznBNhHRzI-Dj10YjbIfxPyU52IrQN2vLx-ukd79s6CAS0gGI6ZWmYvymgH79H_W71iVcDyg5LpXBj34aGkx9l0UizGPtjRnupv1Ma3ZhrMMiFHPX0XodFHg06ZXmKTMkdUWTJI4J4Gyw4wvr5NI4krJFhTIi9SjC8vopEjWpEA9jgv8QcuCjaLty0eHpVPc-KCW4AQaAvML0hxPeIoehYPfAEPykEhbIsgwaSHWO2LN3y3n9soq3ZBBUWqYtkJkOHcEQSXn6slnEnluiFMUTdWqyj4o8lf0usuFKLqR35ZIU_wrE9wJ-NItkisgmFf71KwoVpFFQVdGYnNCwtBEOa529JeZZFX_wMTmWeZyy0tGb-dKlpz8VhBLvvlv4DTc3hQ0lY-K_vwFQQq3Gk7txYvgdkua3udo51BnWU_kEeExAr0nUTqHhRRUOENuYbYDZOv91ThKEAa9hbv95d6nNPcWb6agc6b22uJF5A=w1961-h1307-no?authuser=0" width="60" height="60"/>
+                        </a>
+                    </div>
+                    
+                    <div class="media-body">
+                        <a
+                            class="link-unstyled"
+                            href="http://sjp24.github.io/2022/09/16/startup-data-analyst-resume-2/"
+                            aria-label=": 스타트업 데이터 분석가 이력서 #2: 이력서/포트폴리오에 내용"
+                        >
+                            <h3 class="media-heading">스타트업 데이터 분석가 이력서 #2: 이력서/포트폴리오에 내용</h3>
+                        </a>
+                        <span class="media-meta">
+                            <span class="media-date text-small">
+                                
+                                    Sep 16, 2022
+                                
+                            </span>
+                        </span>
+                        <div class="media-content hide-xs font-nanum-square"><p>스타트업 데이터 분석가 시리즈 1탄 (<a href="https://sjp24.github.io/2022/09/15/startup-data-analyst-resume/" title="스타트업 데이터 분석가 이력서 #1: 서류탈락 하는 이력서">스타트업 데이터 분석가 이력서 #1: 서류탈락 하는 이력서</a>에 이어서 그러면 어떤 서류에는 내용을 포함해야 하는지, 데이터 분석가 포트폴리오는 어떻게 구성해야하는지 간단하게 얘기해보겠습니다.</p></div>
+                    </div>
+                    <div style="clear:both;"></div>
+                    <hr>
+                </div>
+                
             </div>
         </div>
         <div class="modal-footer">
@@ -920,7 +986,7 @@
                 data-message-zero="no post found"
                 data-message-one="1 post found"
                 data-message-other="{n} posts found">
-                7 posts found
+                9 posts found
             </p>
         </div>
     </div>
@@ -928,7 +994,7 @@
 
         
         
-<div id="cover" style="background-image:url('https://lh3.googleusercontent.com/pw/AM-JKLWZAelCBhRd3vA2dSXO0l3IIbM6lRWAXVkGUOKmRxJWJ65pDPZY_tLO2bloHruG0uHRVXZii8qnISuKkrIEqDy85M3bJ44xGV8fb6ZRZkCQvs2NmOEMMCNl1j8NOlO-4z8KfmAp9udwZbGa3upon4fhHQ=w1759-h989-no?authuser=0');"></div>
+<div id="cover" style="background-image:url('https://lh3.googleusercontent.com/Iscb6aTGI_RoFB8R88oAA7CQy1RzZ95vbSAkeYMxyjGor2bxl2azYUWx-heWAnlJc7YH6MVnGkug3H2eBUS1hFOu0tfseU0P7qoxL2bSRvYJe5SkEvKpqrPS6vhHabDK755DvX6bToamEMfrpi_jXMMUmRqDwcGLn6DxQ4f_IB50XjdBE5UAWtBmw8dIv3uqi1HiH5IZdaL2goq-ZX37qKdPoLzlQaihqVknx-lSvNmtINJSAz9JY731M5jvdyxiazSUeBK7Mjfli6xVwZaH5q50R_GXKEQazZtMt2vrXf6O8_v2yuENrda1GfEH4vz-4wBdo-VBYEQ3X7MZIX1ZrbnMx2rTPYiVPK_KFJ2dvQ-OMIRcwn5SRORQVp6rzDZul3c0o9YaGlrCrd4bGNrqiOFciyUM-s9vUYFlIOV4hlGXZRBV6vYpBRaPccu5DrSIm0RZx2rLWi5wQLaNk30SnO70t8kDQnZZCFGLc03lyt04fafMXTjco94tF5JivGi4GcL7vwuJY3HKIO0mCwaQ61_jfvRzK1VCefil7-cqvXHUDoVs5WOrk1MuB_CTp3Oe-_v6TDJ2UTBC7ZXUbzEqptrVMO1tt8mkRVh_eIAoRr3sYSQtyom4lnu1AHt9Su5R3sxeYIUcNTd6nkWoLVo84PjV8VjW-0qLO79WkwzGqRXJpZPVNTubEr4iNxOvvEahZi1agxLm9vCIihMRvky52Vf86kOWMIT7ge8w9oGytRvgBjm4yR1xuSNLHsA3SaIrIqHRpg0InKgcBoXGyWz6po9yDMFR6NTpqr2xUfo19EkSkkJIcGaMWSYDvMyUfUHtISQ_le6z1JFGaz4bMcXlrIILBBfBQ5pdN7iP0ABx_hTms9SU8BclmcnH19kYeo0_bvg3HlqgQsb8I9DPFqh724zO4uNzeIdyP_m3bht8UH98Yw=w1743-h1307-no?authuser=0');"></div>
         <!--SCRIPTS-->
 
 <script src="/assets/js/jquery.js"></script>

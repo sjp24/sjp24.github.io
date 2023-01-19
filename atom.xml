@@ -6,7 +6,7 @@
   <link href="http://sjp24.github.io/atom.xml" rel="self"/>
   
   <link href="http://sjp24.github.io/"/>
-  <updated>2022-09-06T07:24:36.798Z</updated>
+  <updated>2023-01-19T16:47:47.242Z</updated>
   <id>http://sjp24.github.io/</id>
   
   <author>
@@ -15,6 +15,52 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>스타트업 데이터 분석가 이력서 #2: 이력서/포트폴리오에 내용</title>
+    <link href="http://sjp24.github.io/2022/09/16/startup-data-analyst-resume-2/"/>
+    <id>http://sjp24.github.io/2022/09/16/startup-data-analyst-resume-2/</id>
+    <published>2022-09-15T15:00:00.000Z</published>
+    <updated>2023-01-19T16:47:47.242Z</updated>
+    
+    <content type="html"><![CDATA[<p>스타트업 데이터 분석가 시리즈 1탄 (<a href="https://sjp24.github.io/2022/09/15/startup-data-analyst-resume/" title="스타트업 데이터 분석가 이력서 #1: 서류탈락 하는 이력서">스타트업 데이터 분석가 이력서 #1: 서류탈락 하는 이력서</a>에 이어서 그러면 어떤 서류에는 내용을 포함해야 하는지, 데이터 분석가 포트폴리오는 어떻게 구성해야하는지 간단하게 얘기해보겠습니다.</p><span id="more"></span><p>1탄에서는 “이렇게 하지마세요”를 설명 했는데요.<br>그렇다면…어떤 이력서를 제출 해야할까요?<br><br/></p><hr><br/><p>데이터 분석가 이력서/포트폴리오데 대해 자주 받는 질문들 + 평소 생각하는 부분들에 대한 내용입니다.</p><br/><h3 id="이력서-형식"><a href="#이력서-형식" class="headerlink" title="이력서 형식"></a>이력서 형식</h3><p>이력서를 복잡한 포맷으로 만들거나 디자인을 예쁘게 할 필요는 없어요. 가독성이 중요하기 때문에 심플한게 최고입니다! 템플릿이 필요하다면 깔끔하게 원티드 이력서를 사용하거나 노션 이력서를 만들어보세요.</p><br/><h3 id="포트폴리오-깃헙-포함-제출-여부"><a href="#포트폴리오-깃헙-포함-제출-여부" class="headerlink" title="포트폴리오 (깃헙 포함) 제출 여부"></a>포트폴리오 (깃헙 포함) 제출 여부</h3><p>경력이 아예 없는 경우 포트폴리오가 도움이 되긴 합니다. 하지만 데이터 분석가는 포트폴리오에 보여줄 수 있는 내용이 개발자나 디자이너 만큼 명확하지 않기 때문에 제 경험상 포트폴리오 내용이 오히려 실망스러운 경우가 대부분입니다. 코드가 생각보다 너무 심플하거나, A/B 테스트 내용이 너무 단순해서 전혀 임팩트 없어 보이거나, 대시보드 스샷만 엄청 들어가고 설명은 없거나…포트폴리오 정리가 제대로 안되어있고 내용이 별로 없는 경우도 꽤 있습니다. 무조건 보여줄 내용의 양이 많다고 좋은건 아니기 때문에 노력해서 포트폴리오를 의미있게 만들지 않는다면 차라리 이력서에 있는 설명들을 더 잘 쓰고 이력서만 제출하는게 좋을 수 있습니다.</p><br/><h3 id="이력서-포트폴리오-내용-개인-분석-프로젝트"><a href="#이력서-포트폴리오-내용-개인-분석-프로젝트" class="headerlink" title="이력서/포트폴리오 내용: 개인 분석 프로젝트"></a>이력서/포트폴리오 내용: 개인 분석 프로젝트</h3><p>개인 분석 프로젝트는 보통 무료 데이터셋을 사용한 분석 내용이고 실제 어떤 회사에서 회사의 성장이나 서비스 개선을 위해 인사이트를 도출하는게 아니기 때문에 겉할퀴식 EDA 내용과 데이터 시각화로 끝나는 경우가 많아요. 무료 데이터셋으로 한계가 있을 수 있지만, 최대한 인사이트와 인사이트를 바탕한 의견을 알려주세요. “Why”와 “Next Steps”를 찾을 줄 아는 사람인걸 보여주세요. 이런 프레이밍을 잘 하기 위해서는 데이터셋 선택도 중요할거에요. 그냥 포트폴리오를 위한 데이터셋을 찾기 보다 정말 궁금한 분야의 재미있을것 같은 데이터셋을 찾아보세요!</p><br/><h3 id="이력서-포트폴리오-내용-경력에-대한-설명"><a href="#이력서-포트폴리오-내용-경력에-대한-설명" class="headerlink" title="이력서/포트폴리오 내용: 경력에 대한 설명"></a>이력서/포트폴리오 내용: 경력에 대한 설명</h3><p>경력직의 경우, 각 획사에서 진행한 업무 중 주요 업무 내용을 잘 설명하는게 중요합니다. 명확하게 보여줄 수 있는 내용이 만들었던 차트 예시들과 코드 snippet이라서 이런 내용을 많이 포함 하는데요, 대부분 크게 impressive 하지 않습니다. 왜냐하면 사실상 데이터 분석 업무에 중요한 부분은 이런 아웃풋보다 다양한 직무 구성원들과 고민하고 협업한 과정, 코드 짜면서 겪은 어려움들, 분석 내용을 이해 관계자들한테 전달하고 설명했던 방식, 얻었던 인사이트들로 이해관계자들과 논의했던 내용, 분석 바탕으로 개선된 부분들입니다. 이런 내용들을 포트폴리오에 다 담는건 어렵지만, 최대한 프로젝트 배경에 대한 설명과 더불어 분석 과정 (문제 정의, 가설 세우기, 지표 설정, 등등)을 상세하게 설명 해주세요.</p><br/><h3 id="SQL-Python-R"><a href="#SQL-Python-R" class="headerlink" title="SQL? Python? R?"></a>SQL? Python? R?</h3><p>회사마다 그리고 포지션마다 필요한 하드 스킬이 조금 달라서 정답은 없지만 SQL이 가장 기본이고 베이스라고 생각합니다. SQL 고수가 되어야하는건 아니지만 대체적으로 분석을 할때 데이터베이스에 있는 데이터를 사용하기 때문에 SQL을 알아야하고 SQL 지식이 데이터베이스 지식이랑 어느정도 같이 간다고 생각하기 때문에 SQL은 가장 기본으로 알아야한다고 생각해요. 제가 생각하는 중요도는 SQL &gt; Python &gt; R이지만 이게 무조건적인 정답은 아닙니다. 관심 있는 포지션들의 채용 공고 내용을 유심히 보면 어떤 언어를 배워야할지 혹은 어떤 경험을 이력서/포트폴리오에 더 부각 해야할지 알 수 있습니다.</p><br/><h3 id="자격증-SQLD-SQLP-ADsP-등"><a href="#자격증-SQLD-SQLP-ADsP-등" class="headerlink" title="자격증 (SQLD, SQLP, ADsP, 등)"></a>자격증 (SQLD, SQLP, ADsP, 등)</h3><p>SQLD, 등 이런 류의 자격증은 스타트업에서는 크게 의미 없다고 생각합니다 - 마이너스도 아니지만 플러스도 아닙니다. 일단, 실전 (특히 스타트업에서의) SQL은 시험과 많이 다릅니다. 그렇기 때문에 자격증이 있어도 결국 다른 방법으로 (경력이 없다면 개인 분석 프로젝트와 같은 방법) 분석 역량을 보여줘야해요.</p><br/><p>데이터 분석가로 나름(?) 오래 일하면서 이런저런 생각들을 적어봤습니다. 저도 여전히 부족하고, 회사마다 다른 기준들이 있기에 조심스러운 부분도 있는데요, 조금이나마 도움이 됐으면 합니다.</p><br/><img src="https://lh3.googleusercontent.com/6yqbuqYzJ2fX6Q7Vs4w204c5BH6EOqvPDe5RY2peQMSZt_ob08fxbeD7N1hzrjxxn9K0ibiDqBju8SIQMjYtzAnc6mvj6FyrDd5IOuoI5G6aG5GvR02OKb-ha2OIo_Ag9coA5V_T-757gVOsLoVO5-Hag-7dHoNJZ24cRyPl3Txn5DuqA9cPMEspNBgOwYd8RAzBlJYYPIDqp3ebJ5u5KiuG5dBv05DvHy6kKaYOv53-6XIshmNRMtlrtpnlj74HNlD2-s9flEMnapx2eC3Exon0HtQJ22G0YAgTWr3c44nXlAs2Mpm7DpiGrEN8sXj4BXvx96hoQexzhwHVV_IvprLDrAusHI9gf5UYSwUTWX6RXe96VadAZOPDSeweWrVR2U8icKJV01wjWAEGwiGLWfGO6hPGxbI8k3FXZq5xDfGWbj2wrjH9MHi9kJoaMdix5Viqj_W0rznBNhHRzI-Dj10YjbIfxPyU52IrQN2vLx-ukd79s6CAS0gGI6ZWmYvymgH79H_W71iVcDyg5LpXBj34aGkx9l0UizGPtjRnupv1Ma3ZhrMMiFHPX0XodFHg06ZXmKTMkdUWTJI4J4Gyw4wvr5NI4krJFhTIi9SjC8vopEjWpEA9jgv8QcuCjaLty0eHpVPc-KCW4AQaAvML0hxPeIoehYPfAEPykEhbIsgwaSHWO2LN3y3n9soq3ZBBUWqYtkJkOHcEQSXn6slnEnluiFMUTdWqyj4o8lf0usuFKLqR35ZIU_wrE9wJ-NItkisgmFf71KwoVpFFQVdGYnNCwtBEOa529JeZZFX_wMTmWeZyy0tGb-dKlpz8VhBLvvlv4DTc3hQ0lY-K_vwFQQq3Gk7txYvgdkua3udo51BnWU_kEeExAr0nUTqHhRRUOENuYbYDZOv91ThKEAa9hbv95d6nNPcWb6agc6b22uJF5A=w1961-h1307-no?authuser=0" class=""><br/>---<br/><p>시리즈:<br><a href="https://sjp24.github.io/2022/09/15/startup-data-analyst-resume/" title="스타트업 데이터 분석가 이력서 #1: 서류탈락 하는 이력서">스타트업 데이터 분석가 이력서 #1: 서류탈락 하는 이력서</a></p>]]></content>
+    
+    
+    <summary type="html">&lt;p&gt;스타트업 데이터 분석가 시리즈 1탄 (&lt;a href=&quot;https://sjp24.github.io/2022/09/15/startup-data-analyst-resume/&quot; title=&quot;스타트업 데이터 분석가 이력서 #1: 서류탈락 하는 이력서&quot;&gt;스타트업 데이터 분석가 이력서 #1: 서류탈락 하는 이력서&lt;/a&gt;에 이어서 그러면 어떤 서류에는 내용을 포함해야 하는지, 데이터 분석가 포트폴리오는 어떻게 구성해야하는지 간단하게 얘기해보겠습니다.&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="Career" scheme="http://sjp24.github.io/categories/Career/"/>
+    
+    
+    <category term="Startup" scheme="http://sjp24.github.io/tags/Startup/"/>
+    
+    <category term="Data Analyst" scheme="http://sjp24.github.io/tags/Data-Analyst/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>스타트업 데이터 분석가 이력서 #1: 서류탈락 하는 이력서</title>
+    <link href="http://sjp24.github.io/2022/09/15/startup-data-analyst-resume/"/>
+    <id>http://sjp24.github.io/2022/09/15/startup-data-analyst-resume/</id>
+    <published>2022-09-14T15:00:00.000Z</published>
+    <updated>2023-01-19T16:47:43.088Z</updated>
+    
+    <content type="html"><![CDATA[<p>데이터 분석 직무 자체가 워낙 회사마다, 심지어 회사 안에 있는 팀마다 다르기 때문에 회사마다 기준이 조금씩 다를 수 있습니다. 데이터 분석 직무는 요구하는 기술직인 역량이 개발자 같은 포지션 만큼은 아니기에 허들이 더 낮다고 생각하는 경우도 있지만, 기술적인 부분 외에도 정말 다양한 역량이 필요한 직무인 만큼 지원자의 역량 mix가 회사의 니즈와 안 맞는 경우가 많습니다.</p><span id="more"></span><p>결국 서류 전형에서는 지원하는 회사에 대해 그리고 각 채용 공고 내용을 이해하는 게 중요할 것 같은데요, 제 경험상 서류 탈락하는 데이터 분석가 이력서 아래와 같습니다.<br><br/></p><hr><br/><h3 id="1-구체적인-내용이-없다"><a href="#1-구체적인-내용이-없다" class="headerlink" title="1. 구체적인 내용이 없다"></a>1. 구체적인 내용이 없다</h3><p>직무에 상관없이 구체적인 내용이 없는 이력서는 경력과 역량을 파악 못하기 때문에 그리고 성의 없어 보임으로 탈락할 확률이 높습니다. 특히 데이터 분석가는 딱 보여줄 수 있는 결과물이 존재하지 않는 경우가 많아서 여러모로 무엇을 제출해야 할지 애매한 직무입니다. 디자이너는 포트폴리오, 개발자는 깃헙을 제출하는 반면 데이터 분석가는 대부분 이력서만 필수로 제출합니다. 이력서만으로 판단해야 하는데 내용이 구체적이지 않아 어떤 일을 했고 어떻게 기여했는지 파악할 수 없는 경우가 많습니다. 이력서 리뷰어는 지원자에 대해 아무것도 모르는 상태에 이력서 한두 장으로 지원자를 파악해야 한다는 점을 잊지 마세요.</p><br/><h3 id="2-이력서-내용이-채용-공고랑-하나도-안-맞다"><a href="#2-이력서-내용이-채용-공고랑-하나도-안-맞다" class="headerlink" title="2. 이력서 내용이 채용 공고랑 하나도 안 맞다"></a>2. 이력서 내용이 채용 공고랑 하나도 안 맞다</h3><p>이력서 내용이 채용공고랑 완벽하게 맞지 않아도 지원해 보는 건 문제 없지만, “왜 지원했지…?” 싶은 경우가 많습니다. 시니어 Product Data Analyst 포지션인데 마케팅 분석 경험만 있는 지원자가 있다면 최소한 프로덕트에 관심이 있다는 걸 나타날 수 있는 무언가가 (사이드 프로젝트, 업무 중 프로덕트 분석에 가까운 업무, 프로덕트에 관심을 갖게 된 계기에 대한 설명, 등) 이력서에 있어야 합니다. 주니어에게도 어느정도 해당하지만 시니어의 경우 더더욱 공고 내용이랑 안 맞는 지원자는 탈락할 수밖에 없습니다. 채용 공고를 조금 더 자세하게 살펴주세요 :)</p><br/><h3 id="3-빅데이터-AI-머신러닝…"><a href="#3-빅데이터-AI-머신러닝…" class="headerlink" title="3. 빅데이터, AI, 머신러닝…"></a>3. 빅데이터, AI, 머신러닝…</h3><p>다 핫한 키워드들입니다. 그렇지만 관련 역량을 보유하고 있다고 좋은 데이터 분석가가 되는건 아닙니다. 오버스펙도 아니라 그냥 다른 스킬셋입니다. 회사마다 원하는 데이터 분석가의 스킬셋이 다르기 때문에 해당 역량을 가진 지원자를 찾는 경우도 있지만 데이터 분석가, 데이터 사이언티스트, 머신러닝 엔지니어는 다른 역할을 하기 때문에 채용 공고에 이런 내용이 없다면 빅데이터, AI, 머신러닝과 같은 기술들을 강조한 이력서는 위에 설명한 2번과 마찬가지로 <strong>연관 경력이 없는 지원자</strong>로 생각합니다.</p><br/><h3 id="4-신입의-경우-노력이-안보이는-경우"><a href="#4-신입의-경우-노력이-안보이는-경우" class="headerlink" title="4. 신입의 경우: 노력이 안보이는 경우"></a>4. 신입의 경우: 노력이 안보이는 경우</h3><p>이력서로 자신의 역량을 보여주는건 시니어도 쉽지 않은데요, 유사 경력이 없는 신입의 경우 더더욱 어렵습니다. 그래서 경력이 없는 만큼 개인 사이드 프로젝트, 온라인 강의 학습, 등 데이터 분석가에게 필요한 역량을 키우기 위한 노력을 보여야합니다. 왜 이 회사에 지원했는지 왜 데이터 분석 일을 하고싶은지 설명도 들어가도 좋습니다. 해보기 전까지 데이터 분석가가 어떤 역할인지 다 알 수 없지만, 그래도 직무에 대해 많이 파악을 해봤고 노력했다는 것을 보여주세요!</p><br/><h3 id="5-경력직의-경우-요청봇으로만-일해봤다"><a href="#5-경력직의-경우-요청봇으로만-일해봤다" class="headerlink" title="5. 경력직의 경우: 요청봇으로만 일해봤다"></a>5. 경력직의 경우: 요청봇으로만 일해봤다</h3><p>스타트업 데이터 분석가는 단순히 데이터 요청을 받고 추출하는 사람이면 안됩니다. 서비스를 잘 이해한 상태에서 문제 정의, 가설 설정, 주도적으로 데이터 분석을 통해 인사이트 도출, 그리고 주도적으로 논의에 참여하며 임팩트를 냅니다. 경력직은 주도적으로 일을 할 수 있는 사람이길 더 크게 기대하기 때문에 요청봇으로만 일한 사람으로 판단될 경우 아주 큰 마이너스입니다. 비슷한 맥락으로 BI 전문가로 대시보드 구축만 많이 했던걸로 판단되는 경우 마이너스일 수 있습니다.</p><br/><p>핵심은 데이터 추출과 시각화 이상으로 일하면서 임팩트를 내는게 중요한것 같아요. 회사마다 기준이 다르지만, 저는 기술적으로 탄탄한 데이터 분석가 vs 데이터 문해력이 좋은 중에서는 후자를 채용할것 같습니다. 기술적으로 탄탄한 데이터 분석가는 많고 기술적인 부분은 차차 배울 수 있어요. 데이터 문해력은 이력서로 보여주기 어렵지만 이 부분을 잘 생각하면서 더 좋은 이력서를 만드실 수 있습니다!</p><br/><img src="https://lh3.googleusercontent.com/CUJcdX56nd6XfoSBEWL2Ref8DK2EFaOtj6QGH77_vHyGKrVZee4TLYG-F1XtOuI0Abb9Q9t32kMphRrDqk0YqOuRR-DDMnqJB9gHwncDbGucR2F6S63-lO0hsM1v4opHb82WNcY4Gk79gAkQOFbVryZE32PYLoCsiUgwAKw3fFbgaWXOubsR_Oh0FiavhOuOzzfX1eNPRrkS_qFkSakauYJT_eEvXEtG_evkT__8bjpKGSsvOk1Cg4T9yJ4G2LJH1oCBsPjBWsa88C6fAkYMwu_8fJ1XbcuJyyOtRSJyDMNjJkle-1-Fu6SYNUmCwOVb1EOL9KpLOnBlIOZUNBIBOCU1BhDlJx4scHZEb7K5w9QKo37nM9xWtzrg0tXDblDRErMhgOEyWfycsOmK3EdOT0q3Yh6kVCL3pcrtEOOS3dSGza2fweJwZQWcNC8vjaG11IDcnLsWomJwfHFZP0_OhCqfClaLlQxe5Xg9CYxTkKU-Znw8CmgyVFL2aISicmPlPk3SPZMZi5k8DNCJ7TgRhw2dCTzAmzPULCbpWNBL5DEOfICGAiwTNziKBpSEFC9eu2qh6PizFEnTW0vjq-qxiy-yMWFiJYaAF-8yuEH_fGz_rYxezSbTu9-Iu_C_E2VAx73hfAj6ukUs_bymGWq0QHg6024nL4lKREzmLvxV5cWCyfRZ_a2WPm52vDj_ZAB3R6y7chYtxOfQsDbnS_VtWZCr4FZ0AjnLpXytLxA1DpyI6ASIm5_hiZSrQStrUzRWV2r4a6-GI-Zt4sIyBoxiVTs0XK3Lyvz1VVjNG7NDTKKta1x1MN06-1iouTxpR4hYkTdxN-fwTQcCOQ6Mtff0nDJnDqbGnx7ZaF6xsajWcpJtIgqJuTGU-f8oQc7HKLM63GE-CUclvsSIQp0WjWyGC22z8xi23oh_EgdRpJjcAyU8zg=w1961-h1307-no?authuser=0" class=""><br/>---<br/><p>시리즈:<br><a href="https://sjp24.github.io/2022/09/15/startup-data-analyst-resume-2/" title="스타트업 데이터 분석가 이력서 #2: 이력서/포트폴리오에 내용">스타트업 데이터 분석가 이력서 #2: 이력서/포트폴리오에 내용</a></p>]]></content>
+    
+    
+    <summary type="html">&lt;p&gt;데이터 분석 직무 자체가 워낙 회사마다, 심지어 회사 안에 있는 팀마다 다르기 때문에 회사마다 기준이 조금씩 다를 수 있습니다. 데이터 분석 직무는 요구하는 기술직인 역량이 개발자 같은 포지션 만큼은 아니기에 허들이 더 낮다고 생각하는 경우도 있지만, 기술적인 부분 외에도 정말 다양한 역량이 필요한 직무인 만큼 지원자의 역량 mix가 회사의 니즈와 안 맞는 경우가 많습니다.&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="Career" scheme="http://sjp24.github.io/categories/Career/"/>
+    
+    
+    <category term="Startup" scheme="http://sjp24.github.io/tags/Startup/"/>
+    
+    <category term="Data Analyst" scheme="http://sjp24.github.io/tags/Data-Analyst/"/>
+    
+  </entry>
   
   <entry>
     <title>2021 Wrap-Up: 회고 (시니어가 되다)</title>
@@ -80,9 +126,9 @@
     <category term="Life" scheme="http://sjp24.github.io/categories/Life/"/>
     
     
-    <category term="Music" scheme="http://sjp24.github.io/tags/Music/"/>
-    
     <category term="Year-end Wrap Up" scheme="http://sjp24.github.io/tags/Year-end-Wrap-Up/"/>
+    
+    <category term="Music" scheme="http://sjp24.github.io/tags/Music/"/>
     
   </entry>
   
@@ -154,9 +200,9 @@
     
     <category term="Colab" scheme="http://sjp24.github.io/tags/Colab/"/>
     
-    <category term="R" scheme="http://sjp24.github.io/tags/R/"/>
-    
     <category term="Python" scheme="http://sjp24.github.io/tags/Python/"/>
+    
+    <category term="R" scheme="http://sjp24.github.io/tags/R/"/>
     
   </entry>
   
