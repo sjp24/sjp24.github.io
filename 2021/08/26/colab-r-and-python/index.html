@@ -19,7 +19,7 @@
             <link rel="alternate" type="application/atom+xml" title="RSS" href="/atom.xml">
         
     
-    <script type="application/ld+json">{"@context":"http://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Song Joyce Park","sameAs":[],"image":"https://lh3.googleusercontent.com/ZWIlJ3A2jHyXj0s2uJk_zn_WnFH1Mzuu8oc4WdcQanRiWZ5X96HG47OKgroJqEn5__g4jF2rWBEzdPYk-indrgowKb8fcDNJchG0LxOunkTFk9PcYWkkdGYQ7OYwFgO-1AoSNnoOlzdVxSUqntMOmvA8TtDo02zrF3y5gjnJtnGtGoTStmqFig9alDg3lNOC4mGN2XBnUhuzPZA-OpzVV9mZ8zjgjAqDGFhmCr1NM19OJVOKELNlOEyQIyv4H-cHlndBLAJB-HMV0-gO69MrbsYFlLLi6JzXX6o2jPVpcPwM0acgVg6YSobf4TsboNdfsjvD3o30HXUw7OjX4Ety3UV1_gKIv5mAAWCQILcWTdGtDXRpGaWTFb2zwmEVNHF8pL3Ezn3PmdspgNByk4WSF6EWMscXF36s9oiYP5V_kXA0_0eLwO0K1zrdlP7DdHXozA_-yf-Qj-aLjRrdMpsie2N0LlCoV4pUsH51W7crqH4wR4aFxTYxYEttXybyB6rKEeDQKCZHIDZxwn902V6_DWd6ksmeLp_HQ2db07nyAOnZGxFSX10-Uj7_MXxnakw6YkBdVeJRuRgxchp_FUAqHOgbPcyKbY75SE_7T4NpculDLGh3ik6lQCzI6zPY00je2coLfNOXa-TOUkWuhfYvXJhoTKvnq0TJGM98tPlx23zmdONZd-AwrbiP8sH9sbDW5oviw7RrsDv30nu8LcYQCEOZZol04Gz5UibzQX4gRR-VZ_o6Fs2wkLkvlblvRaE4wgEqdKbPJl0vpUZsuICwDhJkKRxb8a9qr_inDxUuv5Vz0sJb_8un0XClwd7WvyqI4iiyfO03Zaex-t4MfkQg_Ln9KvDlNuo5UhuDOiXUtP-G8R1aDhKpcdU3hOOTNWjWdHhFj7MQW4n4Hfw3WZaS7UlN1IiFKwh3Ex84ti090LjBOQ=s576-no?authuser=0"},"articleBody":"한 노트북 안에서 여러 언어를 사용하는걸 지양해야 하지만, R와 파이썬을 둘 다 쓰는 사람이라면 두 언어를 같이 사용할 수 있었으면 하는 순간들이 오기 마련입니다. 기본적으로 Colab 노트북은 Python 언어 기반이지만 (R 노트북도 쓸 수 있긴 하다) 한 노트북 안에서 Python과 R을 같이 쓸 수 있습니다!\n\n\n(TIP: 그냥 Colab R 노트북 사용하고 싶은 경우 이 링크로 Colab 접속하면 R 노트북이 생성됩니다: https://colab.research.google.com/#create=true&amp;language=r)\n\nColab에서 Python-R 같이 사용하기첫번째로, Colab 노트북에서 아래 코드를 실행:\n1%load_ext rpy2.ipython\n\n디폴트로는 모든 셀이 Python 셀이지만 R 코드 사용하고 싶은 경우, cell magic과 line magic 두가지 방법이 있습니다.\n\nCell magic: 셀 전체를 R 코드로 실행 → 셀 첫번째 행에 아래 코드 입력하면 셀의 모든 코드가 R 코드로 실행됩니다1%%R\nLine magic: 코드 행을 R 코드로 실행 → R 코드 실행할 행에 아래 코드 입력1%R\n\n\nTip #1: Python-R 언어 사이 Dataframe 복사R 코드 부분에서 dataframe이 생성되면, 파이썬 코드 부분에서는 해당 dataframe을 사용할 수 없습니다. 그래서 따로 두 언어 다 활용해서 dataframe을 다룰 경우에는 한쪽에서 생성된 dataframe을 다른 쪽에 만들어주는 방법을 사용해야합니다.\ndf 라는 dataframe이 있으면, 꼭 cell magic 이 아닌 line magic 으로 아래 코드를 실행 해주세요.\nPython → R1%R -i df\n\nR → Python1%R -o df\n\n여러 dataframe을 한번에12345#Python to R%R -i df -i df2#R to Python%R -o df -o df2\n\n\nTip #2: R Variable을 Python으로 복사Line magic은 헤당 행에 있는 쿠드에 적용이 되다보니 아래 코드와 같은 방법으로 R variable도 Python variable로 복사할 수 있습니다.\n1x = %R x\n\n\n위에 설명한 내용을 간단한 예시로 볼 수 있는 Colab 노트북입니다! → Example Colab Notebook\n","dateCreated":"2021-08-26T00:00:00+09:00","dateModified":"2021-12-31T16:38:21+09:00","datePublished":"2021-08-26T00:00:00+09:00","description":"한 노트북 안에서 여러 언어를 사용하는걸 지양해야 하지만, R와 파이썬을 둘 다 쓰는 사람이라면 두 언어를 같이 사용할 수 있었으면 하는 순간들이 오기 마련입니다. 기본적으로 Colab 노트북은 Python 언어 기반이지만 (R 노트북도 쓸 수 있긴 하다) 한 노트북 안에서 Python과 R을 같이 쓸 수 있습니다!","headline":"Google Colab 101: Python-R 같이 사용하기","image":["https://lh3.googleusercontent.com/pw/AM-JKLWNrbDmpUZPK5c76vmkQEwDcDrgeufFCoBZ_Phdt0yy0EDfWXUxxZgljMNgnpCt2TOuksg-lyESZVWXv7Q1Io5zsOaPNkLgaDxaG_JjKIpnhs56NP3OMTbRbpNokhRQBQ-TN8yviyq1w3gXb5ahDEM30g=s260-no?authuser=0"],"mainEntityOfPage":{"@type":"WebPage","@id":"http://sjp24.github.io/2021/08/26/colab-r-and-python/"},"publisher":{"@type":"Organization","name":"Song Joyce Park","sameAs":[],"image":"https://lh3.googleusercontent.com/ZWIlJ3A2jHyXj0s2uJk_zn_WnFH1Mzuu8oc4WdcQanRiWZ5X96HG47OKgroJqEn5__g4jF2rWBEzdPYk-indrgowKb8fcDNJchG0LxOunkTFk9PcYWkkdGYQ7OYwFgO-1AoSNnoOlzdVxSUqntMOmvA8TtDo02zrF3y5gjnJtnGtGoTStmqFig9alDg3lNOC4mGN2XBnUhuzPZA-OpzVV9mZ8zjgjAqDGFhmCr1NM19OJVOKELNlOEyQIyv4H-cHlndBLAJB-HMV0-gO69MrbsYFlLLi6JzXX6o2jPVpcPwM0acgVg6YSobf4TsboNdfsjvD3o30HXUw7OjX4Ety3UV1_gKIv5mAAWCQILcWTdGtDXRpGaWTFb2zwmEVNHF8pL3Ezn3PmdspgNByk4WSF6EWMscXF36s9oiYP5V_kXA0_0eLwO0K1zrdlP7DdHXozA_-yf-Qj-aLjRrdMpsie2N0LlCoV4pUsH51W7crqH4wR4aFxTYxYEttXybyB6rKEeDQKCZHIDZxwn902V6_DWd6ksmeLp_HQ2db07nyAOnZGxFSX10-Uj7_MXxnakw6YkBdVeJRuRgxchp_FUAqHOgbPcyKbY75SE_7T4NpculDLGh3ik6lQCzI6zPY00je2coLfNOXa-TOUkWuhfYvXJhoTKvnq0TJGM98tPlx23zmdONZd-AwrbiP8sH9sbDW5oviw7RrsDv30nu8LcYQCEOZZol04Gz5UibzQX4gRR-VZ_o6Fs2wkLkvlblvRaE4wgEqdKbPJl0vpUZsuICwDhJkKRxb8a9qr_inDxUuv5Vz0sJb_8un0XClwd7WvyqI4iiyfO03Zaex-t4MfkQg_Ln9KvDlNuo5UhuDOiXUtP-G8R1aDhKpcdU3hOOTNWjWdHhFj7MQW4n4Hfw3WZaS7UlN1IiFKwh3Ex84ti090LjBOQ=s576-no?authuser=0","logo":{"@type":"ImageObject","url":"https://lh3.googleusercontent.com/ZWIlJ3A2jHyXj0s2uJk_zn_WnFH1Mzuu8oc4WdcQanRiWZ5X96HG47OKgroJqEn5__g4jF2rWBEzdPYk-indrgowKb8fcDNJchG0LxOunkTFk9PcYWkkdGYQ7OYwFgO-1AoSNnoOlzdVxSUqntMOmvA8TtDo02zrF3y5gjnJtnGtGoTStmqFig9alDg3lNOC4mGN2XBnUhuzPZA-OpzVV9mZ8zjgjAqDGFhmCr1NM19OJVOKELNlOEyQIyv4H-cHlndBLAJB-HMV0-gO69MrbsYFlLLi6JzXX6o2jPVpcPwM0acgVg6YSobf4TsboNdfsjvD3o30HXUw7OjX4Ety3UV1_gKIv5mAAWCQILcWTdGtDXRpGaWTFb2zwmEVNHF8pL3Ezn3PmdspgNByk4WSF6EWMscXF36s9oiYP5V_kXA0_0eLwO0K1zrdlP7DdHXozA_-yf-Qj-aLjRrdMpsie2N0LlCoV4pUsH51W7crqH4wR4aFxTYxYEttXybyB6rKEeDQKCZHIDZxwn902V6_DWd6ksmeLp_HQ2db07nyAOnZGxFSX10-Uj7_MXxnakw6YkBdVeJRuRgxchp_FUAqHOgbPcyKbY75SE_7T4NpculDLGh3ik6lQCzI6zPY00je2coLfNOXa-TOUkWuhfYvXJhoTKvnq0TJGM98tPlx23zmdONZd-AwrbiP8sH9sbDW5oviw7RrsDv30nu8LcYQCEOZZol04Gz5UibzQX4gRR-VZ_o6Fs2wkLkvlblvRaE4wgEqdKbPJl0vpUZsuICwDhJkKRxb8a9qr_inDxUuv5Vz0sJb_8un0XClwd7WvyqI4iiyfO03Zaex-t4MfkQg_Ln9KvDlNuo5UhuDOiXUtP-G8R1aDhKpcdU3hOOTNWjWdHhFj7MQW4n4Hfw3WZaS7UlN1IiFKwh3Ex84ti090LjBOQ=s576-no?authuser=0"}},"url":"http://sjp24.github.io/2021/08/26/colab-r-and-python/","keywords":"Colab, Python, R","thumbnailUrl":"https://lh3.googleusercontent.com/pw/AM-JKLWNrbDmpUZPK5c76vmkQEwDcDrgeufFCoBZ_Phdt0yy0EDfWXUxxZgljMNgnpCt2TOuksg-lyESZVWXv7Q1Io5zsOaPNkLgaDxaG_JjKIpnhs56NP3OMTbRbpNokhRQBQ-TN8yviyq1w3gXb5ahDEM30g=s260-no?authuser=0"}</script>
+    <script type="application/ld+json">{"@context":"http://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Song Joyce Park","sameAs":[],"image":"https://lh3.googleusercontent.com/ZWIlJ3A2jHyXj0s2uJk_zn_WnFH1Mzuu8oc4WdcQanRiWZ5X96HG47OKgroJqEn5__g4jF2rWBEzdPYk-indrgowKb8fcDNJchG0LxOunkTFk9PcYWkkdGYQ7OYwFgO-1AoSNnoOlzdVxSUqntMOmvA8TtDo02zrF3y5gjnJtnGtGoTStmqFig9alDg3lNOC4mGN2XBnUhuzPZA-OpzVV9mZ8zjgjAqDGFhmCr1NM19OJVOKELNlOEyQIyv4H-cHlndBLAJB-HMV0-gO69MrbsYFlLLi6JzXX6o2jPVpcPwM0acgVg6YSobf4TsboNdfsjvD3o30HXUw7OjX4Ety3UV1_gKIv5mAAWCQILcWTdGtDXRpGaWTFb2zwmEVNHF8pL3Ezn3PmdspgNByk4WSF6EWMscXF36s9oiYP5V_kXA0_0eLwO0K1zrdlP7DdHXozA_-yf-Qj-aLjRrdMpsie2N0LlCoV4pUsH51W7crqH4wR4aFxTYxYEttXybyB6rKEeDQKCZHIDZxwn902V6_DWd6ksmeLp_HQ2db07nyAOnZGxFSX10-Uj7_MXxnakw6YkBdVeJRuRgxchp_FUAqHOgbPcyKbY75SE_7T4NpculDLGh3ik6lQCzI6zPY00je2coLfNOXa-TOUkWuhfYvXJhoTKvnq0TJGM98tPlx23zmdONZd-AwrbiP8sH9sbDW5oviw7RrsDv30nu8LcYQCEOZZol04Gz5UibzQX4gRR-VZ_o6Fs2wkLkvlblvRaE4wgEqdKbPJl0vpUZsuICwDhJkKRxb8a9qr_inDxUuv5Vz0sJb_8un0XClwd7WvyqI4iiyfO03Zaex-t4MfkQg_Ln9KvDlNuo5UhuDOiXUtP-G8R1aDhKpcdU3hOOTNWjWdHhFj7MQW4n4Hfw3WZaS7UlN1IiFKwh3Ex84ti090LjBOQ=s576-no?authuser=0"},"articleBody":"한 노트북 안에서 여러 언어를 사용하는걸 지양해야 하지만, R와 파이썬을 둘 다 쓰는 사람이라면 두 언어를 같이 사용할 수 있었으면 하는 순간들이 오기 마련입니다. 기본적으로 Colab 노트북은 Python 언어 기반이지만 (R 노트북도 쓸 수 있긴 하다) 한 노트북 안에서 Python과 R을 같이 쓸 수 있습니다!\n\n\n(TIP: 그냥 Colab R 노트북 사용하고 싶은 경우 이 링크로 Colab 접속하면 R 노트북이 생성됩니다: https://colab.research.google.com/#create=true&amp;language=r)\n\nColab에서 Python-R 같이 사용하기첫번째로, Colab 노트북에서 아래 코드를 실행:\n1%load_ext rpy2.ipython\n\n디폴트로는 모든 셀이 Python 셀이지만 R 코드 사용하고 싶은 경우, cell magic과 line magic 두가지 방법이 있습니다.\n\nCell magic: 셀 전체를 R 코드로 실행 → 셀 첫번째 행에 아래 코드 입력하면 셀의 모든 코드가 R 코드로 실행됩니다1%%R\nLine magic: 코드 행을 R 코드로 실행 → R 코드 실행할 행에 아래 코드 입력1%R\n\n\nTip #1: Python-R 언어 사이 Dataframe 복사R 코드 부분에서 dataframe이 생성되면, 파이썬 코드 부분에서는 해당 dataframe을 사용할 수 없습니다. 그래서 따로 두 언어 다 활용해서 dataframe을 다룰 경우에는 한쪽에서 생성된 dataframe을 다른 쪽에 만들어주는 방법을 사용해야합니다.\ndf 라는 dataframe이 있으면, 꼭 cell magic 이 아닌 line magic 으로 아래 코드를 실행 해주세요.\nPython → R1%R -i df\n\nR → Python1%R -o df\n\n여러 dataframe을 한번에12345#Python to R%R -i df -i df2#R to Python%R -o df -o df2\n\n\nTip #2: R Variable을 Python으로 복사Line magic은 헤당 행에 있는 쿠드에 적용이 되다보니 아래 코드와 같은 방법으로 R variable도 Python variable로 복사할 수 있습니다.\n1x = %R x\n\n\n위에 설명한 내용을 간단한 예시로 볼 수 있는 Colab 노트북입니다! → Example Colab Notebook\n","dateCreated":"2021-08-26T00:00:00+09:00","dateModified":"2021-12-31T16:38:21+09:00","datePublished":"2021-08-26T00:00:00+09:00","description":"한 노트북 안에서 여러 언어를 사용하는걸 지양해야 하지만, R와 파이썬을 둘 다 쓰는 사람이라면 두 언어를 같이 사용할 수 있었으면 하는 순간들이 오기 마련입니다. 기본적으로 Colab 노트북은 Python 언어 기반이지만 (R 노트북도 쓸 수 있긴 하다) 한 노트북 안에서 Python과 R을 같이 쓸 수 있습니다!","headline":"Google Colab 101: Python-R 같이 사용하기","image":["https://lh3.googleusercontent.com/pw/AM-JKLWNrbDmpUZPK5c76vmkQEwDcDrgeufFCoBZ_Phdt0yy0EDfWXUxxZgljMNgnpCt2TOuksg-lyESZVWXv7Q1Io5zsOaPNkLgaDxaG_JjKIpnhs56NP3OMTbRbpNokhRQBQ-TN8yviyq1w3gXb5ahDEM30g=s260-no?authuser=0"],"mainEntityOfPage":{"@type":"WebPage","@id":"http://sjp24.github.io/2021/08/26/colab-r-and-python/"},"publisher":{"@type":"Organization","name":"Song Joyce Park","sameAs":[],"image":"https://lh3.googleusercontent.com/ZWIlJ3A2jHyXj0s2uJk_zn_WnFH1Mzuu8oc4WdcQanRiWZ5X96HG47OKgroJqEn5__g4jF2rWBEzdPYk-indrgowKb8fcDNJchG0LxOunkTFk9PcYWkkdGYQ7OYwFgO-1AoSNnoOlzdVxSUqntMOmvA8TtDo02zrF3y5gjnJtnGtGoTStmqFig9alDg3lNOC4mGN2XBnUhuzPZA-OpzVV9mZ8zjgjAqDGFhmCr1NM19OJVOKELNlOEyQIyv4H-cHlndBLAJB-HMV0-gO69MrbsYFlLLi6JzXX6o2jPVpcPwM0acgVg6YSobf4TsboNdfsjvD3o30HXUw7OjX4Ety3UV1_gKIv5mAAWCQILcWTdGtDXRpGaWTFb2zwmEVNHF8pL3Ezn3PmdspgNByk4WSF6EWMscXF36s9oiYP5V_kXA0_0eLwO0K1zrdlP7DdHXozA_-yf-Qj-aLjRrdMpsie2N0LlCoV4pUsH51W7crqH4wR4aFxTYxYEttXybyB6rKEeDQKCZHIDZxwn902V6_DWd6ksmeLp_HQ2db07nyAOnZGxFSX10-Uj7_MXxnakw6YkBdVeJRuRgxchp_FUAqHOgbPcyKbY75SE_7T4NpculDLGh3ik6lQCzI6zPY00je2coLfNOXa-TOUkWuhfYvXJhoTKvnq0TJGM98tPlx23zmdONZd-AwrbiP8sH9sbDW5oviw7RrsDv30nu8LcYQCEOZZol04Gz5UibzQX4gRR-VZ_o6Fs2wkLkvlblvRaE4wgEqdKbPJl0vpUZsuICwDhJkKRxb8a9qr_inDxUuv5Vz0sJb_8un0XClwd7WvyqI4iiyfO03Zaex-t4MfkQg_Ln9KvDlNuo5UhuDOiXUtP-G8R1aDhKpcdU3hOOTNWjWdHhFj7MQW4n4Hfw3WZaS7UlN1IiFKwh3Ex84ti090LjBOQ=s576-no?authuser=0","logo":{"@type":"ImageObject","url":"https://lh3.googleusercontent.com/ZWIlJ3A2jHyXj0s2uJk_zn_WnFH1Mzuu8oc4WdcQanRiWZ5X96HG47OKgroJqEn5__g4jF2rWBEzdPYk-indrgowKb8fcDNJchG0LxOunkTFk9PcYWkkdGYQ7OYwFgO-1AoSNnoOlzdVxSUqntMOmvA8TtDo02zrF3y5gjnJtnGtGoTStmqFig9alDg3lNOC4mGN2XBnUhuzPZA-OpzVV9mZ8zjgjAqDGFhmCr1NM19OJVOKELNlOEyQIyv4H-cHlndBLAJB-HMV0-gO69MrbsYFlLLi6JzXX6o2jPVpcPwM0acgVg6YSobf4TsboNdfsjvD3o30HXUw7OjX4Ety3UV1_gKIv5mAAWCQILcWTdGtDXRpGaWTFb2zwmEVNHF8pL3Ezn3PmdspgNByk4WSF6EWMscXF36s9oiYP5V_kXA0_0eLwO0K1zrdlP7DdHXozA_-yf-Qj-aLjRrdMpsie2N0LlCoV4pUsH51W7crqH4wR4aFxTYxYEttXybyB6rKEeDQKCZHIDZxwn902V6_DWd6ksmeLp_HQ2db07nyAOnZGxFSX10-Uj7_MXxnakw6YkBdVeJRuRgxchp_FUAqHOgbPcyKbY75SE_7T4NpculDLGh3ik6lQCzI6zPY00je2coLfNOXa-TOUkWuhfYvXJhoTKvnq0TJGM98tPlx23zmdONZd-AwrbiP8sH9sbDW5oviw7RrsDv30nu8LcYQCEOZZol04Gz5UibzQX4gRR-VZ_o6Fs2wkLkvlblvRaE4wgEqdKbPJl0vpUZsuICwDhJkKRxb8a9qr_inDxUuv5Vz0sJb_8un0XClwd7WvyqI4iiyfO03Zaex-t4MfkQg_Ln9KvDlNuo5UhuDOiXUtP-G8R1aDhKpcdU3hOOTNWjWdHhFj7MQW4n4Hfw3WZaS7UlN1IiFKwh3Ex84ti090LjBOQ=s576-no?authuser=0"}},"url":"http://sjp24.github.io/2021/08/26/colab-r-and-python/","keywords":"Colab, R, Python","thumbnailUrl":"https://lh3.googleusercontent.com/pw/AM-JKLWNrbDmpUZPK5c76vmkQEwDcDrgeufFCoBZ_Phdt0yy0EDfWXUxxZgljMNgnpCt2TOuksg-lyESZVWXv7Q1Io5zsOaPNkLgaDxaG_JjKIpnhs56NP3OMTbRbpNokhRQBQ-TN8yviyq1w3gXb5ahDEM30g=s260-no?authuser=0"}</script>
     <meta name="description" content="한 노트북 안에서 여러 언어를 사용하는걸 지양해야 하지만, R와 파이썬을 둘 다 쓰는 사람이라면 두 언어를 같이 사용할 수 있었으면 하는 순간들이 오기 마련입니다. 기본적으로 Colab 노트북은 Python 언어 기반이지만 (R 노트북도 쓸 수 있긴 하다) 한 노트북 안에서 Python과 R을 같이 쓸 수 있습니다!">
 <meta property="og:type" content="blog">
 <meta property="og:title" content="Google Colab 101: Python-R 같이 사용하기">
@@ -31,8 +31,8 @@
 <meta property="article:modified_time" content="2021-12-31T07:38:21.106Z">
 <meta property="article:author" content="Song Joyce Park">
 <meta property="article:tag" content="Colab">
-<meta property="article:tag" content="Python">
 <meta property="article:tag" content="R">
+<meta property="article:tag" content="Python">
 <meta name="twitter:card" content="summary">
     
     
@@ -912,72 +912,6 @@
                     <hr>
                 </div>
                 
-                <div class="media">
-                    
-                    <div class="media-left">
-                        <a
-                            class="link-unstyled"
-                            href="http://sjp24.github.io/2022/09/15/startup-data-analyst-resume/"
-                            aria-label=": 스타트업 데이터 분석가 이력서 #1: 서류탈락 하는 이력서"
-                        >
-                            <img class="media-image" src="https://lh3.googleusercontent.com/CUJcdX56nd6XfoSBEWL2Ref8DK2EFaOtj6QGH77_vHyGKrVZee4TLYG-F1XtOuI0Abb9Q9t32kMphRrDqk0YqOuRR-DDMnqJB9gHwncDbGucR2F6S63-lO0hsM1v4opHb82WNcY4Gk79gAkQOFbVryZE32PYLoCsiUgwAKw3fFbgaWXOubsR_Oh0FiavhOuOzzfX1eNPRrkS_qFkSakauYJT_eEvXEtG_evkT__8bjpKGSsvOk1Cg4T9yJ4G2LJH1oCBsPjBWsa88C6fAkYMwu_8fJ1XbcuJyyOtRSJyDMNjJkle-1-Fu6SYNUmCwOVb1EOL9KpLOnBlIOZUNBIBOCU1BhDlJx4scHZEb7K5w9QKo37nM9xWtzrg0tXDblDRErMhgOEyWfycsOmK3EdOT0q3Yh6kVCL3pcrtEOOS3dSGza2fweJwZQWcNC8vjaG11IDcnLsWomJwfHFZP0_OhCqfClaLlQxe5Xg9CYxTkKU-Znw8CmgyVFL2aISicmPlPk3SPZMZi5k8DNCJ7TgRhw2dCTzAmzPULCbpWNBL5DEOfICGAiwTNziKBpSEFC9eu2qh6PizFEnTW0vjq-qxiy-yMWFiJYaAF-8yuEH_fGz_rYxezSbTu9-Iu_C_E2VAx73hfAj6ukUs_bymGWq0QHg6024nL4lKREzmLvxV5cWCyfRZ_a2WPm52vDj_ZAB3R6y7chYtxOfQsDbnS_VtWZCr4FZ0AjnLpXytLxA1DpyI6ASIm5_hiZSrQStrUzRWV2r4a6-GI-Zt4sIyBoxiVTs0XK3Lyvz1VVjNG7NDTKKta1x1MN06-1iouTxpR4hYkTdxN-fwTQcCOQ6Mtff0nDJnDqbGnx7ZaF6xsajWcpJtIgqJuTGU-f8oQc7HKLM63GE-CUclvsSIQp0WjWyGC22z8xi23oh_EgdRpJjcAyU8zg=w1961-h1307-no?authuser=0" width="60" height="60"/>
-                        </a>
-                    </div>
-                    
-                    <div class="media-body">
-                        <a
-                            class="link-unstyled"
-                            href="http://sjp24.github.io/2022/09/15/startup-data-analyst-resume/"
-                            aria-label=": 스타트업 데이터 분석가 이력서 #1: 서류탈락 하는 이력서"
-                        >
-                            <h3 class="media-heading">스타트업 데이터 분석가 이력서 #1: 서류탈락 하는 이력서</h3>
-                        </a>
-                        <span class="media-meta">
-                            <span class="media-date text-small">
-                                
-                                    Sep 15, 2022
-                                
-                            </span>
-                        </span>
-                        <div class="media-content hide-xs font-nanum-square"><p>데이터 분석 직무 자체가 워낙 회사마다, 심지어 회사 안에 있는 팀마다 다르기 때문에 회사마다 기준이 조금씩 다를 수 있습니다. 데이터 분석 직무는 요구하는 기술직인 역량이 개발자 같은 포지션 만큼은 아니기에 허들이 더 낮다고 생각하는 경우도 있지만, 기술적인 부분 외에도 정말 다양한 역량이 필요한 직무인 만큼 지원자의 역량 mix가 회사의 니즈와 안 맞는 경우가 많습니다.</p></div>
-                    </div>
-                    <div style="clear:both;"></div>
-                    <hr>
-                </div>
-                
-                <div class="media">
-                    
-                    <div class="media-left">
-                        <a
-                            class="link-unstyled"
-                            href="http://sjp24.github.io/2022/09/16/startup-data-analyst-resume-2/"
-                            aria-label=": 스타트업 데이터 분석가 이력서 #2: 이력서/포트폴리오에 내용"
-                        >
-                            <img class="media-image" src="https://lh3.googleusercontent.com/6yqbuqYzJ2fX6Q7Vs4w204c5BH6EOqvPDe5RY2peQMSZt_ob08fxbeD7N1hzrjxxn9K0ibiDqBju8SIQMjYtzAnc6mvj6FyrDd5IOuoI5G6aG5GvR02OKb-ha2OIo_Ag9coA5V_T-757gVOsLoVO5-Hag-7dHoNJZ24cRyPl3Txn5DuqA9cPMEspNBgOwYd8RAzBlJYYPIDqp3ebJ5u5KiuG5dBv05DvHy6kKaYOv53-6XIshmNRMtlrtpnlj74HNlD2-s9flEMnapx2eC3Exon0HtQJ22G0YAgTWr3c44nXlAs2Mpm7DpiGrEN8sXj4BXvx96hoQexzhwHVV_IvprLDrAusHI9gf5UYSwUTWX6RXe96VadAZOPDSeweWrVR2U8icKJV01wjWAEGwiGLWfGO6hPGxbI8k3FXZq5xDfGWbj2wrjH9MHi9kJoaMdix5Viqj_W0rznBNhHRzI-Dj10YjbIfxPyU52IrQN2vLx-ukd79s6CAS0gGI6ZWmYvymgH79H_W71iVcDyg5LpXBj34aGkx9l0UizGPtjRnupv1Ma3ZhrMMiFHPX0XodFHg06ZXmKTMkdUWTJI4J4Gyw4wvr5NI4krJFhTIi9SjC8vopEjWpEA9jgv8QcuCjaLty0eHpVPc-KCW4AQaAvML0hxPeIoehYPfAEPykEhbIsgwaSHWO2LN3y3n9soq3ZBBUWqYtkJkOHcEQSXn6slnEnluiFMUTdWqyj4o8lf0usuFKLqR35ZIU_wrE9wJ-NItkisgmFf71KwoVpFFQVdGYnNCwtBEOa529JeZZFX_wMTmWeZyy0tGb-dKlpz8VhBLvvlv4DTc3hQ0lY-K_vwFQQq3Gk7txYvgdkua3udo51BnWU_kEeExAr0nUTqHhRRUOENuYbYDZOv91ThKEAa9hbv95d6nNPcWb6agc6b22uJF5A=w1961-h1307-no?authuser=0" width="60" height="60"/>
-                        </a>
-                    </div>
-                    
-                    <div class="media-body">
-                        <a
-                            class="link-unstyled"
-                            href="http://sjp24.github.io/2022/09/16/startup-data-analyst-resume-2/"
-                            aria-label=": 스타트업 데이터 분석가 이력서 #2: 이력서/포트폴리오에 내용"
-                        >
-                            <h3 class="media-heading">스타트업 데이터 분석가 이력서 #2: 이력서/포트폴리오에 내용</h3>
-                        </a>
-                        <span class="media-meta">
-                            <span class="media-date text-small">
-                                
-                                    Sep 16, 2022
-                                
-                            </span>
-                        </span>
-                        <div class="media-content hide-xs font-nanum-square"><p>스타트업 데이터 분석가 시리즈 1탄 (<a href="https://sjp24.github.io/2022/09/15/startup-data-analyst-resume/" title="스타트업 데이터 분석가 이력서 #1: 서류탈락 하는 이력서">스타트업 데이터 분석가 이력서 #1: 서류탈락 하는 이력서</a>)에 이어서 그러면 어떤 서류에는 내용을 포함해야 하는지, 데이터 분석가 포트폴리오는 어떻게 구성해야하는지 간단하게 얘기해보겠습니다.</p></div>
-                    </div>
-                    <div style="clear:both;"></div>
-                    <hr>
-                </div>
-                
             </div>
         </div>
         <div class="modal-footer">
@@ -985,7 +919,7 @@
                 data-message-zero="no post found"
                 data-message-one="1 post found"
                 data-message-other="{n} posts found">
-                9 posts found
+                7 posts found
             </p>
         </div>
     </div>
